@@ -1,0 +1,18 @@
+[master]
+10.220.209.201 hostname=k8s-master1 nodename=k8s-master1
+10.220.209.202 hostname=k8s-master2 nodename=k8s-master2
+10.220.209.203 hostname=k8s-master3 nodename=k8s-master3
+
+[node]
+10.220.209.204 hostname=k8s-node1 nodename=k8s-node1
+10.220.209.205 hostname=k82-node2 nodename=k82-node2
+
+[Allnode:children]
+master
+node
+
+[etcd]
+10.220.209.201 clustername=k8s-master1
+10.220.209.202 clustername=k8s-master2
+10.220.209.203 clustername=k8s-master3
+# if not set clustername, default value of clustername is hostname
