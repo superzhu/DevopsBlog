@@ -5,3 +5,9 @@ ansible_port: 22
 ansible_ssh_private_key_file: '~/.ssh/id_rsa'
 ansible_python_interpreter: /usr/bin/python3.6
 
+# system time zone configuration
+TimeZone: 'Asia/Shanghai'
+kernel: true
+ntp_server1: 'cn.pool.ntp.org'
+ntp_server2: 'tw.pool.ntp.org'
+
