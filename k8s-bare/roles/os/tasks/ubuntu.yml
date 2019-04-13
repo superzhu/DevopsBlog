@@ -1,0 +1,15 @@
+- name: Close ufw(firewall)
+  systemd:
+    name: "{{ item }}"
+    enabled: no
+    state: stopped
+  with_items:
+    - ufw
+
+- name: Install Kernel modules
+  apt:
+    name:
+      conntrack
+    state: latest
+    update_cache: yes
+

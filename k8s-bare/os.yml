@@ -1,0 +1,7 @@
+---
+- hosts: Allnode
+  gather_facts: yes
+  roles:
+    - os
+  tags:
+    - os
