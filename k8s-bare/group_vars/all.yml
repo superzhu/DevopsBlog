@@ -11,3 +11,4 @@ kernel: true
 ntp_server1: 'cn.pool.ntp.org'
 ntp_server2: 'tw.pool.ntp.org'
 
+swap: false

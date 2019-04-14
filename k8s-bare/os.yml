@@ -1,4 +1,5 @@
 ---
+# Run this playbook as root user
 - hosts: Allnode
   gather_facts: yes
   roles:

@@ -14,3 +14,50 @@
     owner: root
     group: root
     mode:  '0644'
+
+- name: Modify /etc/fstab to disable swap
+  lineinfile:
+    dest: /etc/fstab
+    regexp: "(^\\s*[^#].+swap)"
+    line: '#\1'
+    backrefs: yes
+  when: not swap
+
+- name: Distribute modules-load and sysctl's configuration file
+  copy:
+    src: files/{{ item.src  }}
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: 'k8s-ipvs.conf', dest: "/etc/modules-load.d/" }
+    - { src: 'kubernetes.conf', dest: "/etc/security/limits.d/" }
+
+
+- name: Distribute sysctl file
+  template:
+    src: k8s-sysctl.conf.j2
+    dest: /etc/sysctl.d/
+
+- name: enable --now systemd-modules-load
+  systemd:
+    name: systemd-modules-load
+    state: started
+    enabled: yes
+
+- name: Create some cluster folders
+  file: 
+    name: "{{ item }}" 
+    state: directory
+  loop:
+    - /etc/kubernetes/pki
+    - /etc/kubernetes/manifests
+    - /var/log/kubernetes
+    - /var/lib/kubelet
+
+- name: Reboot hosts
+  shell: sleep 2 && shutdown -r now "reboot"
+  async: 1
+  poll: 0
+  ignore_errors: yes
+  tags:
+    - reboot
+
