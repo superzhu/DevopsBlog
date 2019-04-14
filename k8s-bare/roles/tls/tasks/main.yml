@@ -1,0 +1,8 @@
+# create a directory if it doesn't exist
+- file:
+    name: /etc/kubernetes/pki/etcd 
+    state: directory
+
+- name: Generate Certificate Authority and certificate and key files
+  include_tasks:
+    file: tls.yml

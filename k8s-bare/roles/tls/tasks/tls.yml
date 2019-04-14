@@ -1,0 +1,28 @@
+- name: render ip to openssl configuration file
+  template:
+    src: templates/openssl.cnf.j2 
+    dest: /etc/kubernetes/pki/openssl.cnf
+
+- name: Generate self-signed root certificate using CN:kubernetes-ca
+  shell: |
+    openssl genrsa -out ca.key 2048
+    openssl req -x509 -new -nodes -key ca.key -config openssl.cnf -subj "/CN=kubernetes-ca" -extensions v3_ca -out ca.crt -days 10000
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+- name: Generate self-signed root certificate using CN:etcd-ca
+  shell: |
+    openssl genrsa -out etcd/ca.key 2048
+    openssl req -x509 -new -nodes -key etcd/ca.key -config openssl.cnf -subj "/CN=etcd-ca" -extensions v3_ca -out etcd/ca.crt -days 10000
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+- name: Generate self-signed root certificate using CN:kubernetes-front-proxy-ca
+  shell: |
+    openssl genrsa -out front-proxy-ca.key 2048
+    openssl req -x509 -new -nodes -key front-proxy-ca.key -config openssl.cnf -subj "/CN=kubernetes-front-proxy-ca" -extensions v3_ca -out front-proxy-ca.crt -days 10000
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
