@@ -1,15 +1,26 @@
-- name: Close ufw(firewall)
-  systemd:
-    name: "{{ item }}"
-    enabled: no
-    state: stopped
-  with_items:
-    - ufw
-
-- name: Install Kernel modules
+- name: Delete default Ubuntu Installation
   apt:
-    name:
-      conntrack
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - ufw
+    - lxd
+    - lxd-client
+    - lxcfs
+    - lxc-common
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: Install following Kernel modules for IPVS
+  apt:
+    name: "{{ item }}"
     state: latest
     update_cache: yes
-
+  loop:
+    - conntrack 
+    - ipvsadm 
+    - ipset  
+    - sysstat 
+    - libseccomp-dev #Above is for IPVS
+    - psmisc         # For using killall command which is needed in keepalive monitoring scripts
+    - jq             # For docker image query
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
