@@ -7,6 +7,12 @@
 10.220.209.204 hostname=k8s-node1 nodename=k8s-node1
 10.220.209.205 hostname=k82-node2 nodename=k82-node2
 
+[others]
+10.220.209.202 hostname=k8s-master2 nodename=k8s-master2
+10.220.209.203 hostname=k8s-master3 nodename=k8s-master3
+10.220.209.204 hostname=k8s-node1 nodename=k8s-node1
+10.220.209.205 hostname=k82-node2 nodename=k82-node2
+
 [Allnode:children]
 master
 node
