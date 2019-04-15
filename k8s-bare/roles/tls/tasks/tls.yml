@@ -3,6 +3,7 @@
     src: templates/openssl.cnf.j2 
     dest: /etc/kubernetes/pki/openssl.cnf
 
+# Generate Certificate Authority
 - name: Generate self-signed root certificate using CN:kubernetes-ca
   shell: |
     openssl genrsa -out ca.key 2048
@@ -26,3 +27,115 @@
   args:
     chdir: /etc/kubernetes/pki/
   when: not ( redo | default(false) )
+
+
+
+# Generating All certificates
+- name: kube-etcd (etcd-server) (1)
+  shell: |
+    openssl genrsa -out etcd/server.key 2048
+    openssl req -new -key etcd/server.key -subj "/CN=kube-etcd" -out etcd/server.csr
+    openssl x509 -in etcd/server.csr -req -CA etcd/ca.crt -CAkey etcd/ca.key -CAcreateserial -extensions v3_req_etcd -extfile openssl.cnf -out etcd/server.crt -days 10000
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+- name: kube-etcd-peer (2)
+  shell: |
+     openssl genrsa -out etcd/peer.key 2048
+     openssl req -new -key etcd/peer.key -subj "/CN=kube-etcd-peer" -out etcd/peer.csr
+     openssl x509 -in etcd/peer.csr -req -CA etcd/ca.crt -CAkey etcd/ca.key -CAcreateserial -extensions v3_req_etcd -extfile openssl.cnf -out etcd/peer.crt -days 10000
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+- name: kube-etcd-healthcheck-client (3)
+  shell: |
+    openssl genrsa -out etcd/healthcheck-client.key 2048
+    openssl req -new -key etcd/healthcheck-client.key -subj "/CN=kube-etcd-healthcheck-client" -out etcd/healthcheck-client.csr
+    openssl x509 -in etcd/healthcheck-client.csr -req -CA etcd/ca.crt -CAkey etcd/ca.key -CAcreateserial -extensions v3_req_etcd -extfile openssl.cnf -out etcd/healthcheck-client.crt -days 10000
+  args:
+    chdir: /etc/kubernetes/pki/
+  when:  not ( redo | default(false) )
+
+
+- name: apiserver-etcd-client (4)
+  shell: |
+    openssl genrsa -out apiserver-etcd-client.key 2048
+    openssl req -new -key apiserver-etcd-client.key -subj "/CN=etcd-client/O=system:masters" -out apiserver-etcd-client.csr
+    openssl x509 -in apiserver-etcd-client.csr -req -CA etcd/ca.crt -CAkey etcd/ca.key -CAcreateserial -extensions v3_req_etcd -extfile openssl.cnf -out apiserver-etcd-client.crt -days 10000
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+
+- name: front-proxy-client (5)
+  shell: |
+    openssl genrsa -out  front-proxy-client.key 2048
+    openssl req -new -key front-proxy-client.key -subj "/CN=front-proxy-client" -out front-proxy-client.csr
+    openssl x509 -req -in front-proxy-client.csr -CA front-proxy-ca.crt -CAkey front-proxy-ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out front-proxy-client.crt
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+- name: kube-apiserver (6)
+  shell: |
+    openssl genrsa -out apiserver.key 2048
+    openssl req -new -key apiserver.key -subj "/CN=kube-apiserver" -config openssl.cnf -out apiserver.csr
+    openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_apiserver -extfile openssl.cnf -out apiserver.crt
+  args:
+    chdir: /etc/kubernetes/pki/
+  when:  not ( redo | default(false) )
+
+- name: kube-scheduler (7)
+  shell: |
+    openssl genrsa -out  kube-scheduler.key 2048
+    openssl req -new -key kube-scheduler.key -subj "/CN=system:kube-scheduler/O=system:kube-scheduler" -out kube-scheduler.csr
+    openssl x509 -req -in kube-scheduler.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out kube-scheduler.crt
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+- name: kube-controller-manager (8)
+  shell: |
+    openssl genrsa -out  kube-controller-manager.key 2048
+    openssl req -new -key kube-controller-manager.key -subj "/CN=system:kube-controller-manager/O=system:kube-controller-manager" -out kube-controller-manager.csr
+    openssl x509 -req -in kube-controller-manager.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out kube-controller-manager.crt
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+- name: admin (kubectl 9)
+  shell: |
+    openssl genrsa -out admin.key 2048
+    openssl req -new -key admin.key -subj "/CN=admin/O=system:masters" -out admin.csr
+    openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out admin.crt
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+
+- name: apiserver-kublet-client (10)
+  shell: |
+    openssl genrsa -out apiserver-kubelet-client.key 2048
+    openssl req -new -key apiserver-kubelet-client.key -subj "/CN=apiserver-kubelet-client/O=system:nodes" -out apiserver-kubelet-client.csr
+    openssl x509 -req -in apiserver-kubelet-client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out apiserver-kubelet-client.crt
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+- name: kube-proxy (11)
+  shell: |
+    openssl genrsa -out kube-prox.key 2048
+    openssl req -new -key kube-prox.key -subj "/CN=system:kube-proxy/O=system:node-proxier" -out kube-prox.csr
+    openssl x509 -req -in kube-prox.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out kube-prox.crt
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )
+
+
+
+- name: remove srl files
+  shell: find . -name "*.srl" -exec rm -f {} \;
+  args:
+    chdir: /etc/kubernetes/pki/

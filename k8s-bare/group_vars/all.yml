@@ -12,3 +12,24 @@ ntp_server1: 'cn.pool.ntp.org'
 ntp_server2: 'tw.pool.ntp.org'
 
 swap: false
+
+# openssl.cnf template
+# if etcd or master needs extension, fill resevered IPs
+# certSANs:
+#   apiServer:
+#     - 10.200.209.156
+#     - 10.200.209.157
+#   etcd:
+#     - 10.200.209.158
+
+SvcCIDR: 172.16.0.0/16
+KubernetesClusterSVCIP: 172.16.0.1 # Used for Certificate SAN
+ClusterDns: 172.16.0.10  # Userd for CoreDNS cluster IP
+PodCIDR: 192.168.0.0/16
+ServiceNodePortRange: 30000-32767
+ClusterDomain: cluster.local
+
+# ApiServer high availability
+VIP: '10.220.209.200'
+VIP_NETMASK: 24
+INTERFACE_NAME: ens192
