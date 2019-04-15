@@ -6,3 +6,7 @@
 - name: Generate Certificate Authority and certificate and key files
   include_tasks:
     file: tls.yml
+
+- name: Generate kubeconfig files
+  include_tasks:
+    file: kubeconfig.yml

@@ -29,7 +29,12 @@ PodCIDR: 192.168.0.0/16
 ServiceNodePortRange: 30000-32767
 ClusterDomain: cluster.local
 
+CLUSTER_NAME: 'kubernetes'
+KUBE_VERSION: 'v1.14.1'
+ETCD_version: 'v3.2.24'
+
 # ApiServer high availability
 VIP: '10.220.209.200'
+KUBE_APISERVER: https://{% if groups['master'] | length !=1 %}{{ VIP }}:8443{% else %}{{ hostvars[groups['master'][0]].inventory_hostname }}:6443{% endif %}
 VIP_NETMASK: 24
 INTERFACE_NAME: ens192

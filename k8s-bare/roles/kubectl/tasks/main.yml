@@ -1,0 +1,13 @@
+- stat:
+    path: /usr/local/bin/kubectl
+  register: kubectl_file
+
+- name: Download kubectl
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ KUBE_VERSION  }}/bin/darwin/amd64/kubectl
+    dest: /usr/local/bin/
+    mode: 0755
+  when: not kubectl_file.stat.exists
+
+- fail: msg="please download kubectl"
+  when: not kubectl_file.stat.exists

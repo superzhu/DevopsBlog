@@ -126,9 +126,9 @@
 
 - name: kube-proxy (11)
   shell: |
-    openssl genrsa -out kube-prox.key 2048
-    openssl req -new -key kube-prox.key -subj "/CN=system:kube-proxy/O=system:node-proxier" -out kube-prox.csr
-    openssl x509 -req -in kube-prox.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out kube-prox.crt
+    openssl genrsa -out kube-proxy.key 2048
+    openssl req -new -key kube-proxy.key -subj "/CN=system:kube-proxy/O=system:node-proxier" -out kube-proxy.csr
+    openssl x509 -req -in kube-proxy.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out kube-proxy.crt
   args:
     chdir: /etc/kubernetes/pki/
   when: not ( redo | default(false) )
