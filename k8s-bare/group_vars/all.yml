@@ -38,3 +38,11 @@ VIP: '10.220.209.200'
 KUBE_APISERVER: https://{% if groups['master'] | length !=1 %}{{ VIP }}:8443{% else %}{{ hostvars[groups['master'][0]].inventory_hostname }}:6443{% endif %}
 VIP_NETMASK: 24
 INTERFACE_NAME: ens192
+
+# docker custom configuration
+docker:
+  version: '18.09.5'
+  extendedVersion: '5:18.09.5~3-0~ubuntu-bionic'
+  dataDir: /var/lib/docker
+  execOpts:
+    - 'native.cgroupdriver=systemd'

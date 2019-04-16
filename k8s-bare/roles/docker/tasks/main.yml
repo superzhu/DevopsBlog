@@ -3,5 +3,50 @@
     path: /usr/bin/dockerd
   register: dockerd
 
-- fail: msg="docker daemon does not exist"
-  when: not dockerd.stat.exists
+- name: get current docker version
+  shell: docker version | grep "Version" | grep "{{ docker.version }}"
+  ignore_errors: yes
+  register: dockerVersion
+  when: dockerd.stat.exists
+
+- name: remove existing docker installation when docker version is not matched
+  shell: apt-get remove docker-ce docker-ce-cli containerd.io -y
+  when: (dockerd.stat.exists and ( dockerVersion.rc is defined and  dockerVersion.rc not in [ 0 ] ) )
+
+- name: install a few prerequisite packages which let apt use packages over HTTPS for docker  {{ docker.version }}
+  apt:
+    name: "{{ item }}" 
+    update_cache: yes
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
+  when: ( dockerVersion.rc is not defined or dockerVersion.rc not in [ 0 ] )
+
+# command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  
+- name: Add the GPG key for the official Docker repository to your system
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  when: ( dockerVersion.rc is not defined or dockerVersion.rc not in [ 0 ] )
+
+# command: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+- name: Add the Docker repository to APT sources
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+    update_cache: yes
+  when: ( dockerVersion.rc is not defined or dockerVersion.rc not in [ 0 ] )
+
+
+- name: install docker  {{ docker.version }}
+  apt:
+    name: "{{ item }}"
+    # update_cache: yes
+  loop:
+    - docker-ce={{ docker.extendedVersion }}
+    - docker-ce-cli={{ docker.extendedVersion }}
+    - containerd.io
+  when: ( dockerVersion.rc is not defined or dockerVersion.rc not in [ 0 ] )
