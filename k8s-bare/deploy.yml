@@ -49,3 +49,11 @@
         - /etc/kubernetes/pki/etcd/*.csr
         - /etc/kubernetes/pki/etcd/*.key
       tags: disTLS
+
+# third play
+- name: install docker and etcd3
+  hosts: localhost
+  gather_facts: yes
+  roles:
+    - role: docker
+      tags: docker

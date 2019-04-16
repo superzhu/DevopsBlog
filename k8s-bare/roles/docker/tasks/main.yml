@@ -1,0 +1,7 @@
+# install or update docker
+- stat:
+    path: /usr/bin/dockerd
+  register: dockerd
+
+- fail: msg="docker daemon does not exist"
+  when: not dockerd.stat.exists
