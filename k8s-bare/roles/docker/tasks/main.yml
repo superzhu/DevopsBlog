@@ -50,3 +50,28 @@
     - docker-ce-cli={{ docker.extendedVersion }}
     - containerd.io
   when: ( dockerVersion.rc is not defined or dockerVersion.rc not in [ 0 ] )
+
+- name: distribute docker configuration file(daemon.json)
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0600
+    force: yes
+
+- name: flush iptables rules
+  shell: "iptables -F && iptables -X \
+    && iptables -F -t nat && iptables -X -t nat \
+    && iptables -F -t raw && iptables -X -t raw \
+    && iptables -F -t mangle && iptables -X -t mangle"
+
+
+- name: restart docker server after configuration file change
+  shell: |
+    systemctl daemon-reload
+    systemctl enable docker
+    systemctl restart docker
+
+- name: add Iptables rule on FORWARD chain
+  shell: "iptables -A FORWARD -s 0.0.0.0/0 -j ACCEPT"

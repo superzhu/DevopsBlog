@@ -52,7 +52,7 @@
 
 # third play
 - name: install docker and etcd3
-  hosts: localhost
+  hosts: Allnode
   gather_facts: yes
   roles:
     - role: docker
