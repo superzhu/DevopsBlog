@@ -7,12 +7,6 @@
     - "{{ etcd.dataDir }}"
     - /etc/etcd
 
-- set_fact:
-    clusterName: "{{ CLUSTER_NAME }}"
-  when: clusterName is undefined
-
-- debug:
-    msg: "{{ clusterName }}"
 
 - name: Distribute etcd executable files
   copy:

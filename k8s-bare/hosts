@@ -18,7 +18,7 @@ master
 node
 
 [etcd]
-10.220.209.201 clusterName=kubernetes
-10.220.209.202 clusterName=kubernetes
-10.220.209.203 clusterName=kubernetes
+10.220.209.201 clusterName=k8s-master1
+10.220.209.202 clusterName=k8s-master2
+10.220.209.203 clusterName=k8s-master3
 # if not set clustername, default value of clustername is hostname

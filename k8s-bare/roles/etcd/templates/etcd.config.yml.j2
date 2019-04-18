@@ -1,4 +1,4 @@
-name: '{{ CLUSTER_NAME  }}'
+name: '{{ clusterName  }}'
 data-dir: {{ etcd.dataDir }}
 wal-dir: {{ etcd.dataDir }}/wal
 auto-compaction-mode: revision
@@ -20,14 +20,17 @@ discovery-fallback: 'proxy'
 discovery-proxy:
 discovery-srv:
 
-initial-advertise-peer-urls: '{% for host in groups['etcd'] %}https://{{ hostvars[host].inventory_hostname }}:2380{% if not loop.last %},{% endif %}{% endfor %}'
+#initial-advertise-peer-urls: '{% for host in groups['etcd'] %}https://{{ hostvars[host].inventory_hostname }}:2380{% if not loop.last %},{% endif %}{% endfor %}'
+initial-advertise-peer-urls: 'https://{{ inventory_hostname }}:2380'
 advertise-client-urls: 'https://{{ inventory_hostname }}:2379'
 
 initial-cluster: '{% for host in groups['etcd'] %}{{ hostvars[host].clusterName }}=https://{{ hostvars[host].inventory_hostname }}:2380{% if not loop.last %},{% endif %}{% endfor %}'
+
 initial-cluster-token: 'etcd-k8s-cluster'
 initial-cluster-state: 'new'
 strict-reconfig-check: false
-enable-v2: true
+
+enable-v2: false
 enable-pprof: true
 proxy: 'off'
 proxy-failure-wait: 5000
