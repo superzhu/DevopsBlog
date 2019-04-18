@@ -31,7 +31,7 @@ ClusterDomain: cluster.local
 
 CLUSTER_NAME: 'kubernetes'
 KUBE_VERSION: 'v1.14.1'
-ETCD_version: 'v3.2.24'
+ETCD_version: 'v3.3.12'
 
 # ApiServer high availability
 VIP: '10.220.209.200'
@@ -46,3 +46,8 @@ docker:
   dataDir: /var/lib/docker
   execOpts:
     - 'native.cgroupdriver=systemd'
+
+# etcd3 configuration
+etcd:
+  dataDir: /var/lib/etcd
+  initialClusterToken: 'etcd-k8s-cluster'

@@ -50,10 +50,18 @@
         - /etc/kubernetes/pki/etcd/*.key
       tags: disTLS
 
-# third play
-- name: install docker and etcd3
+# third play Allnode
+- name: install docker
   hosts: Allnode
   gather_facts: yes
   roles:
     - role: docker
       tags: docker
+
+# Fourth play
+- name: install etcd3
+  hosts: etcd
+  gather_facts: yes
+  roles:
+    - role: etcd
+      tags: etcd
