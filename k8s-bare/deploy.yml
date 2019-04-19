@@ -65,3 +65,10 @@
   roles:
     - role: etcd
       tags: etcd
+
+# Fifth play
+- name: master API server high availability
+  hosts: master
+  gather_facts: yes
+  roles:
+    - { role: HA, tags: HA, when: "groups['master'] | length  != 1" }

@@ -1,0 +1,13 @@
+- name: install keepalived
+  apt:
+    name: keepalived
+    update_cache: yes
+    state: latest
+
+- name: configure keepalived
+  template:
+    src: "{{ item }}"
+    dest: /etc/keepalived/{{ item.split('.')[:-1]|join('.') }}
+  loop:
+    - keepalived.conf.j2
+    - check_haproxy.sh.j2

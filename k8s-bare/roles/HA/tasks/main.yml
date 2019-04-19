@@ -1,0 +1,23 @@
+- name: Installing haproxy ...
+  include_tasks: haproxy.yml
+
+- name: Installing keepalived ...
+  include_tasks: keepalived.yml
+
+
+- block:
+    - name: restart haproxy keepalived
+      systemd:
+        name: "{{ item }}"
+        enabled: yes
+        state: restarted
+      with_items:
+        - keepalived
+        - haproxy
+
+
+    - wait_for:
+        host: "{{ VIP }}"
+        delay: 10
+        port: 22
+      connection: local

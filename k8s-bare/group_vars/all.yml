@@ -37,7 +37,7 @@ ETCD_version: 'v3.3.12'
 VIP: '10.220.209.200'
 KUBE_APISERVER: https://{% if groups['master'] | length !=1 %}{{ VIP }}:8443{% else %}{{ hostvars[groups['master'][0]].inventory_hostname }}:6443{% endif %}
 VIP_NETMASK: 24
-INTERFACE_NAME: ens192
+INTERFACE_NAME: ens160
 
 # docker custom configuration
 docker:

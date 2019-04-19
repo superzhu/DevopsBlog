@@ -1,0 +1,43 @@
+vrrp_script haproxy-check {
+    script "/bin/bash /etc/keepalived/check_haproxy.sh"
+    interval 3
+    weight -2
+    fall 10
+    rise 2
+}
+
+vrrp_instance haproxy-vip {
+    # preferable state of the router?¡ª?MASTER or BACKUP
+    state BACKUP
+
+    # the priority of the router among other routers
+    priority 101
+
+    #  the interface with which the IP address binds
+    interface {{ INTERFACE_NAME }}
+
+    # router id
+    virtual_router_id 47
+
+    # VRRP Advertisement interval in seconds
+    advert_int 3
+
+    # IP address of current router
+    unicast_src_ip {{ inventory_hostname }}
+
+    # IP address of other routers in VRRP 
+    unicast_peer {
+{% for host in groups['master'] %}{% if host != inventory_hostname %}
+        {{ host }}
+{% endif %}{% endfor %}
+    }
+
+    # This section is for adding the virtual IP address (VIP). 
+    virtual_ipaddress {
+        {{ VIP }}/{{ VIP_NETMASK }}
+    }
+
+    track_script {
+        haproxy-check
+    }
+}
