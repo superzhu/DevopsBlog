@@ -51,3 +51,65 @@ docker:
 etcd:
   dataDir: /var/lib/etcd
   initialClusterToken: 'etcd-k8s-cluster'
+
+
+# The following variables, address and bind, either bind to hosting single network by default
+#  or changes to 0.0.0.0; healthz and metrics are the same
+apiserver:
+  advertiseAddress: "{{ inventory_hostname }}"
+  bind: "{{ inventory_hostname }}"
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-apiserver
+    logDir: /var/log/kubernetes/kube-apiserver
+    logSize: 200M
+    logRotate: 7
+
+controllerManager:
+  bind: 127.0.0.1
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-controller-manager
+    logDir: /var/log/kubernetes/kube-controller-manager
+    logSize: 200M
+    logRotate: 7
+
+
+scheduler:
+  bind: 127.0.0.1
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-scheduler
+    logDir: /var/log/kubernetes/kube-scheduler
+    logSize: 200M
+    logRotate: 7
+
+# kube-proxy
+proxy:
+  bind: "{{ inventory_hostname }}"
+  healthzBindAddress: "{{ inventory_hostname }}"
+  metricsBindAddress: "{{ inventory_hostname }}"
+  mode: ipvs  # proxy mode
+  bin: true
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-proxy
+    logDir: /var/log/kubernetes/kube-proxy
+    logSize: 200M
+    logRotate: 7
+
+kubelet:
+  bind: "{{ inventory_hostname }}"
+  healthzBindAddress: "{{ inventory_hostname }}"
+  swap: false  # if do not want to disable swap, setting it to true
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kubelet
+    logDir: /var/log/kubernetes/kubelet
+    logSize: 200M
+    logRotate: 7
