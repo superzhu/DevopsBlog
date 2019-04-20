@@ -75,10 +75,18 @@
     - { role: HA, tags: HA, when: "groups['master'] | length  != 1" }
 
  
-# 6 play
+# 6 play ansible-playbook deploy.yml -e "redo=true" --tags "master"
 - name: deploy master components( kube-apiserver,kube-controller-manager,kube-scheduler)
   hosts: master
   gather_facts: yes
   roles:
     - role: master
       tags: master
+
+# 7 Generate TLS bootstrapping kubeconfig,secret as well as cluster-role binding
+- name: kublet TLS bootstrapping configuration
+  hosts: localhost
+  gather_facts: no
+  roles:
+    - role: bootstrap
+      tags: bootstrap

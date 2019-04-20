@@ -1,0 +1,68 @@
+- name: Create TOKEN_PUB
+  shell: openssl rand -hex 3
+  register: Token_Pub
+
+- name: Create TOKEN_SECRET
+  shell: openssl rand -hex 8
+  register: Token_Secret
+
+- set_fact:
+    TOKEN_PUB: "{{ ( Token_Pub.stdout_lines 
+                     | list )[0]
+                 }}"
+    TOKEN_SECRET: "{{ ( Token_Secret.stdout_lines 
+                     | list )[0]
+                 }}"
+
+- set_fact:
+    BOOTSTRAP_TOKEN: "{{ TOKEN_PUB + '.' + TOKEN_SECRET }}"        
+
+- debug:
+    msg: "{{ TOKEN_PUB }}, {{ TOKEN_SECRET }},{{ BOOTSTRAP_TOKEN }} "
+
+
+- name: Generate bootstrap token secret
+  shell: kubectl -n kube-system create secret generic "bootstrap-token-{{ TOKEN_PUB }}" \
+          --type 'bootstrap.kubernetes.io/token' \
+          --from-literal description="cluster bootstrap token" \
+          --from-literal auth-extra-groups="system:bootstrappers:k8s" \                             
+          --from-literal "token-id={{ TOKEN_PUB }}" \
+          --from-literal "token-secret={{ TOKEN_SECRET }}" \                                         
+          --from-literal usage-bootstrap-authentication=true \
+          --from-literal usage-bootstrap-signing=true
+
+- name: Generate kublet TLS bootstrapping kubeconfig
+  shell: |
+    kubectl config set-cluster {{ CLUSTER_NAME }} \
+      --certificate-authority=/etc/kubernetes/pki/ca.crt \
+      --embed-certs=true \
+      --server={{ KUBE_APISERVER  }} \
+      --kubeconfig=/etc/kubernetes/{{ item.KUBE_CONFIG }}
+    kubectl config set-credentials {{ item.KUBE_USER }} \
+      --token={{ BOOTSTRAP_TOKEN }} \
+      --kubeconfig=/etc/kubernetes/{{ item.KUBE_CONFIG }}
+    kubectl config set-context {{ item.KUBE_USER }}@{{ CLUSTER_NAME }} \
+      --cluster={{ CLUSTER_NAME }} \
+      --user={{ item.KUBE_USER }} \
+      --kubeconfig=/etc/kubernetes/{{ item.KUBE_CONFIG }}
+    kubectl config use-context {{ item.KUBE_USER }}@{{ CLUSTER_NAME }} --kubeconfig=/etc/kubernetes/{{ item.KUBE_CONFIG }}
+  loop:
+    - { KUBE_USER: 'kubelet-bootstrap', KUBE_CERT: "kube-scheduler", KUBE_CONFIG: 'bootstrap.kubeconfig' }
+
+# check configuration: kubectl config view --kubeconfig=/etc/kubernetes/bootstrap.kubeconfig
+
+- name: Copy TLS bootstrapping ClusterRoleBinding to /etc/kubernetes
+  copy:
+    src: "{{ item }}"
+    dest: /etc/kubernetes/
+  loop:
+    - create-csr-cluster-role-binding.yml
+    - approve-csr-cluster-role-binding.yml
+    - renew-csr-cluster-role-binding.yml
+  #when: inventory_hostname == "k8s-master1"
+      
+- name: ClusterRoleBinding enable bootstrapping nodes to create CSR
+  shell: |
+     kubectl apply -f /etc/kubernetes/create-csr-cluster-role-binding.yml
+     kubectl apply -f /etc/kubernetes/approve-csr-cluster-role-binding.yml
+     kubectl apply -f /etc/kubernetes/renew-csr-cluster-role-binding.yml
