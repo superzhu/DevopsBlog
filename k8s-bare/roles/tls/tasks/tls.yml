@@ -96,11 +96,13 @@
     chdir: /etc/kubernetes/pki/
   when: not ( redo | default(false) )
 
-- name: kube-controller-manager (8)
+- name: sa (service account,kube-controller-manager 8)
   shell: |
-    openssl genrsa -out  kube-controller-manager.key 2048
-    openssl req -new -key kube-controller-manager.key -subj "/CN=system:kube-controller-manager/O=system:kube-controller-manager" -out kube-controller-manager.csr
-    openssl x509 -req -in kube-controller-manager.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out kube-controller-manager.crt
+    openssl genrsa -out  sa.key 2048
+    openssl ecparam -name secp521r1 -genkey -noout -out sa.key
+    openssl ec -in sa.key -outform PEM -pubout -out sa.pub
+    openssl req -new -sha256 -key sa.key -subj "/CN=system:kube-controller-manager" -out sa.csr
+    openssl x509 -req -in sa.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out sa.crt
   args:
     chdir: /etc/kubernetes/pki/
   when: not ( redo | default(false) )

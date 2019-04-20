@@ -1,0 +1,15 @@
+- block:
+    - name: create logrotate-related folders
+      file: 
+        name: "{{ item }}/logrotate"
+        state: directory
+      loop: 
+        -  "{{ out_item.value.logDir }}"
+
+    - name: render logrotate configuration file
+      template:
+        src: "{{ item }}"
+        dest: "/etc/logrotate.d/{{ item.split('/')[-1] }}"
+      loop:
+        -  "{{ out_item.value.confTemplate }}"
+  when: out_item.key == 'logrotate' and out_item.value.log is defined and out_item.value.log

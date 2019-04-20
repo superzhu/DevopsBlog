@@ -1,0 +1,17 @@
+- include_tasks: 
+    master.yml
+  when: inventory_hostname in groups['master']
+
+
+- name: testing kube-apiserver port
+  uri:
+    url: https://{{ groups['master'][0] }}:6443/healthz
+    validate_certs: no
+    return_content: yes
+    method: GET
+  register: this
+  until: "'ok' in this.content"
+  retries: 10
+  delay: 4
+  connection: local
+  ignore_errors: True

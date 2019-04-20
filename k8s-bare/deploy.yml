@@ -35,6 +35,7 @@
         mode: preserve
       with_fileglob:
         - /etc/kubernetes/pki/*.crt
+        - /etc/kubernetes/pki/*.pub
         - /etc/kubernetes/pki/*.csr
         - /etc/kubernetes/pki/*.key
       tags: disTLS
@@ -72,3 +73,12 @@
   gather_facts: yes
   roles:
     - { role: HA, tags: HA, when: "groups['master'] | length  != 1" }
+
+ 
+# 6 play
+- name: deploy master components( kube-apiserver,kube-controller-manager,kube-scheduler)
+  hosts: master
+  gather_facts: yes
+  roles:
+    - role: master
+      tags: master

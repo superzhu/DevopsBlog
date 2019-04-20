@@ -52,7 +52,13 @@ etcd:
   dataDir: /var/lib/etcd
   initialClusterToken: 'etcd-k8s-cluster'
 
-
+# frequency for kublet updating itself
+nodeStatusUpdate: Medium
+#nodeStatusUpdateFrequency: 10s
+#nodeMonitorPeriod: 5s     
+#nodeMonitorGracePeriod: 40s
+#podEvictionTimeout: 5m
+  
 # The following variables, address and bind, either bind to hosting single network by default
 #  or changes to 0.0.0.0; healthz and metrics are the same
 apiserver:

@@ -1,0 +1,81 @@
+- name: create kubeconfig folder
+  file:
+    name: "{{ item }}"
+    state: directory
+  loop:
+    - /etc/kubernetes/pki/etcd
+    - ~/.kube/
+
+- name: running tasks from newlog file
+  include_tasks: 
+    newlog.yml
+  loop_control:
+    loop_var: out_item
+  with_dict:
+    - "{{ apiserver }}"
+    - "{{ controllerManager }}"
+    - "{{ scheduler }}"
+
+- block:
+    - name: distribute etcdctl to master nodes
+      copy:
+        src: /usr/local/bin/etcdctl
+        dest: /usr/local/bin/etcdctl
+        mode: preserve
+
+    - name: when etcd is not running in master nodes, distribute etcd certificates to master nodes
+      copy:
+        src: "{{ item }}"
+        dest: dest=/etc/kubernetes/pki/etcd/
+      with_fileglob:
+        - '/etc/kubernetes/pki/etcd/*'
+  when: groups['etcd'] | intersect(groups['master']) | length == 0
+
+- name: distribute master components systemd files
+  template:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item.split('.')[:-1]|join('.') }}"
+  loop:
+    - kube-apiserver.service.j2
+    - kube-controller-manager.service.j2
+    - kube-scheduler.service.j2
+
+
+- name: distribute master component executables
+  copy:
+    src: "/home/plcm/kubernetes/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    owner: root
+    group: root
+    mode: preserve
+  loop:
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler
+    - kubectl
+
+- name: create ~/.kube/config if it does not exist
+  file:
+    name: ~/.kube
+    state: directory
+  connection: local
+
+- name: copy admin.kubeconfig to ~/.kube/config
+  copy:
+    src: /etc/kubernetes/admin.kubeconfig
+    dest: ~/.kube/config
+    mode: preserve
+    remote_src: true
+  connection: local
+
+- name: enable and start kubernetes master components
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+    enabled: yes
+    daemon-reload: yes
+  loop:
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler
+  when: not( redo | default(false) )
