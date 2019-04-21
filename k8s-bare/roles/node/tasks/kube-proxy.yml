@@ -1,0 +1,49 @@
+- block:
+    - name: Deploying kube-proxy ...
+      copy:
+        src: "/home/plcm/kubernetes/{{ item }}"
+        dest: "/usr/local/bin/{{ item }}"
+        owner: root
+        group: root
+        mode: preserve
+      loop:
+        - kube-proxy
+
+    - name: Create folder "{{ proxy.logrotate.logDir }}/logrotate"
+      file:
+        name: "{{ proxy.logrotate.logDir }}/logrotate"
+        state: directory
+      when: proxy.logrotate.log is defined and proxy.logrotate.log
+
+    - name: Distribute logrotate configuration file
+      template:
+        src: "{{ item }}"
+        dest: "/etc/logrotate.d/{{ item.split('/')[-1] }}"
+      loop:
+        - "{{ proxy.logrotate.confTemplate }}"
+      when: proxy.logrotate.log is defined and proxy.logrotate.log
+
+
+    - name: Distribute kube-proxy.kubeconfig
+      copy:
+        src: /etc/kubernetes/kube-proxy.kubeconfig
+        dest: /etc/kubernetes/kube-proxy.kubeconfig
+
+    - name: Distribute kube-proxy configuration files
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}"
+      loop:
+        - { src: 'kube-proxy.service.j2', dest: '/etc/systemd/system/' }
+        - { src: 'kube-proxy.conf.j2', dest: '/etc/kubernetes/' }
+
+    
+    - name: enable and start kube-proxy
+      systemd:
+        name: kube-proxy
+        state: stopped
+        enabled: yes
+        daemon_reload: yes
+        # when: not ( redo | default(false) )
+  when:  proxy.bin
+   

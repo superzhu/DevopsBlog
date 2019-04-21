@@ -1,0 +1,7 @@
+- include_tasks: kubelet.yml
+  tags: 
+    - kubelet
+
+- include_tasks: kube-proxy.yml
+  tags:
+    - kube-proxy

@@ -99,7 +99,7 @@ proxy:
   healthzBindAddress: "{{ inventory_hostname }}"
   metricsBindAddress: "{{ inventory_hostname }}"
   mode: ipvs  # proxy mode
-  bin: true
+  bin: true   # indicate deployment using binary file, not daemonset 
   logLevel: 2
   logrotate:
     log: true

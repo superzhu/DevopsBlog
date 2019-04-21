@@ -90,3 +90,11 @@
   roles:
     - role: bootstrap
       tags: bootstrap
+
+# 8 Installing node components
+- name: Installing node components
+  hosts: Allnode
+  gather_facts: no
+  roles:
+    - role: node
+      tags: node

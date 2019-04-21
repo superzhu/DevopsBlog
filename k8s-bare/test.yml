@@ -1,0 +1,10 @@
+---
+# Run this play as root user
+
+# 8 Installing node components
+- name: Installing node components
+  hosts: Allnode
+  gather_facts: no
+  roles:
+    - role: node
+      tags: node
