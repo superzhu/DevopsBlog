@@ -1,0 +1,8 @@
+- name: Generating client certificate for calico accessing etcd server
+  shell: |
+    openssl genrsa -out calico/calico-etcd-client.key 2048
+    openssl req -new -key calico/calico-etcd-client.key -subj "/CN=calico/O=etcdCluster" -out calico/calico-etcd-client.csr
+    openssl x509 -in calico/calico-etcd-client.csr -req -CA etcd/ca.crt -CAkey etcd/ca.key -CAcreateserial -extensions v3_req_etcd -extfile openssl.cnf -out calico/calico-etcd-client.crt -days 10000
+  args:
+    chdir: /etc/kubernetes/pki/
+  when: not ( redo | default(false) )

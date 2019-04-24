@@ -1,0 +1,78 @@
+- block:
+    - name: Creating calico related folders
+      file:
+        name: "{{ item }}"
+        state: directory
+      loop:
+        - /etc/kubernetes/pki/calico
+
+    - name: Get calico-etcd-secrets info
+      shell: kubectl get secrets -n kube-system
+      register: secrets_info
+
+    - name: Creating calico certificate for accesssing etcd server
+      include_tasks:
+        file: calicotls.yml
+      when: '"calico-etcd-secrets" not in secrets_info.stdout'
+
+    - name: Creating calico-etcd-secrets
+      shell: |
+        kubectl create secret generic -n kube-system calico-etcd-secrets \
+          --type="Opaque" \
+          --from-file=etcd-ca=/etc/kubernetes/pki/etcd/ca.crt \
+          --from-file=etcd-key=/etc/kubernetes/pki/calico/calico-etcd-client.key \
+          --from-file=etcd-cert=/etc/kubernetes/pki/calico/calico-etcd-client.crt
+      when: '"calico-etcd-secrets" not in secrets_info.stdout'
+
+    - name: Distribute calico.yml Kubernetes resource file
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}"
+      loop:
+        - { src: "calico-{{ calico_ver_main }}.yml.j2", dest: '/etc/kubernetes/pki/calico/' }
+      
+
+  delegate_to: "{{ groups.master[0] }}"
+  run_once: true
+
+ # solve systemd log flood: Created slice libcontainer/Removed slice libcontainer
+- name: filtering systemd log flood--Created slice libcontainer/Removed slice libcontainer
+  template:
+    src:  "{{ item.src }}"
+    dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}"
+  loop:
+    - { src: "30-systemd-slice.conf.j2", dest: '/etc/rsyslog.d/' }
+
+- name: restart rsyslog
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+    enabled: yes
+    daemon-reload: yes
+  loop:
+    - rsyslog 
+
+- name: installing calico networking plugin (just need to run once)
+  shell: kubectl apply -f "/etc/kubernetes/pki/calico/calico-{{ calico_ver_main }}.yml"
+  delegate_to: "{{ groups.master[0] }}"
+  run_once: true
+
+- name: Create calicoctl configuration folder
+  file:
+    name: "{{ item }}"
+    state: directory
+  loop:
+    - /etc/calico/   # for calicoctl configuration
+  
+- name: Copy calicoctl executables to nodes
+  copy:
+    src: /home/plcm/kubernetes/calicoctl
+    dest: /usr/local/bin/
+    mode: preserve
+
+- name: Copy calicoctl configuration file
+  template:
+    src:  "{{ item.src }}"
+    dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}"
+  loop:
+    - { src: "calicoctl.cfg.j2", dest: '/etc/calico' }

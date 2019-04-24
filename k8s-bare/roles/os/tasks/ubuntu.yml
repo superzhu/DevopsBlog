@@ -23,4 +23,5 @@
     - libseccomp-dev #Above is for IPVS
     - psmisc         # For using killall command which is needed in keepalive monitoring scripts
     - jq             # For docker image query
+    - runit          # For calico
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'

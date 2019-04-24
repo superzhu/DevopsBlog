@@ -64,6 +64,6 @@
 - name: enable and start kubelet
   systemd:
     name: kubelet
-    state: stopped
+    state: restarted
     enabled: yes
     daemon_reload: yes

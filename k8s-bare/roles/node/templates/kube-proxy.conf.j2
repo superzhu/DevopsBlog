@@ -18,7 +18,7 @@ enableProfiling: false
 healthzBindAddress: {{ proxy.healthzBindAddress }}:10256
 hostnameOverride: {{ nodename }}
 iptables:
-    masqueradeAll: true
+    masqueradeAll: false
     masqueradeBit: 14
     minSyncPeriod: 0s
     syncPeriod: 30s

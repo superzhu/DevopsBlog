@@ -41,7 +41,7 @@
     - name: enable and start kube-proxy
       systemd:
         name: kube-proxy
-        state: stopped
+        state: restarted
         enabled: yes
         daemon_reload: yes
         # when: not ( redo | default(false) )

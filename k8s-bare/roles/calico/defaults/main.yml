@@ -1,0 +1,11 @@
+# calico-related configuration
+
+calico_ver: "v3.6.1"
+# calico major version
+calico_ver_main: "{{ calico_ver.split('.')[0] }}.{{ calico_ver.split('.')[1] }}"
+
+
+# Always, CrossSubnet, Never
+CALICO_IPV4POOL_IPIP: "Never"
+
+FELIX_LOG_LVL: "warning"
