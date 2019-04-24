@@ -6,5 +6,5 @@
   hosts: Allnode
   gather_facts: no
   roles:
-    - role: calico
-      tags: calico
+    - role: node
+      tags: node

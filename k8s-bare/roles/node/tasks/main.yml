@@ -1,7 +1,15 @@
 - include_tasks: kubelet.yml
-  tags: 
+  tags:
     - kubelet
 
 - include_tasks: kube-proxy.yml
   tags:
     - kube-proxy
+
+- name: Assign roles to cluster nodes; and taint master nodes so not to schedule workload to them
+  shell: |
+    kubectl label node {% for host in groups['master'] %}{{ hostvars[host].nodename }} {% endfor %} node-role.kubernetes.io/master=""
+    kubectl label node {% for host in groups['node'] %}{{ hostvars[host].nodename }} {% endfor %} node-role.kubernetes.io/worker=worker
+    kubectl taint node {% for host in groups['master'] %}{{ hostvars[host].nodename }} {% endfor %} node-role.kubernetes.io/master="":NoSchedule --overwrite
+  delegate_to: "{{ groups.master[0] }}"
+  run_once: true
