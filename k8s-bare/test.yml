@@ -2,9 +2,9 @@
 # Run this play as root user
 
 # 8 Installing node components
-- name: Installing node components
-  hosts: Allnode
+- name: Installing addons--CoreDNS
+  hosts: others
   gather_facts: no
   roles:
-    - role: node
-      tags: node
+    - role: addons
+      tags: addons

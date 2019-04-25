@@ -100,3 +100,6 @@
       tags: node
     - role: calico
       tags: calico
+    - role: addons
+      tags: addons
+

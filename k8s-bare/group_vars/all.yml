@@ -24,6 +24,8 @@ swap: false
 
 SvcCIDR: 172.16.0.0/16
 KubernetesClusterSVCIP: 172.16.0.1 # Used for Certificate SAN
+REVERSE_CIDRS : 172.16.0.0/16  # CoreDNS reverse CIDS,kubernetes service network segment CIDR 
+UPSTREAMNAMESERVER: /etc/resolv.conf
 ClusterDns: 172.16.0.10  # Userd for CoreDNS cluster IP
 PodCIDR: 192.168.0.0/16
 ServiceNodePortRange: 30000-32767

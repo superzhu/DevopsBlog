@@ -120,7 +120,7 @@
 - name: apiserver-kublet-client (10)
   shell: |
     openssl genrsa -out apiserver-kubelet-client.key 2048
-    openssl req -new -key apiserver-kubelet-client.key -subj "/CN=apiserver-kubelet-client/O=system:nodes" -out apiserver-kubelet-client.csr
+    openssl req -new -key apiserver-kubelet-client.key -subj "/CN=apiserver-kubelet-client/O=system:masters" -out apiserver-kubelet-client.csr
     openssl x509 -req -in apiserver-kubelet-client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 10000 -extensions v3_req_client -extfile openssl.cnf -out apiserver-kubelet-client.crt
   args:
     chdir: /etc/kubernetes/pki/

@@ -1,0 +1,30 @@
+# CoreDNS cannt startup on ubuntu 18.04
+# https://blog.csdn.net/zhangxiangui40542/article/details/85016266
+- name: Change /etc/resolv.conf soft link
+  shell: |
+    rm /etc/resolv.conf # originally /etc/resolv.conf -> ../run/systemd/resolve/stub-resolv.conf
+    ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
+- block:
+    - name: Create /etc/kubernetes/addons folder
+      file:
+        name: "{{ item }}"
+        state: directory
+      loop:
+        - /etc/kubernetes/addons/
+
+    - name: Render CoreDNS configuration file
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}" 
+      loop:
+        - { src: 'coredns.yaml.j2', dest: "/etc/kubernetes/addons/" }
+
+    - name: Deploying CoreDNS
+      shell:
+        kubectl apply -f "/etc/kubernetes/addons/{{ item }}"
+      loop:
+        - 'coredns.yaml'
+
+  delegate_to: "{{ groups.master[0] }}"
+  run_once: true         
