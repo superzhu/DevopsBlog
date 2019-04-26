@@ -20,6 +20,7 @@
       loop:
         - { src: 'coredns.yaml.j2', dest: "/etc/kubernetes/addons/" }
         - { src: 'metrics-server.yaml.j2', dest: "/etc/kubernetes/addons/" }
+        - { src: 'kubernetes-dashboard-head.yaml.j2', dest: "/etc/kubernetes/addons/" }
 
     - name: Deploying CoreDNS
       shell:
@@ -27,6 +28,7 @@
       loop:
         - 'coredns.yaml'
         - 'metrics-server.yaml'
+        # - 'kubernetes-dashboard-head.yaml'
 
   delegate_to: "{{ groups.master[0] }}"
   run_once: true         
