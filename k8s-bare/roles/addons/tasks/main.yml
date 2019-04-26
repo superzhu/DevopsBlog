@@ -19,12 +19,14 @@
         dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}" 
       loop:
         - { src: 'coredns.yaml.j2', dest: "/etc/kubernetes/addons/" }
+        - { src: 'metrics-server.yaml.j2', dest: "/etc/kubernetes/addons/" }
 
     - name: Deploying CoreDNS
       shell:
         kubectl apply -f "/etc/kubernetes/addons/{{ item }}"
       loop:
         - 'coredns.yaml'
+        - 'metrics-server.yaml'
 
   delegate_to: "{{ groups.master[0] }}"
   run_once: true         

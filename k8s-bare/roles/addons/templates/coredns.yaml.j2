@@ -109,9 +109,15 @@ spec:
             memory: 70Mi
         args: [ "-conf", "/etc/coredns/Corefile" ]
         volumeMounts:
-        - name: config-volume
-          mountPath: /etc/coredns
-          readOnly: true
+          - mountPath: /etc/timezone
+            name: etc-timezone
+            readOnly: true
+          - mountPath: /etc/localtime
+            name: etc-localtime
+            readOnly: true
+          - name: config-volume
+            mountPath: /etc/coredns
+            readOnly: true
         ports:
         - containerPort: 53
           name: dns
@@ -146,6 +152,12 @@ spec:
             scheme: HTTP
       dnsPolicy: Default
       volumes:
+        - name: etc-timezone
+          hostPath:
+            path: /etc/timezone
+        - name: etc-localtime
+          hostPath:
+            path: /etc/localtime
         - name: config-volume
           configMap:
             name: coredns
