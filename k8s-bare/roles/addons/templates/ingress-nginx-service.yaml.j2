@@ -7,9 +7,10 @@ metadata:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
 spec:
-  type: LoadBalancer
-  externalIPs:
-    - {{ ingress_external_ip }}
+  type: NodePort
+ # type: LoadBalancer applies to cloud environment, not on-premise environment
+ # externalIPs:
+ #   - {{ ingress_external_ip }}
   ports:
     - name: http
       port: 80
