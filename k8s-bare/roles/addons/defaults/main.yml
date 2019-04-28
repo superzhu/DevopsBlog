@@ -1,1 +1,4 @@
 metrics_version: 'v0.3.2'
+
+ingress-nginx-version: '0.24.1'
+ingress_external_ip: '10.220.209.199'

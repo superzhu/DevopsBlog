@@ -21,6 +21,10 @@
         - { src: 'coredns.yaml.j2', dest: "/etc/kubernetes/addons/" }
         - { src: 'metrics-server.yaml.j2', dest: "/etc/kubernetes/addons/" }
         - { src: 'kubernetes-dashboard-head.yaml.j2', dest: "/etc/kubernetes/addons/" }
+        - { src: 'ingress-nginx.yaml.j2', dest: "/etc/kubernetes/addons/" }
+        - { src: 'ingress-nginx-service.yaml.j2', dest: "/etc/kubernetes/addons/" }
+        - { src: 'test-nginx-service.yaml.j2', dest: "/etc/kubernetes/addons/" }
+        - { src: 'test-nginx-ingress.yaml.j2', dest: "/etc/kubernetes/addons/" }
 
     - name: Deploying CoreDNS
       shell:
@@ -28,6 +32,8 @@
       loop:
         - 'coredns.yaml'
         - 'metrics-server.yaml'
+        - 'ingress-nginx.yaml'
+        - 'ingress-nginx-service.yaml'
         # - 'kubernetes-dashboard-head.yaml'
 
   delegate_to: "{{ groups.master[0] }}"
