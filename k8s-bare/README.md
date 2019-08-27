@@ -2,6 +2,8 @@
 
  虚拟机节点上Ansible使用部署Kubernetes
 
+ 基于阿里云搭建kubernetes cluster
+
 
 
 
