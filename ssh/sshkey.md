@@ -55,3 +55,4 @@ WinRM HTTPS
 ## References
 1. [USE SSH-KEYS FOR AUTHENTICATION WITH MOBAXTERM](https://cinhtau.net/2016/02/03/use-ssh-keys-for-authentication-with-mobaxterm/)
 2. [Using Ansible as a Windows Admin with Visual Studio Code, a complete guide!](https://workspace-guru.com/2018/07/29/using-ansible-as-a-windows-admin-with-visual-studio-code-a-complete-guide/)
+3. [Disabling SSH Timeout When Connecting to/from Ubuntu](http://queirozf.com/entries/disabling-ssh-timeout-when-connecting-to-from-ubuntu)
