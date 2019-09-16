@@ -42,6 +42,9 @@
   ssh-keygen -t rsa -b 2048 -N '' -f ~/.ssh/rocket_dev_rsa
 
   ssh-copy-id -i ~/.ssh/mykey user@host
+  
+  Use RSA private key to generate public key for SSH purposes
+  ssh-keygen -y -f key.pem > key.pub
 ```
 
 ## 配置Windows 10 As Ansible Management Client
