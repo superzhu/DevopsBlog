@@ -8,7 +8,15 @@
   ```bash
     helm list -n develop
   ```
-4. ff
+4. Check Kubernetes manifest semantics:
+  ```bash
+  helm lint ./cmdemo
+  ```
+5. Uninstall one helm release
+  ```bash
+  helm uninstall cmdemo --namespace develop
+  ```
+6. ff
 
 
 
