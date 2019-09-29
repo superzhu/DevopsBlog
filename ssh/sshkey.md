@@ -54,6 +54,10 @@
 WinRM HTTPS
 ```
 
+## Using an SSH Gateway in MobaXTerm
+1. [Using an SSH Gateway in MobaXTerm](https://lts.lehigh.edu/services/stepwise-instructions/using-ssh-gateway-mobaxterm)
+2. [SSH tunnels and port forwarding](https://blog.mobatek.net/post/ssh-tunnels-and-port-forwarding/)
+
 
 ## References
 1. [USE SSH-KEYS FOR AUTHENTICATION WITH MOBAXTERM](https://cinhtau.net/2016/02/03/use-ssh-keys-for-authentication-with-mobaxterm/)
