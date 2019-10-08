@@ -1,6 +1,10 @@
 # helm3 commands
 1. The namespace has to be pre created as Helm v3 will not create it for you.
-2. Install a release
+2. simulate an upgrade
+   ```bash
+   helm upgrade rabbitmq ./rabbitmq --debug --install --namespace develop --dry-run 
+   ```
+3. Install a release
   ```bash
     helm upgrade mydemo ./demo --debug --install --namespace develop
   ```
