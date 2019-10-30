@@ -34,4 +34,8 @@
         ## kubectl taint nodes node-name key=value:NoSchedule
         kubectl taint nodes node2 node2:NoExecute-
    ```
-4. ff
+4. 检查container资源使用情况
+```bash
+      kubectl top pod --containers --all-namespaces
+```
+5. ff
