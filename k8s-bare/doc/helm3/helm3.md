@@ -23,11 +23,17 @@
 6. ff
 
 
+## nginx-ingress 
+1. Its URL: https://hub.kubeapps.com/charts/stable/nginx-ingress
+
+## RabbitMQ
+
 
 ## Helm Repositories
   1. [Hub helm](https://hub.helm.sh/)
   2. [Kubernetes helm配置国内镜像源](https://www.cnblogs.com/a120608yby/p/10683502.html)
   3. [Helm chart仓库官方仓库不能使用解决方法](https://www.cnblogs.com/heaven-xi/p/11207528.html)
+  4. [kubeapps helm chart](https://hub.kubeapps.com/charts)
 
 
 ## Helm3 Blog
