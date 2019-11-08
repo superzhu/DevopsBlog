@@ -28,6 +28,10 @@
 
 ## RabbitMQ
 
+## Helm Chart for Project Calico
+1. https://github.com/mrzobot/calico-helm-chart/blob/master/values.yaml
+2. https://hub.kubeapps.com/charts/ibm-charts/ibm-calico-bgp-peer/1.1.0
+
 
 ## Helm Repositories
   1. [Hub helm](https://hub.helm.sh/)
