@@ -24,9 +24,20 @@
 
 
 ## nginx-ingress 
-1. Its URL: https://hub.kubeapps.com/charts/stable/nginx-ingress
+1. Its Helm Chart URL: https://hub.kubeapps.com/charts/stable/nginx-ingress
 
 ## RabbitMQ
+1.  Its Helm Chart URL: https://hub.kubeapps.com/charts/stable/rabbitmq-ha
+2.  RabbitMQ: https://hub.kubeapps.com/charts/stable/rabbitmq
+
+## CoreDNS
+1. Its Helm Chart URL: https://hub.kubeapps.com/charts/stable/coredns
+
+## metrics-server
+1. Its Helm Chart URL: https://hub.kubeapps.com/charts/stable/metrics-server
+
+## kubernetes-dashboard
+1. Its Helm Chart URL: https://hub.kubeapps.com/charts/stable/kubernetes-dashboard
 
 ## Helm Chart for Project Calico
 1. https://github.com/mrzobot/calico-helm-chart/blob/master/values.yaml
