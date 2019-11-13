@@ -35,6 +35,15 @@
 ```
 9. ff
 
+## 关于Ubuntu拒绝root用户ssh远程登录
+#sudo vim /etc/ssh/sshd_config
+
+找到并用#注释掉这行：PermitRootLogin prohibit-password
+
+新建一行 添加：PermitRootLogin yes
+
+重启服务 : sudo service ssh restart
+
 ## PKI tool(cfssl)
 
 ## ssh-copy-id
