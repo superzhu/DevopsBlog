@@ -18,6 +18,10 @@ curl --request GET   --url http://localhost:8080/apis/apps/v1/namespaces/kube-sy
 
 curl http://127.0.0.1:8080/apis/apps/v1/namespaces/develop/deployments/imcore
 ```
+5. Check resources in a specific namesapce
+   ```bash
+    kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n kube-system
+   ```
 
 
 
