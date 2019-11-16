@@ -34,14 +34,14 @@
 
 ## Kubernetes：如何解决从k8s.gcr.io拉取镜像失败问题
 1. docker.io仓库对google的容器做了镜像，可以通过下列命令下拉取相关镜像：
-        ```bash
-        docker pull mirrorgooglecontainers/defaultbackend-amd64:1.5
-        ```
+```bash
+      docker pull mirrorgooglecontainers/defaultbackend-amd64:1.5
+```
 2. 通过docker tag命令来修改镜像的标签：
-        ```bash
-        docker tag mirrorgooglecontainers/defaultbackend-amd64:1.5  k8s.gcr.io/defaultbackend-amd64:1.5
-        ```
+```bash
+     docker tag mirrorgooglecontainers/defaultbackend-amd64:1.5  k8s.gcr.io/defaultbackend-amd64:1.5
+```
 3. 使用docker rmi删除不用镜像
-        ```bash
-        docker rmi mirrorgooglecontainers/defaultbackend-amd64:1.5
-        ```
+```bash
+     docker rmi mirrorgooglecontainers/defaultbackend-amd64:1.5
+```
