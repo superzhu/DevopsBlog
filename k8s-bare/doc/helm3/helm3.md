@@ -25,6 +25,7 @@
 
 ## nginx-ingress 
 1. Its Helm Chart URL: https://hub.kubeapps.com/charts/stable/nginx-ingress
+2. https://hub.helm.sh/charts/bitnami/nginx-ingress-controller
 
 ## RabbitMQ
 1.  Its Helm Chart URL: https://hub.kubeapps.com/charts/stable/rabbitmq-ha
