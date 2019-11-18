@@ -38,4 +38,12 @@
 ```bash
       kubectl top pod --containers --all-namespaces
 ```
-5. ff
+5. Add /Remove label to/from a node
+```bash
+    # add label nodetype=elastic to node: kube-node1
+    kubectl label nodes kube-node1 nodetype=elastic
+
+    # remove label nodetype from node kube-node1
+    kubectl label nodes kube-node1 nodetype-
+```
+6. dd
