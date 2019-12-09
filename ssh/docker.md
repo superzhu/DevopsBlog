@@ -32,6 +32,12 @@
         docker rmi registry.cn-zhangjiakou.aliyuncs.com/bizconf_devops/deepin_qt:v20base-qt5.11
 ```
 
+7. Check cgroup used in docker 
+```bash
+sudo docker info | grep -i cgroup
+```
+8. ff
+
 ## Kubernetes：如何解决从k8s.gcr.io拉取镜像失败问题
 1. docker.io仓库对google的容器做了镜像，可以通过下列命令下拉取相关镜像：
 ```bash

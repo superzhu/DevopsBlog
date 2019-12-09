@@ -46,4 +46,10 @@
     # remove label nodetype from node kube-node1
     kubectl label nodes kube-node1 nodetype-
 ```
-6. dd
+6. 安装kubectl需要的配置文件
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+7. ff
