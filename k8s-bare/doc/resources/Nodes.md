@@ -33,6 +33,8 @@
 
         ## kubectl taint nodes node-name key=value:NoSchedule
         kubectl taint nodes node2 node2:NoExecute-
+
+        kubectl taint nodes kube-master1 node-role.kubernetes.io/master:NoSchedule-
    ```
 4. 检查container资源使用情况
 ```bash
