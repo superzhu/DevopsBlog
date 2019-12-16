@@ -51,3 +51,10 @@ sudo docker info | grep -i cgroup
 ```bash
      docker rmi mirrorgooglecontainers/defaultbackend-amd64:1.5
 ```
+4. Override the ENTRYPOINT.
+   ```bash
+   docker run -ti --rm  --entrypoint /bin/sh a1d22e4b51ad
+   ```
+
+# References
+1. [Ten tips for debugging Docker containers](https://medium.com/@betz.mark/ten-tips-for-debugging-docker-containers-cde4da841a1d)
