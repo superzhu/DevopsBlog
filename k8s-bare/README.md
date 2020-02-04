@@ -21,3 +21,8 @@ Enable ssh (passwordless authentication) to all other nodes, including the curre
    4. [阿里云Kubernetes实战1–集群搭建与服务暴露](https://www.guji.work/archives/693) 风哥
    5. [k8s 国内镜像下载方案](https://www.cnblogs.com/liyongjian5179/p/11318318.html)
    6. [阿里云network plugin terway](https://github.com/AliyunContainerService/terway)
+
+
+## Multiple Kubernetes Clusters Management
+1. [Effectively Managing Kubernetes Access from the Terminal](https://medium.com/capital-one-tech/managing-kubernetes-contexts-for-multiple-clusters-eed174288efe)
+2. [Github gopass project](https://github.com/gopasspw/gopass)
