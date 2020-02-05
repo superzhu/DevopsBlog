@@ -9,6 +9,15 @@
 ```bash
         GET _cat/indices/elastalert*?v
 ```
+3. Delete all documents in a index
+```bash
+        POST elastalert_silence/_delete_by_query?conflicts=proceed
+       {
+         "query": {
+             "match_all": {}
+         }
+      }
+```
 
 
 # References
