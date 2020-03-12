@@ -1,5 +1,20 @@
 # HaProxy配置
 
+## Check HaProxy status:
+```bash
+   netstat -lnpt|grep haproxy
+
+   systemctl status haproxy.service
+   
+   ss -lnt | grep -E "8443|8006"
+```
+
+## Check Keepalived status:
+```bash
+  systemctl status keepalived.service 
+
+  ip address
+```
 
 ## HaProxy blog
 - [Creating High Available Baremetal Kubernetes Cluster with Haproxy](https://medium.com/@kvaps/creating-high-available-baremetal-kubernetes-cluster-with-kubeadm-and-keepalived-simplest-guide-71766d5e25ae?source=post_page-----62c344283076----------------------)
