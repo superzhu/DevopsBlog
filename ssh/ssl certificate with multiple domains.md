@@ -78,3 +78,4 @@ $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${KEY_FILE} -out $
 
 ## References
    - [OpenSSL Essentials: Working with SSL Certificates, Private Keys and CSRs](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs)
+   - [申请Let's Encrypt永久免费SSL证书过程教程及常见问题，及续期](https://blog.csdn.net/u013378306/article/details/80030405)
