@@ -28,3 +28,4 @@ curl http://127.0.0.1:8080/apis/apps/v1/namespaces/develop/deployments/imcore
 ## References
 1. [Understanding Kubernetes API - Part 3 : Deployments API](http://blog.madhukaraphatak.com/understanding-k8s-api-part-3/)
 2. [kubectl commands cheatsheet](https://medium.com/faun/kubectl-commands-cheatsheet-43ce8f13adfb)
+3. [pod平滑迁移](https://www.cnblogs.com/Dev0ps/p/11088810.html)
