@@ -55,3 +55,12 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 7. ff
+
+
+## Blogs
+1. [Recovering a crashed Kubernetes node](https://www.ibm.com/support/knowledgecenter/en/SS6JWS_3.5.0/UG/sc_ug_node_crash_ub.html)
+2. [Kubernetes pod平滑迁移](https://www.cnblogs.com/Dev0ps/p/11088810.html)
+3. [Pods are not moved when Node in NotReady state](https://github.com/kubernetes/kubernetes/issues/55713)
+4. [Gracefully Shutting Down Pods in a Kubernetes Cluster](https://blog.gruntwork.io/gracefully-shutting-down-pods-in-a-kubernetes-cluster-328aecec90d)
+5. [Safely Drain a Node while Respecting the PodDisruptionBudget](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/)
+6. [kubernetes nodes notready 解决思路](https://blog.csdn.net/qq_21816375/article/details/80222689)
