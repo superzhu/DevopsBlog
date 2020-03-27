@@ -36,7 +36,13 @@
 ```bash
 sudo docker info | grep -i cgroup
 ```
-8. ff
+8. docker save & load
+```bash
+        docker save -o <path for generated tar file> <image name>
+
+        docker load -i <path to image tar file>
+```
+9. dd
 
 ## Kubernetes：如何解决从k8s.gcr.io拉取镜像失败问题
 1. docker.io仓库对google的容器做了镜像，可以通过下列命令下拉取相关镜像：
@@ -64,3 +70,4 @@ sudo docker info | grep -i cgroup
 1. [Access Private Repositories from Your Dockerfile Without Leaving Behind Your SSH Keys](https://vsupalov.com/build-docker-image-clone-private-repo-ssh-key/)
 2. [Building docker images from private git repositories using ssh login](https://itnext.io/building-docker-images-from-private-git-repositories-using-ssh-login-433edf5a18f2)
 3. [Cloning Files From Git into a Docker Image](https://janakerman.co.uk/docker-git-clone/)
+4. [Difference between save and export in Docker](https://tuhrig.de/difference-between-save-and-export-in-docker/)
