@@ -22,6 +22,11 @@ curl http://127.0.0.1:8080/apis/apps/v1/namespaces/develop/deployments/imcore
    ```bash
     kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n kube-system
    ```
+6. List all containers in a pod
+   ```bash
+   kubectl get pods/prometheus-k8s-0 -n monitoring -o jsonpath='{.spec.containers[*].name}'
+   ```
+7. ff
 
 
 
