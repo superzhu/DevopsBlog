@@ -26,7 +26,19 @@ curl http://127.0.0.1:8080/apis/apps/v1/namespaces/develop/deployments/imcore
    ```bash
    kubectl get pods/prometheus-k8s-0 -n monitoring -o jsonpath='{.spec.containers[*].name}'
    ```
-7. ff
+7. Print logs from all containers matching label
+   ```bash
+   kubectl logs -l app=nginx
+   ```
+8. Print the logs that are newer than a duration.
+   ```bash
+   kubectl logs nginx-78f5d695bd-czm8z --since=1h
+   ```
+9. List pods labels:
+   ```bash
+   kubectl get pods --show-labels -n develop
+   ```
+10. ff
 
 
 
