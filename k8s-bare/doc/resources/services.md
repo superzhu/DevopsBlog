@@ -18,3 +18,4 @@
 # References
 1. [Kubernetes Endpoint 理解](https://www.ccieliu.com/k8s/35.html)
 2. [Viewing Logs In Kubernetes](https://medium.com/faun/viewing-logs-in-kubernetes-e055f936e187)
+3. [Debug Your Kubernetes Service in 5 Easy Steps](https://medium.com/better-programming/debug-your-kubernetes-service-in-5-easy-steps-1457974f024c)
