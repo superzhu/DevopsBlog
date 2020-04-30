@@ -1,0 +1,11 @@
+# netplan apply
+network:
+    ethernets:
+        ens33:
+            addresses: [192.168.118.147/24,]
+            dhcp4: false
+            gateway4: 192.168.118.2
+            nameservers:
+                    addresses: [8.8.8.8, 8.8.4.4]
+    version: 2
+    renderer: networkd
