@@ -10,3 +10,29 @@ dashboard:
   enable: false
 APP_DOMAIN_NAME: onpremises.bizconf.cn
 OPS_DOMAIN_NAME: opscustomer.bizconf.cn
+
+# system time zone configuration
+ntp_type: chrony # or ntp
+ntp_servers: 
+  - 'cn.pool.ntp.org'
+  - 's1b.time.edu.cn'
+
+TimeZone: 'Asia/Shanghai'
+kernel: !!bool true      # or change false to true
+
+
+
+
+
+kubelet:
+  bind: "{{ inventory_hostname }}"
+  healthzBindAddress: "{{ inventory_hostname }}"
+  swap: false  # 不希望关闭swap设置成true
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kubelet
+    logDir: /var/log/kubernetes/kubelet
+    logSize: 200M
+    logRotate: 7
+
