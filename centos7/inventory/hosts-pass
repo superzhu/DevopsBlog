@@ -1,0 +1,21 @@
+[local_host]
+127.0.0.1 ansible_port=22 ansible_user=root ansible_password=zhuzhi ansible_host=127.0.0.1
+
+[local_host:vars]
+ssh_key_filename="union_rsa"
+remote_machine_username="root"
+remote_machine_password="zhuzhi"
+
+[master]
+192.168.118.148 hostname=kube-master5  nodename=kube-master5 ansible_host=192.168.118.148
+
+[node]
+192.168.118.148 hostname=kube-master5 nodename=kube-master5 ansible_host=192.168.118.148
+
+[Allnode:children]
+master
+node
+
+
+[etcd]
+192.168.118.148 hostname=kube-master5  nodename=kube-master5
