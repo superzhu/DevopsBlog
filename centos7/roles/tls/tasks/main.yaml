@@ -1,0 +1,28 @@
+# force file update to help facilitate future upgrade
+- name: copy  kubectl to /usr/local/bin
+  copy:
+    src: "../../../softs/{{ item }}"
+    dest: /usr/local/bin/
+    owner: root
+    group: root
+    mode: '0755'
+    force: yes
+  loop:
+    - kubectl
+    - helm
+
+- name: create folder /etc/kubernetes/pki/etcd
+  file: 
+    name: "{{ item }}" 
+    state: directory
+  loop:
+    - /etc/kubernetes/pki/etcd
+
+- name: Generate Certificate Authority and certificate and key files
+  include_tasks:
+    file: tls.yaml
+
+
+- name: Generate kubeconfig files
+  include_tasks:
+    file: kubeconfig.yaml
