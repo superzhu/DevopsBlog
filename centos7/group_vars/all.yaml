@@ -20,6 +20,38 @@ ntp_servers:
 TimeZone: 'Asia/Shanghai'
 kernel: !!bool true      # or change false to true
 
+# 后续考虑扩etcd或者master的话可以填写下面预留ip写在证书里,这里预留域名做切换ip的保障手段,不要删除
+# # don't delete the domain list var
+certSANs:
+  apiServer:
+    - kube-master11
+    - kube-master12
+    - apiserver003.k8s.local
+    - 47.92.196.157  # alicloud public ip
+#    - 100.64.2.51
+  etcd:
+    - kube-master11
+    - kube-master12
+    - etcd003.k8s.local
+
+SvcCIDR: 172.16.0.0/16
+KubernetesClusterSVCIP: 172.16.0.1 # Used for Certificate SAN
+REVERSE_CIDRS : 172.16.0.0/16  # CoreDNS reverse CIDS,kubernetes service network segment CIDR 
+ClusterDns: 172.16.0.10  # Userd for CoreDNS cluster IP
+UPSTREAMNAMESERVER: /etc/resolv.conf
+PodCIDR: 10.200.0.0/16
+ServiceNodePortRange: 30000-32767
+ClusterDomain: cluster.local
+
+# ApiServer high availability;10.200.3.198 is alicloud private SLB IP
+VIP: 192.168.118.142
+KUBE_APISERVER: https://{% if groups['master'] | length !=1 %}{{ VIP }}:8443{% else %}{{ hostvars[groups['master'][0]].inventory_hostname }}:6443{% endif %}
+VIP_NETMASK: 20
+INTERFACE_NAME: eth0
+
+CLUSTER_NAME: 'kubernetes2'
+KUBE_VERSION: 'v1.18.2'
+ETCD_version: 'v3.4.7'
 
 docker:
   version: '19.03.8' # choose the version of docker
@@ -33,6 +65,16 @@ docker:
     - https://reg-mirror.qiniu.com
     - https://fz5yth0r.mirror.aliyuncs.com
     - https://registry.docker-cn.com
+
+# etcd3 configuration
+etcd:
+  dataDir: /var/lib/etcd
+  initialClusterToken: 'etcd-k8s-local'
+  backup:
+    dataDir: /root/etcd_bak/
+    scriptDir: /etc/etcd/
+    count: "4"
+
 
 kubelet:
   bind: "{{ inventory_hostname }}"

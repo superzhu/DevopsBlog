@@ -5,3 +5,17 @@
     - prepare
   tags:
     - prepare
+
+- hosts: localhost
+  gather_facts: no
+  vars:
+  roles:
+    - role: tls
+      tags: tls
+
+- name: Install etcd3 on all etcd-related nodes
+  hosts: etcd
+  gather_facts: yes
+  roles:
+    - role: etcd
+      tags: etcd
