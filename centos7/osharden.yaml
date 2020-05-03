@@ -6,3 +6,10 @@
     - osharden
   tags:
     - osharden
+
+- name: Install docker on all nodes
+  hosts: Allnode
+  gather_facts: yes
+  roles:
+    - role: docker
+      tags: docker

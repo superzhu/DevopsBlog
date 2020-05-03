@@ -21,8 +21,18 @@ TimeZone: 'Asia/Shanghai'
 kernel: !!bool true      # or change false to true
 
 
-
-
+docker:
+  version: '19.03.8' # choose the version of docker
+  dataDir: /var/lib/docker
+  execOpts:
+    - 'native.cgroupdriver=systemd'
+  registryMirrors:
+    - http://hub-mirror.c.163.com/
+    - https://docker.mirrors.ustc.edu.cn/
+    - https://dockerhub.azk8s.cn
+    - https://reg-mirror.qiniu.com
+    - https://fz5yth0r.mirror.aliyuncs.com
+    - https://registry.docker-cn.com
 
 kubelet:
   bind: "{{ inventory_hostname }}"

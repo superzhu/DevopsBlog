@@ -1,0 +1,34 @@
+- name: create the dir for docker
+  file: name={{ item }} state=directory
+  with_items:
+    - /etc/docker
+    - /etc/systemd/system/docker.service.d/
+
+- set_fact:
+    docker_Install_condition: |-
+      {%- if force | d(false) -%}true
+      {%- else -%}{{ not(service['docker.service'] | d(false)) }}
+      {%- endif %}
+
+- include_tasks: centos.yaml
+  when: ansible_os_family == "RedHat" and docker_Install_condition
+
+- name: send the config file
+  template: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+  - { src: 'daemon.json.j2', dest: '/etc/docker/daemon.json' }
+  - { src: '10-docker.conf.j2', dest: '/etc/systemd/system/docker.service.d/10-docker.conf' }
+  notify:
+    - restart docker
+
+
+- name: Check if the completion script exists
+  stat: path=/etc/bash_completion.d/docker
+  register: check_completion_files
+
+- name: Set docker command completion script
+  copy: 
+    src: /usr/share/bash-completion/completions/docker
+    dest: /etc/bash_completion.d/docker
+    remote_src: true
+  when: not check_completion_files.stat.exists
