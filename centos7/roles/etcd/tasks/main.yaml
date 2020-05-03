@@ -1,0 +1,30 @@
+- include_tasks: etcd.yaml
+
+
+- name: 渲染etcd脚本
+  template: 
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}"
+    mode: 0755
+  loop:
+    - { src: 'etcdctl.sh.j2', dest: '/etc/profile.d/'}
+  run_once: true
+
+
+- name: 渲染etcd备份脚本
+  template: 
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}"
+    mode: 0755
+  loop:
+    - { src: 'etcd_cron.sh.j2', dest: '{{ etcd.backup.scriptDir }}/'}
+  run_once: true
+
+
+- name: crontab配置备份脚本
+  cron:
+    name: "etcd crontab backup"
+    minute: "0"
+    hour: "2"
+    job: "bash {{etcd.backup.scriptDir}}/etcd_cron.sh  -c {{etcd.backup.count}} -d {{etcd.backup.dataDir}} > /dev/null "
+
