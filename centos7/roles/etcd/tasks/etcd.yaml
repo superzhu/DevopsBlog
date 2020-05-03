@@ -6,6 +6,8 @@
     - /etc/kubernetes/pki/etcd  # folder for etcd certificates
     - "{{ etcd.dataDir }}"
     - /etc/etcd
+    - "{{ etcd.backup.scriptDir }}"
+    - "{{ etcd.backup.dataDir }}"
 
 - name: Distribute etcd executable files
   copy:
@@ -33,11 +35,11 @@
   template: src=templates/{{ item.src }} dest={{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}
   loop:
     - { src: 'etcd.config.yml.j2', dest: '/etc/etcd' }
-    - { src: 'etcd.service.j2', dest: '/etc/systemd/system' }
+    - { src: 'etcd.service.j2', dest: '/usr/lib/systemd/system' }
 
 - name: 开机启用etcd服务
   shell: systemctl enable etcd
-  ignore_errors: tru
+  ignore_errors: true
 
 - name: 启动etcd服务
   systemd:
