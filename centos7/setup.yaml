@@ -1,0 +1,7 @@
+# Run the script as root user
+- hosts: Allnode
+  gather_facts: yes
+  roles:
+    - prepare
+  tags:
+    - prepare
