@@ -56,4 +56,5 @@
   roles:
     - role: node
       tags: node
-    
+    - role: calico
+      tags: calico

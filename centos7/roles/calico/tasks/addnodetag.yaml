@@ -1,0 +1,69 @@
+- name: 轮询等待node达到Ready状态
+  shell: "kubectl get node {{ ansible_hostname }} | awk 'NR>1{print $2}'"
+  register: node_status
+  until: node_status.stdout == "Ready" or node_status.stdout == "Ready,SchedulingDisabled"
+  retries: 8
+  delay: 8
+
+- name: Assign roles to cluster nodes; and taint master nodes so not to schedule workload to them
+  shell: |
+    kubectl label --overwrite node {% for host in groups['master'] %}{{ hostvars[host].nodename }} {% endfor %} node-role.kubernetes.io/master="" node-role.kubernetes.io/worker=worker
+    #kubectl label  node {% for host in groups['node'] %}{{ hostvars[host].nodename }} {% endfor %} node-role.kubernetes.io/worker=worker
+    #kubectl taint node {% for host in groups['master'] %}{{ hostvars[host].nodename }} {% endfor %} node-role.kubernetes.io/master="":NoSchedule --overwrite
+  delegate_to: "{{ groups.master[0] }}"
+  run_once: true
+
+- name: create local log folder /data/log in calico tag subtask
+  file: 
+    name: "{{ item }}" 
+    state: directory
+    mode: '0777'
+  loop:
+    - /data/log
+
+
+- name: create folder /home/surpass/.kube in calico tag subtask
+  file:
+    name: "{{ item }}"
+    state: directory
+    owner: surpass
+    group: surpass
+    mode: '0755'
+  loop:
+    - /home/surpass/.kube
+
+- name: copy kubernetes configuration file for user surpass
+  copy:
+    src: ~/.kube/config
+    dest: /home/surpass/.kube/config
+    owner: surpass
+    group: surpass
+    mode: '0600'
+
+- name: Copy logrotate shell scripts to /etc/cron.hourly
+  copy:
+    src: "../../../softs/logrotate"
+    dest: /etc/cron.hourly
+    mode: 0755
+
+- name: Copy logrotate configuration file to /etc/logrotate.d
+  copy:
+    src: "../../../softs/k8s-rotator.conf"
+    dest: /etc/logrotate.d
+    mode: 0755
+
+
+- name: 轮询等待calico node达到Running状态
+  shell: "kubectl get pods -n kube-system | grep calico-node | awk 'NR==1 { print $3 }'"
+  register: caliconode_status
+  until: caliconode_status.stdout == "Running"
+  retries: 8
+  delay: 8
+
+
+- name: 轮询等待calico kube controller达到Running状态
+  shell: "kubectl get pods -n kube-system | grep calico-kube-controllers | awk 'NR==1 { print $3 }'"
+  register: calicocontroller_status
+  until: calicocontroller_status.stdout == "Running"
+  retries: 8
+  delay: 8

@@ -1,0 +1,17 @@
+# calico-related configuration
+
+calico_ver: "v3.13.0"
+# calico major version
+calico_ver_main: "{{ calico_ver.split('.')[0] }}.{{ calico_ver.split('.')[1] }}"
+
+
+# Always, CrossSubnet, Never
+CALICO_IPV4POOL_IPIP: "Always"
+
+# 设置 Felix 日志级别
+FELIX_LOG_LVL: "warning"
+
+# 设置 calico-node使用的host IP，bgp邻居通过该地址建立，可手工指定也可以自动发现
+# The can-reach method uses your local routing to determine which IP address will be used to reach the supplied destination
+#IP_AUTODETECTION_METHOD: "can-reach={{ groups['master'][0] }}"
+IP_AUTODETECTION_METHOD: "first-found"
