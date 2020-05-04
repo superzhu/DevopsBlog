@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  # https://www.cnblogs.com/dingbin/p/9754993.html kubernetes ingress 卸载https 
+  # https://www.cnblogs.com/ericnie/p/6965091.html
+  # kubectl create secret tls deepin-ingress-secret --namespace=default --key certs/2858157__bizconf.cn.key --cert certs/2858157__bizconf.cn.pem
+  # curl https://local.bizconf.cn/test
+  tls:
+  - hosts:
+    - local.bizconf.cn
+    secretName: deepin-ingress-secret
+  rules:
+  - host: local.bizconf.cn
+    http:
+      paths:
+      - path: /test
+        backend:
+          serviceName: nginx
+          servicePort: 80
