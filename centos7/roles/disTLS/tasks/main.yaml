@@ -1,0 +1,36 @@
+- name: create a directory if it doesn't exist
+  file:
+    name: /etc/kubernetes/pki/etcd
+    state: directory
+  tags: disTLS
+
+- name: Distribute /etc/kubernetes kubeconfig files
+  copy:
+    src: "{{ item }}"
+    dest: /etc/kubernetes
+    mode: preserve
+  with_fileglob:
+    - /etc/kubernetes/*.kubeconfig
+  tags: disTLS
+
+- name: Distribute /etc/kubernetes/pki TLS key and certificate files
+  copy:
+    src: "{{ item }}"
+    dest: /etc/kubernetes/pki
+    mode: preserve
+  with_fileglob:
+    - /etc/kubernetes/pki/*.crt
+    - /etc/kubernetes/pki/*.pub
+    - /etc/kubernetes/pki/*.key
+  tags: disTLS
+
+
+- name: Distribute /etc/kubernetes/pki/etcd TLS key and certificate files
+  copy:
+    src: "{{ item }}"
+    dest: /etc/kubernetes/pki/etcd
+    mode: preserve
+  with_fileglob:
+    - /etc/kubernetes/pki/etcd/*.crt
+    - /etc/kubernetes/pki/etcd/*.key
+  tags: disTLS

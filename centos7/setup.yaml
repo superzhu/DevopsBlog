@@ -19,3 +19,10 @@
   roles:
     - role: etcd
       tags: etcd
+      
+- name: Distribute TLS to master/worker nodes
+  hosts: Allnode
+  gather_facts: yes
+  roles:
+    - role: disTLS
+      tags: disTLS
