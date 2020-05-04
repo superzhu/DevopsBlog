@@ -1,0 +1,18 @@
+# Kubelet 根目录
+KUBELET_ROOT_DIR: "/var/lib/kubelet"
+
+# 基础容器镜像
+# PAUSE_IMAGE: "gcr.azk8s.cn/google_containers/pause-amd64:3.1"
+PAUSE_IMAGE: "mirrorgooglecontainers/pause-amd64:3.1"
+
+
+# 设置 APISERVER 地址
+KUBE_APISERVER: "{%- if inventory_hostname in groups['master'] -%} \
+                     https://{{ inventory_hostname }}:6443 \
+                 {%- else -%} \
+                     {%- if groups['master']|length > 1 -%} \
+                         https://127.0.0.1:6443 \
+                     {%- else -%} \
+                         https://{{ groups['master'][0] }}:6443 \
+                     {%- endif -%} \
+                 {%- endif -%}"

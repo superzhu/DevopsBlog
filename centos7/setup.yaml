@@ -39,3 +39,21 @@
   roles:
     - role: master
       tags: master
+      
+      
+# Generate TLS bootstrapping kubeconfig,secret as well as cluster-role binding
+- name: 生成bootstrap文件给kubelet注册用
+  hosts: localhost
+  gather_facts: no
+  roles:
+    - role: bootstrap
+      tags: bootstrap
+
+
+- name: install node components
+  hosts: Allnode
+  gather_facts: no
+  roles:
+    - role: node
+      tags: node
+    

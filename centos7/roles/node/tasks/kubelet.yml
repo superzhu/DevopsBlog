@@ -1,0 +1,100 @@
+- name: creating kubelet related folders
+  file:
+    name: "{{ item }}"
+    state: directory
+  loop:
+    - /etc/kubernetes/manifests
+    - /etc/kubernetes/pki
+    - /opt/cni/bin
+    - /etc/cni/net.d
+    - ~/.kube/
+    - "{{ KUBELET_ROOT_DIR }}"
+
+# standard CNI pulgins configuration 
+- name: 分发cni二进制文件
+  unarchive:
+    src: "{{ item }}"
+    dest: /opt/cni/bin
+    mode: u+x
+  with_fileglob:
+    - "../../../softs/cni-plugins-linux-amd64-v0.8.5.tgz"
+    #- "../../../softs/cni-plugins-amd64-v0.7.6.tgz"
+
+- name: 设置kubectl的kubeconfig
+  copy:
+    src: /etc/kubernetes/admin.kubeconfig
+    dest: ~/.kube/config
+    remote_src: true
+
+- name: 准备CNI配置文件
+  template: 
+    src: cni-default.conf.j2 
+    dest: /etc/cni/net.d/10-default.conf
+
+
+- name: Distribute kublet binary file
+  copy:
+    src: "{{ item }}"
+    dest: /usr/local/bin
+    mode: u+x
+  loop:
+    - "../../../softs/kubelet"
+
+- name: Create kubelet log folder
+  file:
+    name: "{{ kubelet.logrotate.logDir }}/logrotate"
+    state: directory
+  when: kubelet.logrotate.log is defined and kubelet.logrotate.log 
+
+- name: Render kublet logrotate configuration file
+  template:
+    src: "templates/{{ item }}"
+    dest: "/etc/logrotate.d/{{ item.split('/')[-1] }}"
+  loop:
+    - "{{ kubelet.logrotate.confTemplate }}"
+  when: kubelet.logrotate.log is defined and kubelet.logrotate.log
+
+- name: Distribute kubelet bootstrap kubeconfig file
+  copy:
+    src: "{{ item }}"
+    dest: "{{ item }}"
+  loop:
+    # - /etc/kubernetes/pki/ca.crt
+    - /etc/kubernetes/bootstrap.kubeconfig
+
+- name: 获取docker CgroupDriver值
+  shell: |
+      docker info --format '{% raw %}{{.CgroupDriver}}{% endraw %}'
+  register: CgroupDriver
+
+# 判断 kubernetes 版本
+- name: 注册变量 TMP_VER
+  shell: kubelet --version|cut -d' ' -f2|cut -d'v' -f2
+  register: TMP_VER
+  connection: local
+
+- name: 获取 kubernetes 主版本号
+  set_fact:
+    KUBE_VER: "{{ TMP_VER.stdout.split('.')[0]|int + TMP_VER.stdout.split('.')[1]|int/100 }}"
+
+- name: debug info
+  debug: var="KUBE_VER"
+
+
+
+- name: 配置kubelet
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}"
+    mode: u+x
+  loop:
+    - { src: 'kubelet.service.j2', dest: "/usr/lib/systemd/system/" }
+    - { src: 'kubelet-conf.yml.j2', dest: "/etc/kubernetes/" }
+
+
+- name: enable and start kubelet
+  systemd:
+    name: kubelet
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

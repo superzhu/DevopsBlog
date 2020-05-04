@@ -1,0 +1,46 @@
+- name: Distribute kube-proxy binary file
+  copy:
+    src: "{{ item }}"
+    dest: /usr/local/bin
+    mode: 0755
+  loop:
+    - "../../../softs/kube-proxy"
+
+
+- name: Create folder "{{ proxy.logrotate.logDir }}/logrotate"
+  file:
+    name: "{{ proxy.logrotate.logDir }}/logrotate"
+    state: directory
+  when: proxy.logrotate.log is defined and proxy.logrotate.log
+
+- name: Distribute logrotate configuration file
+  template:
+    src: "{{ item }}"
+    dest: "/etc/logrotate.d/{{ item.split('/')[-1] }}"
+  loop:
+    - "{{ proxy.logrotate.confTemplate }}"
+  when: proxy.logrotate.log is defined and proxy.logrotate.log
+
+
+
+- name: Distribute kube-proxy.kubeconfig
+  copy:
+    src: /etc/kubernetes/kube-proxy.kubeconfig
+    dest: /etc/kubernetes/kube-proxy.kubeconfig
+
+- name: Distribute kube-proxy configuration files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}"
+  loop:
+    - { src: 'kube-proxy.service.j2', dest: '/usr/lib/systemd/system/' }
+    - { src: 'kube-proxy.conf.j2', dest: '/etc/kubernetes/' }
+
+
+- name: enable and start kube-proxy
+  systemd:
+    name: kube-proxy
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  when: (redo is undefined) or (redo == true)
