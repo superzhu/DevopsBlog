@@ -1,0 +1,67 @@
+- name: 检测bootstrap是否生成
+  stat: path=/etc/kubernetes/bootstrap.kubeconfig
+  register: bootstrap_file
+
+- name: create kubelet bootstraping token
+  shell: kubeadm token create \
+           --description kubelet-bootstrap-token \
+           --groups system:bootstrappers:k8s \
+           --kubeconfig ~/.kube/config
+  register: TOKEN_OUTPUT
+  when: not bootstrap_file.stat.exists
+
+- set_fact:
+    BOOTSTRAP_TOKEN: "{{ ( TOKEN_OUTPUT.stdout_lines 
+                     | list )[0]
+            }}"
+  when: not bootstrap_file.stat.exists
+
+- debug:
+        msg: "{{ BOOTSTRAP_TOKEN }}"
+  when: not bootstrap_file.stat.exists
+
+
+- name: Generate kubelet TLS bootstrapping kubeconfig
+  shell: |
+    # 设置集群参数
+    kubectl config set-cluster {{ CLUSTER_NAME }} \
+      --certificate-authority=/etc/kubernetes/pki/ca.crt \
+      --embed-certs=true \
+      --server={{ KUBE_APISERVER  }} \
+      --kubeconfig=/etc/kubernetes/{{ item.KUBE_CONFIG }}
+    # 设置客户端认证参数
+    kubectl config set-credentials {{ item.KUBE_USER }} \
+      --token={{ BOOTSTRAP_TOKEN }} \
+      --kubeconfig=/etc/kubernetes/{{ item.KUBE_CONFIG }}
+    # 设置上下文参数
+    kubectl config set-context {{ item.KUBE_USER }}@{{ CLUSTER_NAME }} \
+      --cluster={{ CLUSTER_NAME }} \
+      --user={{ item.KUBE_USER }} \
+      --kubeconfig=/etc/kubernetes/{{ item.KUBE_CONFIG }}
+    # 设置当前使用的上下文
+    kubectl config use-context {{ item.KUBE_USER }}@{{ CLUSTER_NAME }} \
+       --kubeconfig=/etc/kubernetes/{{ item.KUBE_CONFIG }}
+  loop:
+    - { KUBE_USER: 'kubelet-bootstrap', KUBE_CONFIG: 'bootstrap.kubeconfig' }
+  when: not bootstrap_file.stat.exists
+
+
+
+- name: Copy TLS bootstrapping ClusterRoleBinding to /etc/kubernetes
+  copy:
+    src: "{{ item }}"
+    dest: /etc/kubernetes/
+  loop:
+    # 自动 approve node 的第一次 CSR； 注意第一次 CSR 时，请求的 Group 为 system:bootstrappers
+    - create-csr-cluster-role-binding.yml
+    # 自动 approve node 后续过期的 client 证书，自动生成的证书 Group 为 system:nodes;
+    - approve-csr-cluster-role-binding.yml
+    # 自动 approve node 后续过期的 server 证书，自动生成的证书 Group 为 system:nodes
+    - renew-csr-cluster-role-binding.yml
+
+
+- name: ClusterRoleBinding enable bootstrapping nodes to create CSR
+  shell: |
+     kubectl apply -f /etc/kubernetes/create-csr-cluster-role-binding.yml
+     kubectl apply -f /etc/kubernetes/approve-csr-cluster-role-binding.yml
+     kubectl apply -f /etc/kubernetes/renew-csr-cluster-role-binding.yml
