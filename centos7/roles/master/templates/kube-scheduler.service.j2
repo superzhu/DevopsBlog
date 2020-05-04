@@ -1,0 +1,27 @@
+[Unit]
+Description=Kubernetes Scheduler
+Documentation=https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/kube-scheduler \
+  --leader-elect=true \
+  --secure-port=10259 \
+  --kubeconfig=/etc/kubernetes/scheduler.kubeconfig \
+  --bind-address={{ scheduler.bind }} \
+  --authorization-always-allow-paths=/healthz \
+  --authentication-kubeconfig=/etc/kubernetes/scheduler.kubeconfig \
+  --authorization-kubeconfig=/etc/kubernetes/scheduler.kubeconfig \
+  --tls-cert-file=/etc/kubernetes/pki/kube-scheduler.crt \
+  --tls-private-key-file=/etc/kubernetes/pki/kube-scheduler.key \
+  --client-ca-file=/etc/kubernetes/pki/ca.crt \
+{% if scheduler.logrotate.log is defined and scheduler.logrotate.log %}
+  --logtostderr=false \
+  --log-dir={{ scheduler.logrotate.logDir }} \
+{% endif %}
+  --v={{ scheduler.logLevel | default(2)}}
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

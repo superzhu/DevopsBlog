@@ -1,0 +1,118 @@
+- name: create certificate and kubeconfig folder
+  file:
+    name: "{{ item }}"
+    state: directory
+  loop:
+    - /etc/kubernetes/pki/etcd
+    - ~/.kube/
+
+- name: running tasks from newlog file
+  include_tasks: 
+    newlog.yml
+  loop_control:
+    loop_var: out_item
+  with_dict:
+    - "{{ apiserver }}"
+    - "{{ controllerManager }}"
+    - "{{ scheduler }}"
+
+- block:
+    - name: distribute etcdctl to master nodes
+      copy:
+        src: /usr/local/bin/etcdctl
+        dest: /usr/local/bin/etcdctl
+        mode: preserve
+
+    - name: when etcd is not running in master nodes, distribute etcd certificates to master nodes
+      copy:
+        src: "{{ item }}"
+        dest: /etc/kubernetes/pki/etcd/
+      with_fileglob:
+        - '/etc/kubernetes/pki/etcd/*'
+
+    - name: 渲染etcdctl.sh到/etc/profile.d/
+      template: 
+        src: "{{ inventory_dir }}/../roles/etcd/templates/etcdctl.sh.j2" 
+        dest: /etc/profile.d/etcdctl.sh
+        mode: 0755
+  when: groups['etcd'] | intersect(groups['master']) | length == 0
+
+
+- name: 分发管理组件二进制文件
+  copy:
+    src: "../../../softs/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    owner: root
+    group: root
+    mode: preserve
+  loop:
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler
+    - kubectl
+    - kubeadm
+
+
+# 当运行剧本的机器不是master的时候让能操作集群
+- name: create ~/.kube/config if it does not exist
+  file:
+    name: ~/.kube
+    state: directory
+  connection: local
+
+- name: copy admin.kubeconfig to ~/.kube/config
+  copy:
+    src: /etc/kubernetes/admin.kubeconfig
+    dest: ~/.kube/config
+    mode: preserve
+    remote_src: true
+  connection: local
+
+- name: 设置kubectl的kubeconfig
+  copy:
+    src: /etc/kubernetes/admin.kubeconfig
+    dest: ~/.kube/config
+    remote_src: true
+
+
+- name: 设置kubectl
+  shell: |
+    kubectl completion bash > /etc/bash_completion.d/kubectl
+
+
+- name: 配置管理组件的systemd文件
+  template:
+     src: "{{ item }}"
+     dest: "/usr/lib/systemd/system/{{ item.split('.')[:-1]|join('.') }}"
+     mode: 0755
+  loop:
+    - kube-apiserver.service.j2
+    - kube-controller-manager.service.j2
+    - kube-scheduler.service.j2
+
+
+- name: 启动管理组件
+  systemd: 
+    name: "{{ item }}"
+    state: restarted 
+    enabled: yes 
+    daemon_reload: yes
+  with_items:
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler
+  when: (redo is undefined) or (redo == true)
+
+- name: 以轮询的方式等待master服务启动完成
+  command: "kubectl get node"
+  register: result
+  until:    result.rc == 0
+  retries:  5
+  delay: 6
+
+- name: 渲染kube-ep.yml文件
+  template: src={{ item }} dest=/etc/kubernetes/{{ item.split('.')[:-1]|join('.') }}
+  with_items:
+    - kube-ep.yml.j2
+  connection: local
+  run_once: true

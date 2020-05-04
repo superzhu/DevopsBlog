@@ -75,6 +75,47 @@ etcd:
     scriptDir: /etc/etcd/
     count: "4"
 
+# kubelet更新自身状态频率 https://github.com/kubernetes-sigs/kubespray/blob/master/docs/kubernetes-reliability.md
+# set one of the Fast | Medium | Low | default
+nodeStatusUpdate: Medium
+#nodeStatusUpdateFrequency: 10s
+#nodeMonitorPeriod: 5s     # 如果改它确保它小于下面的值
+#nodeMonitorGracePeriod: 40s
+#podEvictionTimeout: 5m
+
+# The following variables, address and bind, either bind to hosting single network by default
+#  or changes to 0.0.0.0; healthz and metrics are the same
+#  $vars.logrotate.log为true则日志不走journald而是落地切logrotate控制容量副本
+apiserver:
+  advertiseAddress: "{{ inventory_hostname }}"
+  bind: "{{ inventory_hostname }}"
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-apiserver
+    logDir: /var/log/kubernetes/kube-apiserver
+    logSize: 200M
+    logRotate: 7
+    
+controllerManager:
+  bind: 0.0.0.0
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-controller-manager
+    logDir: /var/log/kubernetes/kube-controller-manager
+    logSize: 200M
+    logRotate: 7
+
+scheduler:
+  bind: 0.0.0.0
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-scheduler
+    logDir: /var/log/kubernetes/kube-scheduler
+    logSize: 200M
+    logRotate: 7
 
 kubelet:
   bind: "{{ inventory_hostname }}"
@@ -88,3 +129,17 @@ kubelet:
     logSize: 200M
     logRotate: 7
 
+# kube-proxy
+proxy:
+  bind: "{{ inventory_hostname }}"
+  healthzBindAddress: "{{ inventory_hostname }}"
+  metricsBindAddress: "{{ inventory_hostname }}"
+  mode: ipvs  # proxy mode
+  bin: true   # indicate deployment using binary file, not daemonset 
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-proxy
+    logDir: /var/log/kubernetes/kube-proxy
+    logSize: 200M
+    logRotate: 7

@@ -26,3 +26,16 @@
   roles:
     - role: disTLS
       tags: disTLS
+      
+- name: master API server high availability
+  hosts: master
+  gather_facts: yes
+  roles:
+    - { role: HA, tags: HA, when: "groups['master'] | length  != 1" }
+
+- name: deploy master components( kube-apiserver,kube-controller-manager,kube-scheduler)
+  hosts: master
+  gather_facts: yes
+  roles:
+    - role: master
+      tags: master
