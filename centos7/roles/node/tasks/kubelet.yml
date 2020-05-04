@@ -17,8 +17,8 @@
     dest: /opt/cni/bin
     mode: u+x
   with_fileglob:
-    - "../../../softs/cni-plugins-linux-amd64-v0.8.5.tgz"
-    #- "../../../softs/cni-plugins-amd64-v0.7.6.tgz"
+    #- "../../../softs/cni-plugins-linux-amd64-v0.8.5.tgz"
+    - "../../../softs/cni-plugins-amd64-v0.7.6.tgz"
 
 - name: 设置kubectl的kubeconfig
   copy:
