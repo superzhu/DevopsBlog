@@ -1,0 +1,9 @@
+{{- if .Values.tcp }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "nginx-ingress.fullname" . }}-tcp
+  labels: {{- include "nginx-ingress.labels" . | nindent 4 }}
+    component: {{ .Values.name }}
+data: {{- include "nginx-ingress.tplValue" (dict "value" .Values.tcp "context" $) | nindent 2 }}
+{{- end }}
