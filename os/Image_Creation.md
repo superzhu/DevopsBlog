@@ -1,7 +1,45 @@
 ## OVF, ISO, BIN format
 
+### 扩展OVF磁盘大小的步骤
+1. 关闭虚拟机电源(Power off the virtual machine.)
+2. 编辑虚拟机设置并扩展虚拟磁盘大小(Edit the virtual machine settings and extend the virtual disk size)
+3. 打开虚拟机电源(Power on the virtual machine)
+4. 标识设备名称（默认为/dev/sda），并通过运行以下命令确认新大小：(Identify the device name, which is by default /dev/sda, and confirm the new size by running the command:)
+```bash
+    fdisk -l 
+```
+5. 删除并重新创建主分区: (Delete and re-create primary partition:)
+```bash
+    fdisk /dev/sda
+
+    Press p to print the partition table to identify the number of partitions. By default, there are 2: sda1 and sda2.
+
+    Press d to delete the last partition.
+    Press Enter to confirm.
+
+    Press n to create a new primary partition.
+    Press 2 for the partition number, depending on the output of the partition table print.
+    Press Enter two times
+
+    Do you want to remove the signature? Y
+
+    Press w to write the changes to the partition table.
+
+    parted -l (to remove error: GPT PMBR size mismatch)
+
+    resize2fs /dev/sda2（改为目标磁盘位置)
+```
+6. List partitions on your system
+```bash
+    sudo fdisk -l
+```
+7. ff
 
 
 ## References
 1. [VMware虚拟机添加磁盘](https://blog.csdn.net/u012331758/article/details/78285944)
 2. [Need to expand OVF disk size](https://forum.xorux.com/discussion/60/need-to-expand-ovf-disk)
+3. [解决fdisk与df命令显示的磁盘空间不一样](https://www.qiujiahui.com/2017/08/07/%E8%A7%A3%E5%86%B3fdisk%E4%B8%8Edf%E5%91%BD%E4%BB%A4%E6%98%BE%E7%A4%BA%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E4%B8%8D%E4%B8%80%E6%A0%B7/)
+4. [Create and manage hard drive partitions from the Linux command line--fdisk](https://www.lifewire.com/linux-command-fdisk-4091540)
+5. [How to Use Fdisk to Manage Partitions on Linux](https://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/)
+6. [Linux parted command](https://www.computerhope.com/unix/parted.htm)
