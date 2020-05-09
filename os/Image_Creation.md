@@ -33,7 +33,11 @@
 ```bash
     sudo fdisk -l
 ```
-7. tool: systemback/UltraISO/PowerISO
+7. Install qemu-img on Ubuntu 18.04
+```bash
+    sudo apt-get install qemu-utils
+```
+8. tool: systemback/UltraISO/PowerISO
 
 
 ## References
