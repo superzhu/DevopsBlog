@@ -39,6 +39,7 @@
 ```
 8. tool: systemback/UltraISO/PowerISO/Cubic for Custom Ubuntu ISO Creator
 9. Linux Live Kit: is a set of shell scripts which allows you to create your own Live Linux from an already installed Linux distribution. The Live system you create will be bootable from CD-ROM or USB Flash Drive
+10. Cubic, or Custom Ubuntu ISO Creator, is a GUI that can be used to create a custom bootable Ubuntu Live CD (ISO). [How To Customize Ubuntu Or Linux Mint Live ISO With Cubic](https://www.linuxuprising.com/2018/07/how-to-customize-ubuntu-or-linux-mint.html)
 
 
 ## References
