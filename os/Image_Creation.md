@@ -33,7 +33,7 @@
 ```bash
     sudo fdisk -l
 ```
-7. ff
+7. tool: systemback/UltraISO/PowerISO
 
 
 ## References
@@ -43,3 +43,10 @@
 4. [Create and manage hard drive partitions from the Linux command line--fdisk](https://www.lifewire.com/linux-command-fdisk-4091540)
 5. [How to Use Fdisk to Manage Partitions on Linux](https://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/)
 6. [Linux parted command](https://www.computerhope.com/unix/parted.htm)
+
+## Disk Converter
+1. [Install qemu-img on Ubuntu 16.04](https://www.linuxdesk.com/2017/03/install-qemu-img-on-ubuntu-1604.html)
+2. [Converting a virtual disk image: VDI or VMDK to an ISO you can distribute](https://www.turnkeylinux.org/blog/convert-vm-iso)
+3. [How to Convert a VMDK to an ISO File](https://www.sevenbits.io/blog/iso/puredarwin/osx/2015/03/11/convert-to-iso.html)
+4. [HOW TO CONVERT VMDK TO ISO IN WINDOWS](https://www.ilovefreesoftware.com/26/featured/how-to-convert-vmdk-to-iso-in-windows.html)
+5. [Make a bootable ISO from your Linux Virtual Machine!](https://www.youtube.com/watch?v=2tUkmeDdXjM)
