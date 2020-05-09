@@ -37,7 +37,7 @@
 ```bash
     sudo apt-get install qemu-utils
 ```
-8. tool: systemback/UltraISO/PowerISO
+8. tool: systemback/UltraISO/PowerISO/Cubic for Custom Ubuntu ISO Creator
 
 
 ## References
@@ -59,3 +59,6 @@
 1. [How to Create Custom Live CD image using Cubic on Ubuntu](https://linoxide.com/linux-how-to/create-custom-live-cd-image-cubic-ubuntu/)
 2. [How to create a custom Ubuntu ISO with Cubic](https://www.techrepublic.com/article/how-to-create-a-custom-ubuntu-iso-with-cubic/)
 3. [如何创建定制的 Ubuntu Live CD 镜像](https://www.linuxidc.com/Linux/2018-01/150491.htm)
+4. [https://linuxhint.com/customize_ubuntu_iso_create_spin/](https://linuxhint.com/customize_ubuntu_iso_create_spin/)
+5. [Create Your Own Linux Distro with Ubuntu Imager](https://www.maketecheasier.com/create-linux-distro/)
+6. [MakeALiveCD/DVD/BootableFlashFromHarddiskInstall](https://help.ubuntu.com/community/MakeALiveCD/DVD/BootableFlashFromHarddiskInstall)
