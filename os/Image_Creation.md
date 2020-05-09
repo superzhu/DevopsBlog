@@ -38,6 +38,7 @@
     sudo apt-get install qemu-utils
 ```
 8. tool: systemback/UltraISO/PowerISO/Cubic for Custom Ubuntu ISO Creator
+9. Linux Live Kit: is a set of shell scripts which allows you to create your own Live Linux from an already installed Linux distribution. The Live system you create will be bootable from CD-ROM or USB Flash Drive
 
 
 ## References
@@ -61,4 +62,5 @@
 3. [如何创建定制的 Ubuntu Live CD 镜像](https://www.linuxidc.com/Linux/2018-01/150491.htm)
 4. [https://linuxhint.com/customize_ubuntu_iso_create_spin/](https://linuxhint.com/customize_ubuntu_iso_create_spin/)
 5. [Create Your Own Linux Distro with Ubuntu Imager](https://www.maketecheasier.com/create-linux-distro/)
-6. [MakeALiveCD/DVD/BootableFlashFromHarddiskInstall](https://help.ubuntu.com/community/MakeALiveCD/DVD/BootableFlashFromHarddiskInstall)
+6. [MakeALiveCD/DVD/BootableFlashFromHarddiskInstall](https://help.ubuntu.com/community/MakeALiveCD/DVD/BootableFlashFromHarddiskInstall)]
+7. [Make Your Very Own Customized Linux Distro From Your Current Installation](http://www.linuxandubuntu.com/home/make-your-very-own-customized-linux-distro-from-your-current-installation)
