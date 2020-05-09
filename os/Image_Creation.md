@@ -54,3 +54,8 @@
 3. [How to Convert a VMDK to an ISO File](https://www.sevenbits.io/blog/iso/puredarwin/osx/2015/03/11/convert-to-iso.html)
 4. [HOW TO CONVERT VMDK TO ISO IN WINDOWS](https://www.ilovefreesoftware.com/26/featured/how-to-convert-vmdk-to-iso-in-windows.html)
 5. [Make a bootable ISO from your Linux Virtual Machine!](https://www.youtube.com/watch?v=2tUkmeDdXjM)
+
+## Create Custom Live CD image using Cubic on Ubuntu
+1. [How to Create Custom Live CD image using Cubic on Ubuntu](https://linoxide.com/linux-how-to/create-custom-live-cd-image-cubic-ubuntu/)
+2. [How to create a custom Ubuntu ISO with Cubic](https://www.techrepublic.com/article/how-to-create-a-custom-ubuntu-iso-with-cubic/)
+3. [如何创建定制的 Ubuntu Live CD 镜像](https://www.linuxidc.com/Linux/2018-01/150491.htm)
