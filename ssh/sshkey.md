@@ -33,7 +33,11 @@
 ```bash
    usermod -aG sudo surpass
 ```
-9. ff
+9. Install sshd service
+```bash
+  apt-get install openssh-server
+```
+10. ff
 
 ## 关于Ubuntu拒绝root用户ssh远程登录
 #sudo vim /etc/ssh/sshd_config
