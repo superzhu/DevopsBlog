@@ -9,7 +9,8 @@
 ```bash
     kubectl label namespace default istio-injection=enabled
 ```
-6. While a **virtual service** matches on a rule and evaluates a destination to route the traffic to, **destination rules** define available subsets of the service to send the traffic.
+6. While a **virtual service** matches on a rule and evaluates a destination to route the traffic to, **destination rules** define available subsets of the service to send the traffic. That implies that based on the destination subset selected by the virtual service, Istio would route requests to all microservices pods **labeled with the version specified by the selected subset.**
+7. ff
 
 
 
