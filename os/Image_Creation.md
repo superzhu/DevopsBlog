@@ -65,3 +65,4 @@
 5. [Create Your Own Linux Distro with Ubuntu Imager](https://www.maketecheasier.com/create-linux-distro/)
 6. [MakeALiveCD/DVD/BootableFlashFromHarddiskInstall](https://help.ubuntu.com/community/MakeALiveCD/DVD/BootableFlashFromHarddiskInstall)]
 7. [Make Your Very Own Customized Linux Distro From Your Current Installation](http://www.linuxandubuntu.com/home/make-your-very-own-customized-linux-distro-from-your-current-installation)
+8. [Can't create bootable USB flash drive](https://answers.launchpad.net/cubic/+question/387566)
