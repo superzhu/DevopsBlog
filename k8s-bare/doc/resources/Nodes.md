@@ -54,7 +54,15 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-7. ff
+7. Get node memorypressure
+   ```bash
+   kubectl describe node minikube | grep MemoryPressure
+   ```
+8. One more bash command to delete evicted pods
+   ```bash
+   kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
+   ```
+9. ff
 
 
 ## Blogs
@@ -64,3 +72,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 4. [Gracefully Shutting Down Pods in a Kubernetes Cluster](https://blog.gruntwork.io/gracefully-shutting-down-pods-in-a-kubernetes-cluster-328aecec90d)
 5. [Safely Drain a Node while Respecting the PodDisruptionBudget](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/)
 6. [kubernetes nodes notready 解决思路](https://blog.csdn.net/qq_21816375/article/details/80222689)
+
+## Evicted Pods
+1. [Understanding Kubernetes pod evicted and scheduling problems](https://sysdig.com/blog/kubernetes-pod-evicted/)
+2. [Kubernetes Eviction Policies for Handling Low RAM and Disk Space Situations - Part 2](https://medium.com/@Alibaba_Cloud/kubernetes-eviction-policies-for-handling-low-ram-and-disk-space-situations-part-2-d63596aec9d2)
