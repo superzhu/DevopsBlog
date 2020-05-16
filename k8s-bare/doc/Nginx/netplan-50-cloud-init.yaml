@@ -4,6 +4,8 @@ network:
         ens33:
             addresses: [192.168.118.147/24,]
             dhcp4: false
+            dhcp6: false
+            optional: true
             gateway4: 192.168.118.2
             nameservers:
                     addresses: [8.8.8.8, 8.8.4.4]
