@@ -15,6 +15,7 @@
     ```bash
     mkdir -p /home/surpass/custom
     ```
+    ![Cubic startup](images/cubic_startup.PNG)
 4. Modify /etc/apt/sources.list file
    ```bash
    deb http://archive.ubuntu.com/ubuntu bionic main restricted
