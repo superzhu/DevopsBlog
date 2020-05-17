@@ -1,7 +1,18 @@
 ---
 
+
 - name: Configure Ubuntu netplan
   hosts: master
+  vars:
+    interfaces:
+    - interface: "{{ ansible_default_ipv4.interface }}"
+      ipv4:
+        configured: true
+        address: "{{ ansible_default_ipv4.network }}/{{ ansible_default_ipv4.netmask }}"
+        gateway: "{{ ansible_default_ipv4.gateway }}"
+      dns:
+        nameservers:
+        - 127.0.0.53
   roles:
     - role: netplan
       tags: netplan
