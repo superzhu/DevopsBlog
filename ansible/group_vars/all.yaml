@@ -1,0 +1,6 @@
+# ansible configuration
+ansible_connection: ssh
+ansible_user: root
+ansible_port: 22
+ansible_ssh_private_key_file: '~/.ssh/union_rsa'
+ansible_python_interpreter: /usr/bin/python3

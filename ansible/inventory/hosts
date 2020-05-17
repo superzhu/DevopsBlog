@@ -1,0 +1,17 @@
+[local_host]
+127.0.0.1 ansible_port=22 ansible_user=surpass ansible_password=zhuzhi ansible_host=127.0.0.1
+
+[local_host:vars]
+ssh_key_filename="union_rsa"
+remote_machine_username="surpass"
+remote_machine_password="zhuzhi"
+
+[master]
+192.168.118.149 hostname=kube-master1  nodename=kube-master1 ansible_host=192.168.118.149
+
+[node]
+192.168.118.149 hostname=kube-node1 nodename=kube-node1 ansible_host=192.168.118.149
+
+[Allnode:children]
+master
+node
