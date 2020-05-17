@@ -55,6 +55,8 @@
     apt install python3-pip
 	apt-get update
 	pip3 install ansible --user
+    pip3 install netaddr --user
+    pip3 install ipaddr --user
 
     vim ~/.profile
     export PATH=$PATH:$HOME/.local/bin
