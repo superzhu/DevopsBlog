@@ -1,0 +1,7 @@
+---
+
+- name: Configure Ubuntu netplan
+  hosts: master
+  roles:
+    - role: netplan
+      tags: netplan

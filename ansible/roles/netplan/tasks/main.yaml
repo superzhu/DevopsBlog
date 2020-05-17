@@ -1,0 +1,13 @@
+---
+
+- name: Configure network interface
+  become: true
+  template:
+    src: iface.j2
+    dest: "/etc/netplan/{{ item.interface }}.yaml"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ interfaces }}"
+  notify:
+    - apply network interface

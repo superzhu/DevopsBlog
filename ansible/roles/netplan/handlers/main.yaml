@@ -1,0 +1,17 @@
+---
+
+- name: restart networkd
+  become: true
+  service:
+    name: systemd-networkd
+    state: restarted
+
+- name: restart resolved
+  become: true
+  service:
+    name: systemd-resolved
+    state: restarted
+
+- name: apply network interface
+  become: true
+  shell: netplan apply
