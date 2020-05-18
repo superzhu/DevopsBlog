@@ -104,7 +104,12 @@
     # NTP server to use. The default is almost always fine here.
     #d-i clock-setup/ntp-server string cn.pool.ntp.org
     ```
-12. Install Docker from Official Repository
+12. Passwordless login customization
+    ```bash
+    1. chmod  0700 /root/.ssh
+    2. mode for files under /root/.ssh 0600 
+    ```
+13. Install Docker from Official Repository
     ```bash
     # 1.  Update Local Database
     apt-get update
@@ -128,7 +133,7 @@
     apt-get install -y docker-ce-cli=5:19.03.8~3-0~ubuntu-bionic
     apt-get install -y containerd.io
     ```
-13. ff
+14. ff
 
 
 
