@@ -133,7 +133,11 @@
     apt-get install -y docker-ce-cli=5:19.03.8~3-0~ubuntu-bionic
     apt-get install -y containerd.io
     ```
-14. ff
+14. Install haproxy and keepalived
+    ```bash
+    # haproxy
+    ```
+15. ff
 
 
 
