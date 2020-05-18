@@ -17,9 +17,13 @@
      set_fact:
        net_mask: "{{ ansible_default_ipv4.network }}/{{ ansible_default_ipv4.netmask }}"
 
-   - name: show static IP fact
+   - name: show IP CIDR
      debug:
        msg: "{{ net_mask | ipaddr('net') }}"
+
+   - name: show host CIDR host/prefix
+     debug:
+       msg: "{{ '192.168.1.1/24' | ipmath(6) }}"
 
    - name: network info
      vars:

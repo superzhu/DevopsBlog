@@ -26,7 +26,7 @@ network:
       addresses:
 {% endif %}
 {% if item.ipv4 is defined and item.ipv4.configured is defined and item.ipv4.configured and item.ipv4.address is defined and item.ipv4.address %}
-        - {{ item.ipv4.address | ipaddr('net') }}
+        - {{ item.ipv4.address }}/{{ item.ipv4.netmask | ipaddr('prefix')  }}
 {% endif %}
 {% if item.ipv6 is defined and item.ipv6.configured is defined and item.ipv6.configured and item.ipv6.address is defined and item.ipv6.address %}
         - {{ item.ipv6.address }}

@@ -8,7 +8,8 @@
     - interface: "{{ ansible_default_ipv4.interface }}"
       ipv4:
         configured: true
-        address: "{{ ansible_default_ipv4.network }}/{{ ansible_default_ipv4.netmask }}"
+        address: "{{ ansible_default_ipv4.address }}"
+        netmask: "{{ ansible_default_ipv4.network }}/{{ ansible_default_ipv4.netmask }}"
         gateway: "{{ ansible_default_ipv4.gateway }}"
       dns:
         nameservers:
