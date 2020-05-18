@@ -104,7 +104,31 @@
     # NTP server to use. The default is almost always fine here.
     #d-i clock-setup/ntp-server string cn.pool.ntp.org
     ```
-12. ff
+12. Install Docker from Official Repository
+    ```bash
+    # 1.  Update Local Database
+    apt-get update
+
+    # 2. Download Dependencies
+    apt-get install -y apt-transport-https ca-certificates curl software-properties-common gnupg-agent
+
+    # 3. Add Docker’s GPG Key
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+    # 4.  Install the Docker Repository
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable"
+
+    # 5. Update Repositories
+    apt-get update
+
+    # 6. Install Specific Version of Docker 
+    apt-cache madison docker-ce
+
+    apt-get install -y docker-ce=5:19.03.8~3-0~ubuntu-bionic
+    apt-get install -y docker-ce-cli=5:19.03.8~3-0~ubuntu-bionic
+    apt-get install -y containerd.io
+    ```
+13. ff
 
 
 
