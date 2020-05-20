@@ -135,9 +135,17 @@
     ```
 14. Install haproxy and keepalived
     ```bash
-    # haproxy
+    # haproxy and keepalived
+    apt-get install -y haproxy keepalived
+    systemctl disable haproxy
+    systemctl disable keepalived
     ```
-15. ff
+15. Install following modules for Kubernetes (12 items)
+    ```bash
+    apt-get -y install bash-completion conntrack ipvsadm ipset sysstat libseccomp-dev
+    apt-get -y install psmisc jq runit nfs-common rsync socat
+    ```
+16. ff
 
 
 
