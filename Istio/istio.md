@@ -10,7 +10,13 @@
     kubectl label namespace default istio-injection=enabled
 ```
 6. While a **virtual service** matches on a rule and evaluates a destination to route the traffic to, **destination rules** define available subsets of the service to send the traffic. That implies that based on the destination subset selected by the virtual service, Istio would route requests to all microservices pods **labeled with the version specified by the selected subset.**
-7. ff
+7. Istio main docker images
+    | No | Pod Name | Image Name |
+    | ---- | --------------- | ----------------- |
+    | 1     | istiod              | istio/pilot:1.6.0  |
+    | 2     | istio/proxyv2:1.6.0 | istio-ingressgateistio-egressgateway |
+    | 3     | istio-tracing   | jaegertracing/all-in-one:1.16 |
+8. ff
 
 
 
