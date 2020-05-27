@@ -16,9 +16,13 @@
     | 1     | istiod              | istio/pilot:1.6.0  |
     | 2     | istio/proxyv2:1.6.0 | istio-ingressgateistio-egressgateway |
     | 3     | istio-tracing   | jaegertracing/all-in-one:1.16 |
-8. ff
+8. The new **istioctl** installation commands use a custom resource to configure the installation. 
 
 
 
 ## Istio Reference
 1. [How to Manage Microservices on Kubernetes With Istio medium](https://medium.com/better-programming/how-to-manage-microservices-on-kubernetes-with-istio-c25e97a60a59)
+
+
+## Istio Operator --- Installation
+1. [Introducing the Istio Operator](https://istio.io/blog/2019/introducing-istio-operator/)
