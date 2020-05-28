@@ -17,6 +17,14 @@
     | 2     | istio/proxyv2:1.6.0 | istio-ingressgateistio-egressgateway |
     | 3     | istio-tracing   | jaegertracing/all-in-one:1.16 |
 8. The new **istioctl** installation commands use a custom resource to configure the installation. 
+    ```bash
+    # Install Istio using charts in the local file system
+    istioctl install --charts istio160/manifests --set profile=default
+
+    # uninstall istio
+    istioctl manifest generate --charts istio160/manifests --set profile=default | kubectl delete -f -
+    ```
+9. ff
 
 
 
