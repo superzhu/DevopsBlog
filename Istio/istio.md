@@ -21,6 +21,8 @@
     # Install Istio using charts in the local file system
     istioctl install --charts istio160/manifests --set profile=default
 
+    istioctl install --set profile=default --set components.pilot.k8s.resources.requests.memory=512Mi
+
     # uninstall istio
     istioctl manifest generate --charts istio160/manifests --set profile=default | kubectl delete -f -
     ```
