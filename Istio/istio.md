@@ -26,7 +26,13 @@
     # uninstall istio
     istioctl manifest generate --charts istio160/manifests --set profile=default | kubectl delete -f -
     ```
-9. ff
+9. **Deploy Istio samples to specific namespace**
+    ```bash
+    kubectl create namespace app2
+    kubectl label namespace app2 istio-injection=enabled
+    kubectl apply -n app2 -f samples/httpbin/httpbin.yaml
+    ```
+10. ff
 
 
 
@@ -36,3 +42,7 @@
 
 ## Istio Operator --- Installation
 1. [Introducing the Istio Operator](https://istio.io/blog/2019/introducing-istio-operator/)
+
+
+# Multi-cluster deployment
+1. [如何使用 Istio 进行多集群部署管理：多控制平面](https://zhuanlan.zhihu.com/p/144510796)
