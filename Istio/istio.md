@@ -32,12 +32,13 @@
     kubectl label namespace app2 istio-injection=enabled
     kubectl apply -n app2 -f samples/httpbin/httpbin.yaml
     ```
-10. ff
+10. 本次**1.6** 版本的发布我个人认为是惊喜不足，失望有余。Mixer 的寿终正寝让中心化的限流、黑白名单这样有用的功能也跟着陪了葬，还未看到要弥补它们的打算。而期待的 Envoy 与 WebAssembly 的强强联手也在本次更新中只字未提。
 
 
 
 ## Istio Reference
 1. [How to Manage Microservices on Kubernetes With Istio medium](https://medium.com/better-programming/how-to-manage-microservices-on-kubernetes-with-istio-c25e97a60a59)
+2. [Istio 1.6——迈向极简主义](https://zhuanlan.zhihu.com/p/144535273)
 
 
 ## Istio Operator --- Installation
@@ -46,3 +47,9 @@
 
 # Multi-cluster deployment
 1. [如何使用 Istio 进行多集群部署管理：多控制平面](https://zhuanlan.zhihu.com/p/144510796)
+
+# Istio & iptables
+1. [Demystifying Istio's Sidecar Injection Model](https://istio.io/blog/2019/data-plane-setup/)
+2. [Tricking Istio into ignoring inbound packets](https://jpittis.ca/posts/tricking-istio-with-iptables.html)
+3. [Understanding How Envoy Sidecar Intercept and Route Traffic in Istio Service Mesh](https://medium.com/faun/understanding-how-envoy-sidecar-intercept-and-route-traffic-in-istio-service-mesh-20fea2a78833)
+4. [Reducing needed permissions in Istio](https://itnext.io/slashing-needed-permissions-in-istio-f05fe145698d)
