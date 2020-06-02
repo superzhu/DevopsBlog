@@ -31,6 +31,11 @@
     kubectl create namespace app2
     kubectl label namespace app2 istio-injection=enabled
     kubectl apply -n app2 -f samples/httpbin/httpbin.yaml
+
+    kubectl get virtualservices
+    kubectl get destinationrules 
+    kubectl get gateway
+    kubectl get pods
     ```
 10. 本次**1.6** 版本的发布我个人认为是惊喜不足，失望有余。Mixer 的寿终正寝让中心化的限流、黑白名单这样有用的功能也跟着陪了葬，还未看到要弥补它们的打算。而期待的 Envoy 与 WebAssembly 的强强联手也在本次更新中只字未提。
 
