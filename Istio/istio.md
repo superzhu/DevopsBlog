@@ -16,6 +16,7 @@
     | 1     | istiod              | istio/pilot:1.6.0  |
     | 2     | istio/proxyv2:1.6.0 | istio-ingressgateistio-egressgateway |
     | 3     | istio-tracing   | jaegertracing/all-in-one:1.16 |
+    | 4     | Policy             |   istio/mixer:1.6.0                   |  
 8. The new **istioctl** installation commands use a custom resource to configure the installation. 
     ```bash
     # Install Istio using charts in the local file system
