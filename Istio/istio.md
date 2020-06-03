@@ -53,6 +53,7 @@
 
 # Multi-cluster deployment
 1. [如何使用 Istio 进行多集群部署管理：多控制平面](https://zhuanlan.zhihu.com/p/144510796)
+2. [Istio Service Mesh on Multi-Cluster Kubernetes Environment](https://medium.com/better-programming/istio-service-mesh-on-multi-cluster-kubernetes-environment-518094cdcdc4)
 
 # Istio & iptables
 1. [Demystifying Istio's Sidecar Injection Model](https://istio.io/blog/2019/data-plane-setup/)
