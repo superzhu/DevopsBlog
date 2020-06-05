@@ -1,4 +1,4 @@
-# Network 
+# Network Concepts
 
 1. **East-West – East-West refers to traffic** flows that occur between devices within a datacenter. During convergence for example, routers exchange table information to ensure they have the same information about the internetwork in which they operate. Another example are switches, which can exchange spanning-tree information to prevent network loops.
 2. **North | South – North- South refers to traffic** flows into and out of the datacenter. Traffic entering the datacenter through perimeter network devices is said to be southbound. Traffic exiting via the perimeter network devices is said to be northbound.
