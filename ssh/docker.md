@@ -71,3 +71,8 @@ sudo docker info | grep -i cgroup
 2. [Building docker images from private git repositories using ssh login](https://itnext.io/building-docker-images-from-private-git-repositories-using-ssh-login-433edf5a18f2)
 3. [Cloning Files From Git into a Docker Image](https://janakerman.co.uk/docker-git-clone/)
 4. [Difference between save and export in Docker](https://tuhrig.de/difference-between-save-and-export-in-docker/)
+
+# multi stage build java gitlab ci
+1. [How get the most out of dockerized builds (with Gitlab)](https://medium.com/fme-developer-stories/how-get-the-most-out-of-dockerized-builds-with-gitlab-e368b960f7c1)
+2. [A Guide to Docker Multi-Stage Builds](https://blog.bitsrc.io/a-guide-to-docker-multi-stage-builds-206e8f31aeb8)
+3. [(Multi-stage docker) in docker as CI Sledgehammer](https://blog.scottlogic.com/2018/02/09/multi-dind-ci-boxes.html)
