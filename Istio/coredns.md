@@ -1,4 +1,9 @@
 # CoreDNS Concepts
+1. **域和域名** : 域名不区分大小. 由最顶层到下层,可以分成:根域、顶级域、二级域、子域.
+2. 区（Zone）：区是DNS 名称空间的一部分,其包含了一组存储在DNS 服务器上的资源记录.使用区的概念,DNS 服务器回答关于自己区中主机的查询,每个区都有自己的**授权服务器**.
+3. plug-in for configuring a primary DNS server that reads **zone data** from a file : 用于配置从文件读取**区数据**的主DNS服务器的插件
+
+
 
 ## References
 1. [Run Your Own Home DNS on coredns](https://blog.idempotent.ca/2018/04/18/run-your-own-home-dns-on-coredns/)
@@ -10,3 +15,4 @@
 7. [coredns搭建三级域名解析服务](https://www.opposhore.com/blog/subdomain_coredns/)
 8. [使用CoreDNS搭建无污染DNS](https://laod.cn/dns/coredns-dns.html)
 9. [使用 CoreDNS 来应对 DNS 污染](https://fuckcloudnative.io/posts/install-coredns-on-macos/)
+10. [DNS服务器搭建与配置 bind](https://cshihong.github.io/2018/10/15/DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/)
