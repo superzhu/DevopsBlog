@@ -3,6 +3,7 @@
 2. 区（Zone）：区是DNS 名称空间的一部分,其包含了一组存储在DNS 服务器上的资源记录.使用区的概念,DNS 服务器回答关于自己区中主机的查询,每个区都有自己的**授权服务器**. A **zone** is a domain minus the subdomains that have been delegated elsewhere. What if there’s no delegation within a domain? In that case, **the domain and the zone** contain the same nodes. For example, if there’s no further delegation below **cs.berkeley.edu**, the domain cs.berkeley.edu and the zone cs.berkeley.edu are effectively the same
 3. plug-in for configuring a primary DNS server that reads **zone data** from a file : 用于配置从文件读取**区数据**的主DNS服务器的插件
 4. **Forwarders** are often used to provide the ability to resolve domain names in the internet’s namespace to DNS servers without direct connectivity to the internet: the “internal” DNS servers are configured to use a DNS server with internet connectivity as a **forwarder**.
+5. **DNS root hints file**
 
 
 
