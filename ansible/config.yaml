@@ -1,0 +1,62 @@
+- hosts: local_host
+  vars_prompt:
+    - name: private_ip_str
+      prompt: "Please input host private ip(s), separated by commas"
+      private: no
+
+  tasks:
+    - set_fact:
+        private_ip_list: "{{ private_ip_str.split(',') }}"
+
+    - debug:
+        msg: "{{ item }}"
+      loop: "{{ private_ip_list }}"
+
+    - name: host ip list contains one private ip or three private ips
+      assert:
+        that: 
+          - "private_ip_list | length == 1 or private_ip_list | length == 3"
+        msg: "ip list contains one private ip or three private ips"
+
+
+    - name: input host ip(s) should be private ip(s)
+      assert: { that: item | ipv4 | ipaddr('private')  }
+      loop: "{{ private_ip_list }}"
+
+    - name: input host ip(s) should belong to same private network (16)
+      assert:
+        that:
+          - "private_ip_list[0] | ipsubnet(16) == private_ip_list[1] | ipsubnet(16)"
+          - "private_ip_list[1] | ipsubnet(16) == private_ip_list[2] | ipsubnet(16)"
+        msg: "input private ips should be in the same private network."
+      when: private_ip_list | length == 3
+
+
+    - name: configure Virtual IP when multiple nodes are provided
+      pause:
+        prompt: "Please provide virtual IP for multiple nodes deployments"
+      when: private_ip_list | length == 3
+      register: vip
+
+    - debug:
+        msg: "Configure virtual ip: {{ vip.user_input }}"
+      when: private_ip_list | length == 3
+
+    - name: vip should be private ip
+      assert: { that: vip.user_input | ipv4 | ipaddr('private')  }
+      when: private_ip_list | length == 3
+
+    - name: all input host ips should be in the same private network
+      assert:
+        that:
+          -  "vip.user_input | ipsubnet(16) == private_ip_list[0] | ipsubnet(16)"
+        msg: "input virtual ip should be in the same private network as host ip(s)"
+      when: private_ip_list | length == 3
+
+    - debug:
+        msg: "start with 192.168."
+      when: "private_ip_list[0].startswith('192.168.')"
+
+    - debug:
+        msg: "start with 172.[16-31]."
+      when: "private_ip_list[0].startswith('172.')"
