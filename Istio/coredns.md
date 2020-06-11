@@ -12,6 +12,27 @@
       }
     ```
 8. 起始授权机构(SOA, Start Of Authority)的资源记录，描述了域名的管理员、电子邮件地址，和一些时间参数
+9. Dig DNS records
+  ```bash
+  # type A record
+  dig @172.16.0.10 -t a node-exporter.monitoring.svc.cluster.local
+
+  # type SRV record
+  dig @172.16.0.10 -t srv  _https._tcp.node-exporter.monitoring.svc.cluster.local
+
+  # type PTR record: dig -x IP_ADDRESS
+  dig @172.16.0.10 -x 172.16.110.17
+  ```
+10. stub domains and federation : 存根域和联盟; The **STUBDOMAINS variable** is used to populate **additional server stanzas (server block)** when you want to resolve specific domains using name servers --- 当您要使用名称服务器解析特定域时，将STUBDOMAINS变量用于填充其他服务器节。
+11. CoreDNS health check :
+  ```bash
+  # controlled by health plugin. It opens an HTTP server on port 8080,which will respond to an HTTP request for /health.
+  curl http://10.200.102.75:8080/health
+
+  # ready plugin
+  curl http://10.200.102.75:8181/ready
+  ```
+12. ff
 
 
 
