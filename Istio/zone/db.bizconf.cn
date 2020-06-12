@@ -1,0 +1,16 @@
+$TTL    604800
+@    IN    SOA    ns1.bizconf.cn. zhi_zhu.qiu.home. (
+                  3        ; Serial
+             604800        ; Refresh
+              86400        ; Retry
+            2419200        ; Expire
+             604800 )      ; Negative Cache TTL
+;
+
+; name servers - NS records
+@    IN    NS    ns1
+
+; name servers - A records
+ns1.bizconf.cn.    IN    A    192.168.1.117
+dns1.bizconf.cn.   IN    A    192.168.1.117
+dellops.bizconf.cn. IN    A    192.168.1.104

@@ -22,6 +22,11 @@
 
   # type PTR record: dig -x IP_ADDRESS
   dig @172.16.0.10 -x 172.16.110.17
+
+  # local coredns
+  coredns -conf /etc/coredns/Corefile
+  dig @192.168.1.117 -p 153 www.baidu.com
+  dig @192.168.1.117 -p 153 dellops.bizconf.cn
   ```
 10. stub domains and federation : 存根域和联盟; The **STUBDOMAINS variable** is used to populate **additional server stanzas (server block)** when you want to resolve specific domains using name servers --- 当您要使用名称服务器解析特定域时，将STUBDOMAINS变量用于填充其他服务器节。
 11. CoreDNS health check :
