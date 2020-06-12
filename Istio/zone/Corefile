@@ -1,0 +1,11 @@
+.:153 {
+    forward . 8.8.8.8 9.9.9.9
+    log
+    errors
+}
+
+bizconf.cn:153 {
+    file /etc/coredns/zone/db.bizconf.cn
+    log
+    errors
+}
