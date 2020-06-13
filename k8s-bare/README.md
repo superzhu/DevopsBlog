@@ -4,6 +4,8 @@
 
  基于阿里云搭建kubernetes cluster
 
+ 基于kubernetes的安装平台**rancher和openshift**
+
 ## Setup passwordless SSH between ansible controller and kubernetes nodes
 Enable ssh (passwordless authentication) to all other nodes, including the current node from where the installation is triggered.
 无密码 ssh 登录其它节点

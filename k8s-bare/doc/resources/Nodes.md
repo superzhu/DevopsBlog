@@ -76,3 +76,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ## Evicted Pods
 1. [Understanding Kubernetes pod evicted and scheduling problems](https://sysdig.com/blog/kubernetes-pod-evicted/)
 2. [Kubernetes Eviction Policies for Handling Low RAM and Disk Space Situations - Part 2](https://medium.com/@Alibaba_Cloud/kubernetes-eviction-policies-for-handling-low-ram-and-disk-space-situations-part-2-d63596aec9d2)
+
+## Node unavailable
+1. [Kubernetes Tip: What Happens To Pods Running On Node That Become Unreachable?](https://medium.com/tailwinds-navigator/kubernetes-tip-what-happens-to-pods-running-on-node-that-become-unreachable-3d409f734e5d)
