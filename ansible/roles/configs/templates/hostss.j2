@@ -1,0 +1,15 @@
+[master]
+{% for host in private_ip_list %}{{ host }} hostname=kube-master{{ loop.index }} nodename=kube-master{{ loop.index }} ansible_host={{ host }}
+{% endfor %}
+
+[node]
+{% for host in private_ip_list %}{{ host }} hostname=kube-master{{ loop.index }} nodename=kube-master{{ loop.index }} ansible_host={{ host }}
+{% endfor %}
+
+[Allnode:children]
+master
+node
+
+[etcd]
+{% for host in private_ip_list %}{{ host }} hostname=kube-master{{ loop.index }} nodename=kube-master{{ loop.index }}
+{% endfor %}

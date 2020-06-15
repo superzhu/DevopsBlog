@@ -1,0 +1,141 @@
+# ansible configuration
+ansible_connection: ssh
+ansible_user: root
+ansible_port: 22
+ansible_ssh_private_key_file: '~/.ssh/union_rsa'
+ansible_python_interpreter: /usr/bin/python3
+
+# turn on below configuration to install kubernetes dashboard
+dashboard:
+  enable: false
+APP_DOMAIN_NAME: onpremises.bizconf.cn
+OPS_DOMAIN_NAME: opscustomer.bizconf.cn
+
+# 后续考虑扩etcd或者master的话可以填写下面预留ip写在证书里,这里预留域名做切换ip的保障手段,不要删除
+# don't delete the domain list var
+certSANs:
+  apiServer:
+    - kube-master11
+    - kube-master12
+    - apiserver003.k8s.local
+    - 47.92.196.157  # alicloud public ip
+#    - 100.64.2.51
+  etcd:
+    - kube-master11
+    - kube-master12
+    - etcd003.k8s.local
+#    - 100.64.2.50
+
+
+SvcCIDR: {{ SvcCIDR }}
+KubernetesClusterSVCIP: {{ KubernetesClusterSVCIP }} # Used for Certificate SAN
+REVERSE_CIDRS : {{ REVERSE_CIDRS }}  # CoreDNS reverse CIDS,kubernetes service network segment CIDR 
+ClusterDns: {{ ClusterDns }}  # Userd for CoreDNS cluster IP
+UPSTREAMNAMESERVER: /etc/resolv.conf
+PodCIDR: {{ PodCIDR }}
+ServiceNodePortRange: 30000-32767
+ClusterDomain: cluster.local
+
+# ApiServer high availability;10.200.3.198 is alicloud private SLB IP
+VIP: {{ VIP }}
+KUBE_APISERVER: {{ KUBE_APISERVER }}
+VIP_NETMASK: 24
+#INTERFACE_NAME: ens160
+
+CLUSTER_NAME: 'kubernetes'
+KUBE_VERSION: 'v1.18.2'
+ETCD_version: 'v3.4.9'
+
+
+# docker custom configuration
+docker:
+  version: '19.03.8'
+  extendedVersion: '5:19.03.8~3-0~ubuntu-bionic'
+  dataDir: /var/lib/docker
+  execOpts:
+    - 'native.cgroupdriver=systemd'
+  registryMirrors:
+    - https://dockerhub.azk8s.cn
+    - https://docker.mirrors.ustc.edu.cn
+
+
+# etcd3 configuration
+etcd:
+  dataDir: /var/lib/etcd
+  initialClusterToken: 'etcd-k8s-local'
+  backup:
+    dataDir: /root/etcd_bak/
+    scriptDir: /etc/etcd/
+    count: "4"
+
+
+# kubelet更新自身状态频率 https://github.com/kubernetes-sigs/kubespray/blob/master/docs/kubernetes-reliability.md
+# set one of the Fast | Medium | Low | default
+nodeStatusUpdate: Medium
+#nodeStatusUpdateFrequency: 10s
+#nodeMonitorPeriod: 5s     # 如果改它确保它小于下面的值
+#nodeMonitorGracePeriod: 40s
+#podEvictionTimeout: 5m
+
+
+# The following variables, address and bind, either bind to hosting single network by default
+#  or changes to 0.0.0.0; healthz and metrics are the same
+#  $vars.logrotate.log为true则日志不走journald而是落地切logrotate控制容量副本
+apiserver:
+  advertiseAddress: "{{ inventory_hostname }}"
+  bind: "{{ inventory_hostname }}"
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-apiserver
+    logDir: /var/log/kubernetes/kube-apiserver
+    logSize: 200M
+    logRotate: 7
+
+controllerManager:
+  bind: 0.0.0.0
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-controller-manager
+    logDir: /var/log/kubernetes/kube-controller-manager
+    logSize: 200M
+    logRotate: 7
+
+scheduler:
+  bind: 0.0.0.0
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-scheduler
+    logDir: /var/log/kubernetes/kube-scheduler
+    logSize: 200M
+    logRotate: 7
+
+kubelet:
+  bind: "{{ inventory_hostname }}"
+  healthzBindAddress: "{{ inventory_hostname }}"
+  swap: false  # 不希望关闭swap设置成true
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kubelet
+    logDir: /var/log/kubernetes/kubelet
+    logSize: 200M
+    logRotate: 7
+
+
+# kube-proxy
+proxy:
+  bind: "{{ inventory_hostname }}"
+  healthzBindAddress: "{{ inventory_hostname }}"
+  metricsBindAddress: "{{ inventory_hostname }}"
+  mode: ipvs  # proxy mode
+  bin: true   # indicate deployment using binary file, not daemonset 
+  logLevel: 2
+  logrotate:
+    log: true
+    confTemplate: logrotate/kube-proxy
+    logDir: /var/log/kubernetes/kube-proxy
+    logSize: 200M
+    logRotate: 7

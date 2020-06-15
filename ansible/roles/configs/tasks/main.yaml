@@ -1,0 +1,118 @@
+- set_fact:
+    private_ip_list: "{{ private_ip_str.split(',') }}"
+
+- name: Show input private ip(s)
+  debug:
+    msg: "{{ item }}"
+  loop: "{{ private_ip_list }}"
+
+- name: host ip list contains one private ip or three private ips
+  assert:
+    that:
+      - "private_ip_list | length == 1 or private_ip_list | length == 3"
+    msg: "ip list contains one private ip or three private ips"
+
+- name: input host ip(s) should be private ip(s)
+  assert: { that: item | ipv4 | ipaddr('private')  }
+  loop: "{{ private_ip_list }}"
+
+- name: input host ip(s) should belong to same private network (16)
+  assert:
+    that:
+      - "private_ip_list[0] | ipsubnet(16) == private_ip_list[1] | ipsubnet(16)"
+      - "private_ip_list[1] | ipsubnet(16) == private_ip_list[2] | ipsubnet(16)"
+    msg: "input private ips should be in the same private network."
+  when: private_ip_list | length == 3
+
+
+- name: configure Virtual IP when multiple nodes are provided
+  pause:
+    prompt: "Please provide virtual IP for multiple nodes deployments"
+  when: private_ip_list | length == 3
+  register: vip
+
+- debug:
+    msg: "Configure virtual ip: {{ vip.user_input }}"
+  when: private_ip_list | length == 3
+
+- name: vip should be private ip
+  assert: { that: vip.user_input | ipv4 | ipaddr('private')  }
+  when: private_ip_list | length == 3
+
+
+- name: all input host ips should be in the same private network
+  assert:
+    that:
+       -  "vip.user_input | ipsubnet(16) == private_ip_list[0] | ipsubnet(16)"
+    msg: "input virtual ip should be in the same private network as host ip(s)"
+  when: private_ip_list | length == 3
+
+- block:
+    - debug:
+        msg: "{{ lookup('env', 'PWD') }}"
+
+    - set_fact:
+        VIP: "{{ vip.user_input }}" 
+        KUBE_APISERVER: "https://{{ vip.user_input }}:8443"
+      when: private_ip_list | length == 3
+
+    - set_fact:
+        VIP: "{{ private_ip_list[0] }}"
+        KUBE_APISERVER: "https://{{ private_ip_list[0] }}:6443"
+      when: private_ip_list | length == 1
+
+    - set_fact:
+        SvcCIDR: "172.16.0.0/16"
+        KubernetesClusterSVCIP: "172.16.0.1"
+        REVERSE_CIDRS: "172.16.0.0/16"
+        ClusterDns: "172.16.0.10"
+        PodCIDR: "10.200.0.0/16"
+
+  when: "private_ip_list[0].startswith('192.168.')"
+
+- block:
+    - set_fact:
+        VIP: "{{ vip.user_input }}"
+        KUBE_APISERVER: "https://{{ vip.user_input }}:8443"
+      when: private_ip_list | length == 3
+
+    - set_fact:
+        VIP: "{{ private_ip_list[0] }}"
+        KUBE_APISERVER: "https://{{ private_ip_list[0] }}:6443"
+      when: private_ip_list | length == 1
+
+    - set_fact:
+        SvcCIDR: "192.168.0.0/16"
+        KubernetesClusterSVCIP: "192.168.0.1"
+        REVERSE_CIDRS: "192.168.0.0/16"
+        ClusterDns: "192.168.0.10"
+        PodCIDR: "10.200.0.0/16"
+  when: "private_ip_list[0].startswith('172.')"
+
+- block:
+     - set_fact:
+         VIP: "{{ vip.user_input }}"
+         KUBE_APISERVER: "https://{{ vip.user_input }}:8443"
+       when: private_ip_list | length == 3
+
+     - set_fact:
+         VIP: "{{ private_ip_list[0] }}"
+         KUBE_APISERVER: "https://{{ private_ip_list[0] }}:6443"
+       when: private_ip_list | length == 1
+
+     - set_fact:
+         SvcCIDR: "172.16.0.0/16"
+         KubernetesClusterSVCIP: "172.16.0.1"
+         REVERSE_CIDRS: "172.16.0.0/16"
+         ClusterDns: "172.16.0.10"
+         PodCIDR: "192.168.0.0/16"
+  when: "private_ip_list[0].startswith('10.')"
+
+- name: Populate hosts file
+  template:
+    src:  "{{ item.src }}"
+    dest: "{{ item.dest }}/{{ item.src.split('.')[:-1]|join('.') }}"
+  loop:
+    - { src: "hostss.j2", dest: "{{ lookup('env', 'PWD') }}/inventory" }
+    - { src: "all.yaml.j2", dest: "{{ lookup('env', 'PWD') }}/group_vars" }  
+
