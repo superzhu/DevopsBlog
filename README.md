@@ -8,6 +8,7 @@
 
 ## Spring-Boot Examples
 1. [spring boot demo](https://github.com/xkcoding/spring-boot-demo)
+2. [pig: 基于OAuth2 的RBAC 权限管理系统](https://gitee.com/log4j/pig)
 
 
 ## Kubernetes ConfigMap hot-reload
