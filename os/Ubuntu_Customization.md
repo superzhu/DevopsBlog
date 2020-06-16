@@ -114,6 +114,8 @@
     # 1.  Update Local Database
     apt-get update
 
+    apt-cache madison docker-ce
+
     # 2. Download Dependencies
     apt-get install -y apt-transport-https ca-certificates curl software-properties-common gnupg-agent
 
@@ -122,6 +124,9 @@
 
     # 4.  Install the Docker Repository
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable"
+
+    or 
+    add-apt-repository "deb [arch=arm64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable"
 
     # 5. Update Repositories
     apt-get update
