@@ -48,6 +48,10 @@ sudo docker info | grep -i cgroup
 1. docker.io仓库对google的容器做了镜像，可以通过下列命令下拉取相关镜像：
 ```bash
       docker pull mirrorgooglecontainers/defaultbackend-amd64:1.5
+
+      docker pull mirrorgcrio/pause-arm64:3.2
+
+      docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.2
 ```
 2. 通过docker tag命令来修改镜像的标签：
 ```bash
@@ -61,6 +65,11 @@ sudo docker info | grep -i cgroup
    ```bash
    docker run -ti --rm  --entrypoint /bin/sh a1d22e4b51ad
    ```
+5. Where can I find the sha256 code of a docker image?
+   ```bash
+   docker inspect --format='{{index .RepoDigests 0}}' $IMAGE
+   ```
+6. ff
 
 # References
 1. [Ten tips for debugging Docker containers](https://medium.com/@betz.mark/ten-tips-for-debugging-docker-containers-cde4da841a1d)
@@ -76,3 +85,6 @@ sudo docker info | grep -i cgroup
 1. [How get the most out of dockerized builds (with Gitlab)](https://medium.com/fme-developer-stories/how-get-the-most-out-of-dockerized-builds-with-gitlab-e368b960f7c1)
 2. [A Guide to Docker Multi-Stage Builds](https://blog.bitsrc.io/a-guide-to-docker-multi-stage-builds-206e8f31aeb8)
 3. [(Multi-stage docker) in docker as CI Sledgehammer](https://blog.scottlogic.com/2018/02/09/multi-dind-ci-boxes.html)
+
+## kubernetes pause image
+1. [pause image github](https://github.com/kubernetes/kubernetes/tree/master/build/pause)
