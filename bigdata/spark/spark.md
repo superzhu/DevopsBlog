@@ -5,3 +5,7 @@
 1. [Apache Spark with Kubernetes and Fast S3 Access](https://towardsdatascience.com/apache-spark-with-kubernetes-and-fast-s3-access-27e64eb14e0f)
 2. [How to build Spark from source and deploy it to a Kubernetes cluster in 60 minutes](https://towardsdatascience.com/how-to-build-spark-from-source-and-deploy-it-to-a-kubernetes-cluster-in-60-minutes-225829b744f9)
 3. [**GoogleCloudPlatform/spark-on-k8s-operator**](https://github.com/GoogleCloudPlatform/spark-on-k8s-operator)
+
+
+## Databricks blogs
+1. [Deep Dive into Spark SQL’s Catalyst Optimizer](https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html)
