@@ -69,7 +69,20 @@ sudo docker info | grep -i cgroup
    ```bash
    docker inspect --format='{{index .RepoDigests 0}}' $IMAGE
    ```
-6. ff
+6. Create image from container
+   ```bash
+   # 1 Start up container using existing image
+   docker run -it --name uos deepinv20:2.13 /bin/bash
+
+   # 2 Modify in started container
+
+   # 3 Stop container
+   docker stop uos
+
+   # 4 create image
+   docker commit ca556d82f170 deepinv20:2.14
+   ```
+7. ff
 
 # References
 1. [Ten tips for debugging Docker containers](https://medium.com/@betz.mark/ten-tips-for-debugging-docker-containers-cde4da841a1d)
