@@ -19,3 +19,4 @@
 1. [Kubernetes Endpoint 理解](https://www.ccieliu.com/k8s/35.html)
 2. [Viewing Logs In Kubernetes](https://medium.com/faun/viewing-logs-in-kubernetes-e055f936e187)
 3. [Debug Your Kubernetes Service in 5 Easy Steps](https://medium.com/better-programming/debug-your-kubernetes-service-in-5-easy-steps-1457974f024c)
+4. [What exactly is a headless service, what does it do/accomplish, and what are some legitimate use cases for it?](https://stackoverflow.com/questions/52707840/what-exactly-is-a-headless-service-what-does-it-do-accomplish-and-what-are-som) Kubernetes in Action
