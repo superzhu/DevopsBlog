@@ -42,7 +42,13 @@ sudo docker info | grep -i cgroup
 
         docker load -i <path to image tar file>
 ```
-9. dd
+9. Docker: any way to list open sockets inside a running docker container?
+    ```bash
+    docker inspect -f '{{.State.Pid}}' container_name_or_id
+
+    sudo nsenter -t 15652 -n netstat
+    ```
+10. ff
 
 ## Kubernetes：如何解决从k8s.gcr.io拉取镜像失败问题
 1. docker.io仓库对google的容器做了镜像，可以通过下列命令下拉取相关镜像：
