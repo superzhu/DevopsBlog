@@ -62,7 +62,21 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
    ```bash
    kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
    ```
-9. ff
+9. [kubernetes node重启，导致一些pod不能重新启动](https://stackoverflow.com/questions/33671449/how-to-restart-kubernetes-nodes)：
+   ```bash
+    # issue: /k8s_POD_metrics-server-79864f564f-n6fk4_kube-system_784756e6-2766-4761-b195-0a7c79ba1723_2" 
+    # is already in use by container "7bdf7fa1147edaf70dfa469c5e85ae466a575cc3cdc6767e9c4252a5e990e35a". 
+    # You have to remove (or rename) that container to be able to reuse that name
+
+    docker container prune -f
+    docker restart $(docker ps -a -q)
+    kubectl get nodes
+    systemctl restart kubelet
+    
+    kubectl get pods --all-namespaces
+    systemctl restart docker
+   ```
+10. ff
 
 
 ## Blogs
