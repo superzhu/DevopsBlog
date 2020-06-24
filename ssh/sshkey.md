@@ -37,7 +37,12 @@
 ```bash
   apt-get install openssh-server
 ```
-10. ff
+10. **How to change Swappiness**? The swappiness parameter value is stored in a simple configuration text file located in **/proc/sys/vm and is named “swappiness”**. If you navigate there through the file manager, you will be able to locate the file and open it to check your system's swappiness. You can also check it or change it through the terminal (which is faster) by typing the following command:
+  ```bash
+  sudo sysctl vm.swappiness=10
+  cat /proc/sys/vm/swappiness
+  ```
+11. ff
 
 ## 关于Ubuntu拒绝root用户ssh远程登录
 #sudo vim /etc/ssh/sshd_config
@@ -87,3 +92,4 @@ curl -HHost:webservice.greetings.com
 2. [Using Ansible as a Windows Admin with Visual Studio Code, a complete guide!](https://workspace-guru.com/2018/07/29/using-ansible-as-a-windows-admin-with-visual-studio-code-a-complete-guide/)
 3. [Disabling SSH Timeout When Connecting to/from Ubuntu](http://queirozf.com/entries/disabling-ssh-timeout-when-connecting-to-from-ubuntu)
 4. [ubuntu设置 SSH 通过密钥登录](https://www.cnblogs.com/tecliu/p/8252032.html)
+5. [How to Change the Swappiness Value in Linux](https://linuxize.com/post/how-to-change-the-swappiness-value-in-linux/)
