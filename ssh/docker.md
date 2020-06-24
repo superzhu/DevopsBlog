@@ -48,7 +48,11 @@ sudo docker info | grep -i cgroup
 
     sudo nsenter -t 15652 -n netstat
     ```
-10. ff
+10. Verify docker image CPU architecture
+    ```bash
+        docker inspect calico/node:v3.15.0 | grep Architecture
+    ```
+11. ff
 
 ## Kubernetes：如何解决从k8s.gcr.io拉取镜像失败问题
 1. docker.io仓库对google的容器做了镜像，可以通过下列命令下拉取相关镜像：
