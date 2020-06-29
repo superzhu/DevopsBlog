@@ -9,3 +9,6 @@
 
 ## Databricks blogs
 1. [Deep Dive into Spark SQL’s Catalyst Optimizer](https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html)
+
+## interviews
+1. [数据倾斜面试题知识点总结](https://zhuanlan.zhihu.com/p/151586958)

@@ -4,3 +4,4 @@
 
 ## Spring Security
 1. [Using Spring Boot for OAuth2 and JWT REST Protection](https://www.toptal.com/spring/spring-boot-oauth2-jwt-rest-protection) Great
+2. [What is OAuth 2.0 ? How it Works ?](https://cybersecuritynews.com/oauth-2-0/)
