@@ -57,6 +57,7 @@
 	pip3 install ansible --user
     pip3 install netaddr --user
     pip3 install ipaddr --user
+    pip3 install pymongo --user
 
     vim ~/.profile
     export PATH=$PATH:$HOME/.local/bin
