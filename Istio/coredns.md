@@ -42,6 +42,7 @@
     helm upgrade coredns ./coredns --debug --install --namespace=kube-system --dry-run
 
     # tools: host, nslookup, traceroute, ping
+    dig @192.168.1.1 -t a alpha-zoom.bizconf.cn
     ```
 13. ff
 
