@@ -45,7 +45,7 @@
     # tools: host, nslookup, traceroute, ping
     dig @192.168.1.1 -t a alpha-zoom.bizconf.cn
     ```
-13. ff
+13. Kubernetes pods: dnspolicy/dnsconfig
 
 
 
@@ -66,3 +66,4 @@
 1. [Customizing DNS Service](https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/)
 2. [Custom DNS Entries For Kubernetes](https://coredns.io/2017/05/08/custom-dns-entries-for-kubernetes/)
 3. [How Queries Are Processed in CoreDNS](https://coredns.io/2017/06/08/how-queries-are-processed-in-coredns/)
+4. [Kuberneres doc: DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
