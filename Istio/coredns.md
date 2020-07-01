@@ -40,6 +40,7 @@
 12. Run **dnstools**
     ```bash
     helm upgrade coredns ./coredns --debug --install --namespace=kube-system --dry-run
+    kubectl run -it --rm --restart=Never --image=infoblox/dnstools:latest dnstools
 
     # tools: host, nslookup, traceroute, ping
     dig @192.168.1.1 -t a alpha-zoom.bizconf.cn
