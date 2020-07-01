@@ -37,7 +37,13 @@
   # ready plugin
   curl http://10.200.102.75:8181/ready
   ```
-12. ff
+12. Run **dnstools**
+    ```bash
+    helm upgrade coredns ./coredns --debug --install --namespace=kube-system --dry-run
+
+    # tools: host, nslookup, traceroute, ping
+    ```
+13. ff
 
 
 
@@ -52,3 +58,9 @@
 8. [使用CoreDNS搭建无污染DNS](https://laod.cn/dns/coredns-dns.html)
 9. [使用 CoreDNS 来应对 DNS 污染](https://fuckcloudnative.io/posts/install-coredns-on-macos/)
 10. [DNS服务器搭建与配置 bind](https://cshihong.github.io/2018/10/15/DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/)
+
+
+## CoreDNS adding custom DNS record
+1. [Customizing DNS Service](https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/)
+2. [Custom DNS Entries For Kubernetes](https://coredns.io/2017/05/08/custom-dns-entries-for-kubernetes/)
+3. [How Queries Are Processed in CoreDNS](https://coredns.io/2017/06/08/how-queries-are-processed-in-coredns/)
