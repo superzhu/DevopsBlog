@@ -77,6 +77,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
     systemctl restart docker
     
     kubectl scale deployment/calico-kube-controllers -n kube-system --replicas=1
+    kubectl delete pod -n=kube-system calico-node-b9c66 (daemonset)
    ```
 10. ff
 
