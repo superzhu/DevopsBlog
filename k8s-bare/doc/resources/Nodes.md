@@ -75,6 +75,8 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
     
     kubectl get pods --all-namespaces
     systemctl restart docker
+    
+    kubectl scale deployment/calico-kube-controllers -n kube-system --replicas=1
    ```
 10. ff
 
