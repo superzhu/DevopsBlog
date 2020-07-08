@@ -26,6 +26,8 @@ Enable ssh (passwordless authentication) to all other nodes, including the curre
 
 ## kubeadm kubernetes deployment
 1. [ansible-kubernetes-kubeadm-ha](https://github.com/MnrGreg/ansible-kubernetes-kubeadm-ha) github
+2. [How To Create a Kubernetes Cluster Using Kubeadm on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-create-a-kubernetes-cluster-using-kubeadm-on-ubuntu-18-04)
+3. [Set up a Bare Metal Kubernetes cluster with kubeadm](https://www.padok.fr/en/blog/kubeadm-kubernetes-cluster)
 
 ## Multiple Kubernetes Clusters Management
 1. [Effectively Managing Kubernetes Access from the Terminal](https://medium.com/capital-one-tech/managing-kubernetes-contexts-for-multiple-clusters-eed174288efe)
