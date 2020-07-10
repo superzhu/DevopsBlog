@@ -96,3 +96,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ## Node unavailable
 1. [Kubernetes Tip: What Happens To Pods Running On Node That Become Unreachable?](https://medium.com/tailwinds-navigator/kubernetes-tip-what-happens-to-pods-running-on-node-that-become-unreachable-3d409f734e5d)
+
+
+## Delete A Namespace Stuck At Terminating State
+1. [How To Delete A Namespace Stuck At Terminating State](https://www.kalc.io/blog/how-to-delete-a-namespace-stuck-at-terminating-state)
+2. [How to Delete a Kubernetes Namespace Stuck in the Terminating State](https://success.docker.com/article/kubernetes-namespace-stuck-in-terminating)
+3. [A namespace is stuck in the Terminating state](A namespace is stuck in the Terminating state)
