@@ -1,0 +1,102 @@
+****** monitoring docker images*****
+1. quay.io/coreos/prometheus-operator:v0.40.0
+   jimmidyson/configmap-reload:v0.3.0
+   quay.io/coreos/prometheus-config-reloader:v0.40.0
+   
+2. quay.io/prometheus/prometheus:v2.17.2
+   
+   
+3. directxman12/k8s-prometheus-adapter:v0.7.0
+
+4. quay.io/prometheus/node-exporter:v0.18.1
+   quay.io/coreos/kube-rbac-proxy:v0.4.1 ("amd64") ??
+   quay.io/coreos/kube-rbac-proxy:v0.6.0 <use it>
+  
+5. quay.io/coreos/kube-state-metrics:v1.9.5 ("amd64") ??
+   docker pull carlosedp/kube-state-metrics:v1.9.5
+   
+   k8s.gcr.io/kube-state-metrics:v1.9.7
+   mirrorgcrio/kube-state-metrics:v1.9.5
+   mirrorgcrio/pause-arm64:3.2
+   
+   commit b3fa5852d755c912c2601c53781a58567c822b81
+   TAG = v1.9.7
+   
+   env CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -ldflags "-s -w -X k8s.io/kube-state-metrics/pkg/version.Release=v1.9.7 -X k8s.io/kube-state-metrics/pkg/version.Commit=b3fa5852d755c912c2601c53781a58567c822b81 -X k8s.io/kube-state-metrics/pkg/version.BuildDate=2020-07-07T04:42:13Z" -o kube-state-metrics
+   
+   docker pull carlosedp/kube-state-metrics:v1.9.5-arm64
+   
+   docker build --no-cache -t quay.io/coreos/kube-state-metrics:v1.9.7 .
+
+6. grafana/grafana:6.7.4
+
+7. quay.io/prometheus/alertmanager:v0.20.0
+
+
+
+******* kube-prometheus **************
+
+1. setup part
+  A)prometheus-operator-deployment.yaml 
+      /etc/timezone
+	  
+2. prometheus part
+  B) prometheus-prometheus.yaml
+     etcd-certs ??
+  C) prometheus-ingress.yaml(newly added)
+  D) prometheus-local-pv.yaml(newly added)
+  E) prometheus-serviceMonitorEtcd.yaml(newly added)
+  F) prometheus-serviceMonitorKubeProxy.yaml (newly added)
+  
+  services for etcd/kube-proxy/kubelet
+  serviceMonitor for etcd/kube-proxy/kubelet
+  
+3. prometheus adapter
+  G) prometheus-adapter-deployment.yaml
+      /etc/timezone
+	  
+4. node exporter
+  H) node-exporter-daemonset.yaml 
+     quay.io/coreos/kube-rbac-proxy:v0.6.0 <use it>
+     /etc/timezone
+	 
+5. kube state metrics
+  I) kube-state-metrics-deployment.yaml
+     quay.io/coreos/kube-state-metrics:v1.9.7
+     /etc/timezone
+  
+6. grafana/grafana
+  J) grafana-deployment.yaml
+    /etc/timezone
+	
+7. alertmanager
+  K) alertmanager-alertmanager.yaml
+  
+ basic auth
+ https://qingmu.io/2019/08/30/Customize-your-kube-prometheus/
+ htpasswd -c auth root
+
+ kubectl get namespace monitoring -o json >tmp.json
+kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n monitoring
+
+curl -k -H "Content-Type: application/json" -X PUT --data-binary @tmp.json http://127.0.0.1:8080/api/v1/namespaces/monitoring/finalize
+
+
+ kubectl logs -n monitoring -f pods/prometheus-k8s-0 -c prometheus
+
+
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -ldflags="-s -w" -installsuffix cgo -o hare ./cmd
+
+@CGO_ENABLED=0 go build --installsuffix cgo -o $(OUTPUT) $(GITHUB_URL)
+
+env CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build --installsuffix cgo -o kube-rbac-proxy
+
+gcr.io/distroless/static
+mirrorgcrio/distroless/static
+
+mirrorgcrio/pause-amd64:3.2
+
+docker build --no-cache -t quay.io/coreos/kube-rbac-proxy:v0.6.0 .
+
+
+docker run  -it --rm 17716e34112b /bin/sh
