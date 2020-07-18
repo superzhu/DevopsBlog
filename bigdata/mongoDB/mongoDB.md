@@ -13,4 +13,4 @@
 
 
 ## Mongodb operator
-1. [mongodb operator](https://docs.mongodb.com/manual/reference/operator/)
+1. [mongodb Kubernetes operator](https://docs.mongodb.com/manual/reference/operator/)
