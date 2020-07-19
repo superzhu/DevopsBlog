@@ -3,6 +3,8 @@
 1. Enable your Server Blocks and Restart Nginx
    ```bash
    ln -s /etc/nginx/sites-available/test.com /etc/nginx/sites-enabled/
+
+   ln -s /usr/local/go/bin/go /usr/bin/go
    ```
 2. Manually reloading nginx 
 ```bash
