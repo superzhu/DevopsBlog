@@ -15,3 +15,9 @@ rbac 系统设计
 7 https://juejin.im/entry/5a40594b6fb9a04503104f4e 基于RBAC模型的权限系统设计(github开源项目)
 8 RBAC权限系统分析、设计与实现 https://shuwoom.com/?p=3041
 9 权限系统与RBAC模型概述[绝对经典] https://blog.csdn.net/yangwenxue_admin/article/details/73936803
+
+
+
+
+*********************************
+1. https://spring.io/guides/tutorials/spring-boot-oauth2/ Spring Boot and OAuth2
