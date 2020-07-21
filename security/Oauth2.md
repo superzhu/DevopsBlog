@@ -3,6 +3,7 @@
 1. JWT can be chosen **as the format for access and refresh tokens** used inside the OAuth2 protocol. 可以选择JWT作为OAuth2协议内部使用的访问和刷新令牌的格式。
 2. **Scope** & Access Control : [Google- highly structured and predictable OAuth Scopes](https://developers.google.com/identity/protocols/googlescopes)
 3. **Claims Management** :  A **claim声明** is simply the name/value pair embedded within our Access and ID Tokens. 
+4. [OIDC 协议及其在 Kubernetes 中的运用](https://blog.hdls.me/15626607670408.html)
 
 ## Spring Security
 1. [Using Spring Boot for OAuth2 and JWT REST Protection](https://www.toptal.com/spring/spring-boot-oauth2-jwt-rest-protection) Great

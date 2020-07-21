@@ -14,3 +14,7 @@
 ## OpenAPI Specification
 1. [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
 2. [OpenAPI v3.1 and JSON Schema 2019-09](https://apisyouwonthate.com/blog/openapi-v31-and-json-schema-2019-09)
+
+
+## kubernetes core components
+1. [Kubernetes Controller Manager 工作原理](http://dockone.io/article/9557)
