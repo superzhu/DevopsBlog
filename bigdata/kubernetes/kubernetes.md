@@ -4,6 +4,7 @@
 
 1. book kubebuilder <https://book.kubebuilder.io/introduction.html>
 2. controller runtime/zap/g++ => c++ compiler gcc => c compiler
+3. Host-Reachable Services (Cilium)
 
 ## Development Environment Setup
 1. [Kubernetes 开发指南](https://developer.ibm.com/zh/articles/os-kubernetes-developer-guide/)
@@ -18,3 +19,9 @@
 
 ## kubernetes core components
 1. [Kubernetes Controller Manager 工作原理](http://dockone.io/article/9557)
+2. [详解 Kubernetes Deployment 的实现原理](https://draveness.me/kubernetes-deployment/)
+3. [Understanding Kubernetes Kube-Proxy](https://cloud.tencent.com/developer/article/1501772)
+4. [https://cloud.tencent.com/developer/article/1501772](https://arthurchiao.art/blog/cracking-k8s-node-proxy/)
+5. [[Kubernetes] Kubernetes核心原理（四）之kubelet](https://www.huweihuang.com/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/)
+6. [详解 Kubernetes Pod 的实现原理](https://www.infoq.cn/article/fmTSPqdyx0AFjMsrmNvG?utm_source=related_read_bottom&utm_medium=article)
+7. [kubelet 架构浅析](https://zhuanlan.zhihu.com/p/111241825)
