@@ -46,6 +46,19 @@
     dig @192.168.1.1 -t a alpha-zoom.bizconf.cn
     ```
 13. Kubernetes pods: dnspolicy/dnsconfig
+14. Ubuntu 18.04 dns-related configurations
+    ```bash
+    # 1 /etc/systemd/resolved.conf
+
+    # 2 /run/systemd/resolve/resolv.conf
+
+    # 3 ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
+    systemd-resolve --status
+
+    systemctl status systemd-resolved
+    ```
+15. ff
 
 
 
