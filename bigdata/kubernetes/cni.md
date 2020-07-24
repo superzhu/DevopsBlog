@@ -1,12 +1,13 @@
 # CNI(Container Network Interface)
 
 ## Linux Network
-1. Open vSwitch(OVS)
+1. Open vSwitch(OVS) : OVS 是第三方开源的 Bridge，功能比 Linux Bridge 要更强大，对于同样的实验，我们用 OVS 来看看是什么效果。（vs Linux Bridge）
 2. eBPF
 
 
 ### Linux Network References
 1. [边缘计算中kubernetes网络能大一统吗？](https://www.it610.com/article/1280832903722319872.htm)
+2. [Linux 虚拟网络设备 veth-pair 详解，看这一篇就够了](https://www.cnblogs.com/bakari/p/10613710.html) 公众号「Linux云计算网络
 
 
 ## Docker Network
