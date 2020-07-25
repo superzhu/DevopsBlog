@@ -58,7 +58,27 @@
 
     systemctl status systemd-resolved
     ```
-15. ff
+15. **How to get tcpdump for container inside Kubernetes**?
+```bash
+# find the kube node of the running pod, appear next to hostIP, and note containerID hash
+kubectl get pod mypod -o json
+# -> save hostIP
+# -> save containerID
+
+# connect to the node and find the pods unique network interface index inside it's container
+docker exec containerID /bin/bash -c 'cat /sys/class/net/eth0/iflink'
+# -> returns index
+
+# locate the interface of the node
+ip link |grep ^index:
+# -> returns interface
+
+# then GO tcpdump !
+tcpdump -i interface
+
+tcpdump -i interface port 53
+```
+16. ff
 
 
 
@@ -80,3 +100,7 @@
 2. [Custom DNS Entries For Kubernetes](https://coredns.io/2017/05/08/custom-dns-entries-for-kubernetes/)
 3. [How Queries Are Processed in CoreDNS](https://coredns.io/2017/06/08/how-queries-are-processed-in-coredns/)
 4. [Kuberneres doc: DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
+5. [从dig命令理解DNS](https://blog.csdn.net/a583929112/article/details/66499771) Great
+
+## Container tcpdump
+1. [How to get tcpdump for containers inside Kubernetes pods](https://community.pivotal.io/s/article/How-to-get-tcpdump-for-containers-inside-Kubernetes-pods?language=en_US)
