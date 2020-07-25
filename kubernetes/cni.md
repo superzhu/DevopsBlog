@@ -3,6 +3,7 @@
 ## Linux Network
 1. Open vSwitch(OVS) : OVS 是第三方开源的 Bridge，功能比 Linux Bridge 要更强大，对于同样的实验，我们用 OVS 来看看是什么效果。（vs Linux Bridge）
 2. eBPF
+3. a pair of virtual ethernet devices (**veth pair**)
 
 
 ### Linux Network References
