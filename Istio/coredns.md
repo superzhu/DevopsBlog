@@ -66,7 +66,7 @@ kubectl get pod mypod -o json
 # -> save containerID
 
 # connect to the node and find the pods unique network interface index inside it's container
-docker exec containerID /bin/bash -c 'cat /sys/class/net/eth0/iflink'
+docker exec containerID /bin/sh -c 'cat /sys/class/net/eth0/iflink'
 # -> returns index
 
 # locate the interface of the node
@@ -77,6 +77,8 @@ ip link |grep ^index:
 tcpdump -i interface
 
 tcpdump -i interface port 53
+
+tcpdump –i 1 –v –c2 –w capture.out
 ```
 16. ff
 
