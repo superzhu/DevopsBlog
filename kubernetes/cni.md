@@ -6,6 +6,7 @@
 3. VXLAN (Virtual eXtensible Local Area Network) : VXLAN（虚拟可扩展局域网）
 4. a pair of virtual ethernet devices (**veth pair**); The VETH (virtual Ethernet) device is a **local Ethernet tunnel**. Devices are created in pairs
 5. A **Linux bridge** behaves like a network switch. It forwards packets between interfaces that are connected to it --- **Linux网桥**的行为类似于网络交换机。 它在与其连接的接口之间转发数据包
+6. 处于同一网段（在同一个二层网络中）
 
 
 ### Linux Network References
