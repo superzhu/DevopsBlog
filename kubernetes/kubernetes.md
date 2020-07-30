@@ -20,7 +20,7 @@
 
 ## kubernetes core components
 1. [Kubernetes Controller Manager 工作原理](http://dockone.io/article/9557)
-2. [详解 Kubernetes Deployment 的实现原理](https://draveness.me/kubernetes-deployment/)
+2. [详解 Kubernetes Deployment 的实现原理 2019](https://draveness.me/kubernetes-deployment/)
 3. [图解 Kubernetes Deployment Controller 工作原理与流程](https://juejin.im/post/5df8e971f265da3393098741#heading-1)
 4. [Understanding Kubernetes Kube-Proxy](https://cloud.tencent.com/developer/article/1501772)
 5. [**Cracking kubernetes kube-proxy**](https://arthurchiao.art/blog/cracking-k8s-node-proxy/)

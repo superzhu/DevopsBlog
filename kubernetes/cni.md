@@ -29,8 +29,14 @@
     nsenter -t <contanier_pid> -n <command>
 
     nsenter -t 2871 -n ip addr  show
+
+    ls -l /proc/{pid}/ns
 ```
-2. dd
+2. Grab docker process id based on specified pattern
+```bash
+    docker inspect $(docker ps -a | awk '/calico-node/ { print $1}') --format '{{ .State.Pid }}'
+```
+3. ff
 
 ### Docker Network References
 1. [Docker的四种网络模式](https://blog.csdn.net/huanongying123/article/details/73556634)

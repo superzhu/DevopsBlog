@@ -28,3 +28,8 @@
 ## References
 1. [How to Use the ip Command on Linux](https://www.howtogeek.com/657911/how-to-use-the-ip-command-on-linux/#:~:text=proto%20kernel%3A%20The%20route%20created%20by%20the%20kernel,100%3A%20This%20low%20metric%20indicates%20a%20preferred%20route.) ip fields explanation
 2. [Appendix D. IP Route Management](http://linux-ip.net/html/tools-ip-route.html)
+
+
+## ip netns
+
+1. The ip netns list command displays only namespaces that have been named, by virtue of a corresponding file in **/var/run/netns/**. Network namespaces can be created without names, though, and are referenced by a file descriptor
