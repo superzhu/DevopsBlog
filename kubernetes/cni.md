@@ -7,6 +7,7 @@
 4. a pair of virtual ethernet devices (**veth pair**); The VETH (virtual Ethernet) device is a **local Ethernet tunnel**. Devices are created in pairs
 5. A **Linux bridge** behaves like a network switch. It forwards packets between interfaces that are connected to it --- **Linux网桥**的行为类似于网络交换机。 它在与其连接的接口之间转发数据包
 6. 处于同一网段（在同一个二层网络中）
+7. Network tunneling means hiding protocol (VXLAN) within another protocol (TCP/IP) : 网络隧道意味着将协议（VXLAN）隐藏在另一个协议（TCP / IP）中
 
 
 ### Linux Network References
@@ -41,3 +42,4 @@
 
 ### Kubernetes network references
 1. [99% 的人都不知道的 Kubernetes 网络疑难杂症排查方法](https://juejin.im/post/5d53a12d518825026b36bf33) kube-ipvs0 --dummy interface
+2. [Kubernetes network plugins 2019](https://medium.com/@ahmetensar/kubernetes-network-plugins-abfd7a1d7cac)

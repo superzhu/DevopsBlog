@@ -17,7 +17,7 @@ kubectl exec -it pods/calico-node-njfnr -n kube-system -- sh
 
 ps aux
 ```
-6. ff
+6. To use BGP as overlay network, hosts in the cluster are set as BGP peers. Each peer needs to have a daemon which allows sharing routing information between peers.  **BIRD (BIRD Internet Routing Daemon)** is a daemon which supports BGP as well as other protocols. Calico uses this daemon to implement BGP based overlay network.
 
 
 ## Calico References
