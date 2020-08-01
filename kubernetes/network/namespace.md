@@ -32,8 +32,16 @@
    #  7. Run a shell inside a child network namespace: blue
        sudo io netns exec blue bash
    ```
-5. ff
+5. **Common control groups** : you could see **systemd-cgls and systemd-cgtop** commands show how cgroup working on the underline host server.
+   1. CPU
+   2. Memory
+   3. Network Bandwidth
+   4. Disk
+   5. Priority
+6. **Namespace** gives the isolation for the container with the underline host where **Cgroup** gives the ability to allocate things to those containers
 
 
 ## References
 1. [Making sense Of Linux namespaces](https://prefetch.net/blog/2018/02/22/making-sense-of-linux-namespaces/)
+2. [A deep dive into Linux namespaces, part 4 2019](http://ifeanyi.co/posts/linux-namespaces-part-4/)
+3. [Linux namespace in Go series 2016](https://medium.com/@teddyking/linux-namespaces-850489d3ccf) important
