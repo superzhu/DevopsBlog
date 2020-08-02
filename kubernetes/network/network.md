@@ -2,6 +2,7 @@
 
 1. **East-West – East-West refers to traffic** flows that occur between devices within a datacenter. During convergence for example, routers exchange table information to ensure they have the same information about the internetwork in which they operate. Another example are switches, which can exchange spanning-tree information to prevent network loops.
 2. **North | South – North- South refers to traffic** flows into and out of the datacenter. Traffic entering the datacenter through perimeter network devices is said to be southbound. Traffic exiting via the perimeter network devices is said to be northbound.
+3. **Switches** receive frames on one port and forward the frames out the port **where the destination device can be found.** (交换机在一个端口上接收帧，然后将帧转发到可以找到目标设备的端口。)
 
 
 ## References

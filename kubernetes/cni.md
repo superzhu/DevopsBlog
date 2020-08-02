@@ -44,8 +44,10 @@
 ## Kubernetes Network
 
 1. Vmware Antrea
+2. The **Kubelet** in each node will tell the container runtime what Network plugin to use. The Container Network Interface (CNI) sits in the middle between the container runtime and the network implementation. Only the **CNI-plugin configures the network**.
 
 
 ### Kubernetes network references
 1. [99% 的人都不知道的 Kubernetes 网络疑难杂症排查方法](https://juejin.im/post/5d53a12d518825026b36bf33) kube-ipvs0 --dummy interface
 2. [Kubernetes network plugins 2019](https://medium.com/@ahmetensar/kubernetes-network-plugins-abfd7a1d7cac)
+3. [kubernetes network plugins](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#network-plugin-requirements)

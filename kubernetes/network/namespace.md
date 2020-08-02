@@ -31,6 +31,9 @@
         (sudo ip addr delete 192.168.1.176/24 dev veth0)
    #  7. Run a shell inside a child network namespace: blue
        sudo io netns exec blue bash
+
+   # 8. To find out what interface is on the other end, we use ethtool
+    ip netns exec blue ethtool -S eth0
    ```
 5. **Common control groups** : you could see **systemd-cgls and systemd-cgtop** commands show how cgroup working on the underline host server.
    1. CPU
