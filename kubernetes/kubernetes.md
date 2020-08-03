@@ -6,6 +6,7 @@
 2. controller runtime/zap/g++ => c++ compiler gcc => c compiler
 3. Host-Reachable Services (Cilium)
 4. Controller Manager 就是集群内部的管理控制中心，由负责不同资源的多个 Controller 构成，共同负责集群内的 Node、Pod 等所有资源的管理
+5. vmware open source ingress controller: contour
 
 ## Development Environment Setup
 1. [Kubernetes 开发指南](https://developer.ibm.com/zh/articles/os-kubernetes-developer-guide/)
