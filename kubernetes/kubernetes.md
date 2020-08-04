@@ -7,6 +7,9 @@
 3. Host-Reachable Services (Cilium)
 4. Controller Manager 就是集群内部的管理控制中心，由负责不同资源的多个 Controller 构成，共同负责集群内的 Node、Pod 等所有资源的管理
 5. vmware open source ingress controller: contour
+6. [kubernetes conntract example](https://www.digitalocean.com/community/tutorials/how-to-inspect-kubernetes-networking)
+7. Kubernetes also makes extensive use of **IPTABLES and NAT** to intercept traffic going to a logical/virtual address and route it to the appropriate physical destination.
+8. Now, kube-proxy is just a controller, like many other controllers in Kubernetes, that watches the api server for endpoints changes and updates the **iptables rules accordingly**. [An illustrated guide to Kubernetes Networking Part 3](https://itnext.io/an-illustrated-guide-to-kubernetes-networking-part-3-f35957784c8e)
 
 ## Development Environment Setup
 1. [Kubernetes 开发指南](https://developer.ibm.com/zh/articles/os-kubernetes-developer-guide/)

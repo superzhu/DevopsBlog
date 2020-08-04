@@ -1,9 +1,12 @@
 # OAuth 2.0 and JWT
 
 1. JWT can be chosen **as the format for access and refresh tokens** used inside the OAuth2 protocol. 可以选择JWT作为OAuth2协议内部使用的访问和刷新令牌的格式。
-2. **Scope** & Access Control : [Google- highly structured and predictable OAuth Scopes](https://developers.google.com/identity/protocols/googlescopes)
-3. **Claims Management** :  A **claim声明** is simply the name/value pair embedded within our Access and ID Tokens. 
-4. [OIDC 协议及其在 Kubernetes 中的运用](https://blog.hdls.me/15626607670408.html)
+2. **issuer and audience : 发行方和受众**
+3. **Scope** & Access Control : [Google- highly structured and predictable OAuth Scopes](https://developers.google.com/identity/protocols/googlescopes)
+4. **Claims Management** :  A **claim声明** is simply the name/value pair embedded within our Access and ID Tokens. 
+5. [OIDC 协议及其在 Kubernetes 中的运用](https://blog.hdls.me/15626607670408.html)
+6. The traditional way of dealing with this is the use of **Server Side Session (SSS)**.
+7. JWT token is **self-contained**, this means it contains all information needed to allow or deny any given requests to an API.
 
 ## Spring Security
 1. [Using Spring Boot for OAuth2 and JWT REST Protection](https://www.toptal.com/spring/spring-boot-oauth2-jwt-rest-protection) Great
@@ -12,3 +15,4 @@
 4. [project-example-springboot-oauth2-rbac](https://github.com/mupezzuol/project-example-springboot-oauth2-rbac)
 5. [Understanding OAuth 2.0 and OpenID Connect](https://blog.runscope.com/posts/understanding-oauth-2-and-openid-connect) 重要
 6. [OAuth 2.0与OpenID Connect协议的完整指南](https://cloud.tencent.com/developer/news/661655)
+7. [Why do we need the JSON Web Token (JWT) in the modern web](https://medium.com/swlh/why-do-we-need-the-json-web-token-jwt-in-the-modern-web-8490a7284482)
