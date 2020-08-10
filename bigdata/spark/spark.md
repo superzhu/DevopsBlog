@@ -1,5 +1,6 @@
 # Spark Learning
 1. **Ingestion** is the process of bringing data into Spark : **接收**是将数据导入Spark的过程
+2. **rollups and cubes** in DataFrames : 数据帧中的**汇总和多维数据集**
 
 ## Spark & Kubernetes
 1. [Apache Spark with Kubernetes and Fast S3 Access](https://towardsdatascience.com/apache-spark-with-kubernetes-and-fast-s3-access-27e64eb14e0f)
