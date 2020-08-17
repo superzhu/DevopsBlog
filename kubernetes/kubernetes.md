@@ -9,7 +9,9 @@
 5. vmware open source ingress controller: contour
 6. [kubernetes conntract example](https://www.digitalocean.com/community/tutorials/how-to-inspect-kubernetes-networking)
 7. Kubernetes also makes extensive use of **IPTABLES and NAT** to intercept traffic going to a logical/virtual address and route it to the appropriate physical destination.
-8. Now, kube-proxy is just a controller, like many other controllers in Kubernetes, that watches the api server for endpoints changes and updates the **iptables rules accordingly**. [An illustrated guide to Kubernetes Networking Part 3](https://itnext.io/an-illustrated-guide-to-kubernetes-networking-part-3-f35957784c8e)
+8. Now, **kube-proxy is just a controller**, like many other controllers in Kubernetes, that watches the api server for endpoints changes and updates the **iptables rules accordingly**. [An illustrated guide to Kubernetes Networking Part 3](https://itnext.io/an-illustrated-guide-to-kubernetes-networking-part-3-f35957784c8e)
+9. perform generic operations on arbitrary Kubernetes API objects : 可以对任意Kubernetes API对象执行通用操作
+10. Understanding how the Kubernetes scheduler makes scheduling decisions is critical in order to ensure consistent performance and optimal resource utilization --- 为了确保一致的性能和最佳的资源利用率，了解Kubernetes调度程序如何制定调度决策至关重要。
 
 ## Development Environment Setup
 1. [Kubernetes 开发指南](https://developer.ibm.com/zh/articles/os-kubernetes-developer-guide/)
@@ -36,3 +38,8 @@
 
 ## kubernetes networks
 1. [kubernetes networking links github](https://github.com/nleiva/kubernetes-networking-links)
+
+## kubecon
+
+## [Kubernetes Cloud Controller Manager](https://zhuanlan.zhihu.com/p/186965991)
+1. 在OpenStack顶部运行Kubernetes的关键组件之一是Cloud Controller Manager。这是将两个平台粘合在一起的部件之一。对于那些使用托管Kubernetes服务的人来说，在某个地方的公共云（或私有云）中，已经为您解决了这一问题。
