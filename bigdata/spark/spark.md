@@ -17,6 +17,7 @@
 1. [Deep Dive into Spark SQL’s Catalyst Optimizer](https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html)
 2. [Data Mechanics Doc](https://docs.datamechanics.co/docs/welcome)
 3. [Spark 3.0 blog](http://blog.madhukaraphatak.com/categories/spark-three/)
+4. [HDFS+ClickHouse+Spark：从0到1实现一款轻量级大数据分析系统](https://zhuanlan.zhihu.com/p/159385600)
 
 ## interviews
 1. [数据倾斜面试题知识点总结](https://zhuanlan.zhihu.com/p/151586958)
