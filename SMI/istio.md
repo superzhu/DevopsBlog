@@ -52,6 +52,7 @@
 
 ## Istio Operator --- Installation
 1. [Introducing the Istio Operator](https://istio.io/blog/2019/introducing-istio-operator/)
+2. [深入了解服务网格数据平面性能和调优](https://mp.weixin.qq.com/s?__biz=MzI5ODQ2MzI3NQ==&mid=2247492399&idx=1&sn=b03545e2cd1cb5645012f93ef146a049&chksm=eca7da6bdbd0537dac47c449e8aa0352665cc4413c1e4f2f5c2089551d63c9ce9700b6680eaf&scene=126&sessionid=1598666199&key=e443dc0adec41de4fa3fd1bbe34fd965bafc7279f0d30857fa21f80135c013323166ab62e27df8b2c1472c95bd71a517b89b950aa8ee88cdc4cacca965721d075ae9cbfa8a2b73c2f7de42400ce56965d8f32c40b59cbc57a70a3954a057c96a8ffb9fa946e663a78115ca597e2cfca04eacc27febb887de90cbb4cb64add5d8&ascene=1&uin=MTgyNzM2NTQxOA%3D%3D&devicetype=Windows+10+x64&version=62090529&lang=zh_CN&exportkey=AxKcGiZSoDpOlA1clOOuM9U%3D&pass_ticket=1wkdBPq9yoFrcRbFqnCManIeNaVDcECAKylPP0PPY1EVTsc11pCF9kC3YFTF8128)
 
 
 # Multi-cluster deployment
