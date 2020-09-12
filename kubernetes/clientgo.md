@@ -1,5 +1,7 @@
 # Kubernetes Client-go library
 
+1. 一个**限速周期**是指从执行AddRateLimited方法到执行完Forget方法之间的时间。如果该元素被Forget方法处理完，则清空排队数。
+
 
 
 ## client-go
