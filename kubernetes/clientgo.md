@@ -19,4 +19,4 @@
 
 
 ## Informer
-1. [kubernetes 中 informer 的使用](https://cloud.tencent.com/developer/article/1553566) Greate
+1. [kubernetes 中 informer 的使用](https://cloud.tencent.com/developer/article/1553566) Great
