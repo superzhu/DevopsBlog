@@ -14,6 +14,10 @@
    4. Install **python3-pip**:
    ```bash
    sudo apt-get install --download-only vim-runtime
+
+
+
+
    sudo apt-get install --download-only python-pip-whl
    sudo apt-get install --download-only python3-distutils
    sudo apt-get install --download-only build-essentia
@@ -29,6 +33,15 @@
 
    pip3 download ansible
    pip3 install ./ansible-2.9.13.tar.gz --user
+
+   pip3 download netaddr
+   sudo pip3 install ./netaddr-0.8.0-py2.py3-none-any.whl --user
+
+    pip3 download ipaddr
+    sudo pip3 install ./ipaddr-2.2.0.tar.gz --user
+
+    pip3 download pymongo
+    sudo pip3 install ./pymongo-3.11.0-cp36-cp36m-manylinux1_x86_64.whl --user
    ```
    6. ff
 2. [Download ppa installation tar](https://launchpad.net/~ansible/+archive/ubuntu/ansible/+packages?field.name_filter=&field.status_filter=&field.series_filter=)  ansible_2.9.13-1ppa_bionic.tar.gz
