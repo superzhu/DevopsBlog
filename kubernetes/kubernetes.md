@@ -45,3 +45,7 @@
 ## [Kubernetes Cloud Controller Manager](https://zhuanlan.zhihu.com/p/186965991)
 1. 在OpenStack顶部运行Kubernetes的关键组件之一是Cloud Controller Manager。这是将两个平台粘合在一起的部件之一。对于那些使用托管Kubernetes服务的人来说，在某个地方的公共云（或私有云）中，已经为您解决了这一问题。
 2. A Pod Object is bound to a Node Object if the Pod's .Spec.NodeName equals the Node's .Name
+
+
+## Kubernetes Hierarchical Namespace Controller
+1. [Rethinking Kubernetes Namespaces with the Hierarchical Namespace Controller -Part 1](https://medium.com/sainsburys-engineering/rethinking-kubernetes-namespaces-with-the-hierarchical-namespace-controller-part-1-9f3a32eecaa2)
