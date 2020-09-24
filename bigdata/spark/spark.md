@@ -21,3 +21,4 @@
 
 ## interviews
 1. [数据倾斜面试题知识点总结](https://zhuanlan.zhihu.com/p/151586958)
+2. [大数据Spark面试题（一）](https://zhuanlan.zhihu.com/p/107354908)
