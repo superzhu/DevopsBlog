@@ -3,7 +3,7 @@
 2. **rollups and cubes** in DataFrames : 数据帧中的**汇总和多维数据集**
 3. Kubernetes is a **new cluster manager scheduler** for Spark, and Spark can natively run on Kubernetes since version 2.3.
 4. Executor Dynamic Allocation and **External Shuffle Service**
-5. ff
+5. BI or reporting applications --- memory-heavy cluster; machine learning jobs --- compute-heavy clusters
 
 ## Spark & Kubernetes
 1. [Apache Spark with Kubernetes and Fast S3 Access](https://towardsdatascience.com/apache-spark-with-kubernetes-and-fast-s3-access-27e64eb14e0f)
