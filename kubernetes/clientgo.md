@@ -9,7 +9,7 @@
     3.  type Indexers map[string]IndexFunc, 索引器名称（或者索引分类）与 IndexFunc 的映射，相当于存储索引的各种分类
     4.  type Indices map[string]Index,   **索引器名称(indexName)** 与 Index 索引的映射
 5.  Informers 是这个事件接口和带索引查找功能的内存缓存的组合，这样也是目前最常用的用法。Informers 第一次被调用的时候会首先在客户端调用 List 来获取全量的对象集合，然后通过 Watch 来获取增量的对象更新缓存。
-6.  ff
+6.  You can think of **custom resources** as the data, and **controllers** as the logic behind the data. Working together, they are a significant component to extending Kubernetes.
 
 
 
@@ -28,3 +28,4 @@
 
 ## Informer
 1. [kubernetes 中 informer 的使用](https://cloud.tencent.com/developer/article/1553566) Great
+2. [Extending Kubernetes - Create Controllers for Core and Custom Resources](https://trstringer.com/extending-k8s-custom-controllers/)
