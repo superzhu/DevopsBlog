@@ -37,3 +37,5 @@
 ## Kubernetes Events
 1. [Kubernetes(K8s)Events介绍（上）](https://www.kubernetes.org.cn/1031.html)
 2. [Client-go之tools（EventBroadcaster](https://blog.csdn.net/weixin_45413603/article/details/108204904)
+3. [Kubernetes Event 事件源码解析](http://www.penguincj.com/post/cloud/k8s/201908-k8s-event/)  blockQueue 解释/设计思想
+4. [kubelet 源码分析： 事件处理](https://cizixs.com/2017/06/22/kubelet-source-code-analysis-part4-event/)
