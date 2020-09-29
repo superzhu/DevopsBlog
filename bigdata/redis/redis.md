@@ -11,3 +11,6 @@
 ## Cache Solution
 1. [并发系统-缓存方案](https://zhuanlan.zhihu.com/p/151423217)
 2. [缓存与数据库一致性系列-序言](https://blog.kido.site/2018/11/24/db-and-cache-preface/)
+
+## Redis deployment
+1. [Production Checklist for Redis on Kubernetes](https://medium.com/swlh/production-checklist-for-redis-on-kubernetes-60173d5a5325)
