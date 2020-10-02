@@ -17,9 +17,11 @@
 1. [Kubernetes 开发指南](https://developer.ibm.com/zh/articles/os-kubernetes-developer-guide/)
 2. [细述kubernetes开发流程](https://www.cnblogs.com/linuxprobe-sarah/p/10860273.html)
 3. [Setup guide for Kubernetes developers 2020](https://developer.ibm.com/components/kubernetes/articles/setup-guide-for-kubernetes-developers/)
-4. [The process of developing and contributing code to the Kubernetes project](https://github.com/kubernetes/community/tree/master/contributors/devel#readme) 重要
-5. [kubernetes github workflow](https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md)
-6. [Makefile教程（绝对经典，所有问题看这一篇足够了）](https://blog.csdn.net/weixin_38391755/article/details/80380786)
+4. [云原生实践-kubernetes源码本地IDE编译调试](https://www.daimajiaoliu.com/daima/4edeaa21e900400)
+5. [Debugging Kubernetes (using GoLand IDE)](https://xmudrii.com/posts/debugging-kubernetes/)
+6. [The process of developing and contributing code to the Kubernetes project](https://github.com/kubernetes/community/tree/master/contributors/devel#readme) 重要
+7. [kubernetes github workflow](https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md)
+8. [Makefile教程（绝对经典，所有问题看这一篇足够了）](https://blog.csdn.net/weixin_38391755/article/details/80380786)
 
 ## OpenAPI Specification
 1. [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
