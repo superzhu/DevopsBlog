@@ -40,7 +40,8 @@
 9. [kubelet 架构浅析](https://zhuanlan.zhihu.com/p/111241825)
 10. [进击的Kubernetes调度系统：Kubernetes scheduling framework](https://zhuanlan.zhihu.com/p/158069604)
 11. [Beyond Kube-scheduler, a Need for a K8s Cluster Balancer](https://medium.com/sparsecode/beyond-kube-scheduler-a-need-for-a-k8s-cluster-balancer-89cdfb242e09)
-12. [云原生笔记](https://www.yuque.com/baxiaoshi/tyado3/lvfa0b)
+12. [云原生笔记](https://www.yuque.com/baxiaoshi/tyado3/lvfa0b) <good>
+13. [基于etcd的watch机制实现原理](https://www.yuque.com/baxiaoshi/tyado3/vxx3s8)
 
 ## kubernetes networks
 1. [kubernetes networking links github](https://github.com/nleiva/kubernetes-networking-links)
