@@ -7,11 +7,11 @@
    5. 发布订阅
    6. 分布式
 2. Redis应用场景
-   1. 分布式和持久化有效应对海量数据和高并发
+   1. 分布式和持久化有效应对海量数据和高并发;把访频率高且不会经常变动的数据缓存到内存中
    2. 微博、数据分析、实时数据搜集、实时通讯等
    3. 排行榜，如果使用传统的关系型数据库来做这个事儿，非常的麻烦，而利用Redis的SortSet数据结构能够非常方便搞定
    4. 计算器/限速器，利用Redis中原子性的自增操作，我们可以统计类似用户点赞数、用户访问数等
-   5. 好友关系，利用集合的一些命令，比如求交集、并集、差集等。可以方便搞定一些共同好友、共同爱好之类的功能
+   5. 好友关系，利用集合的一些命令，比如求交集、并集、差集等。可以方便搞定一些共同好友、共同爱好之类的功能;“共同好友列表”：社交类应用中，获取两个人或多个人的共同好友，两个人或多个人共同关注的微博这样类似的功能 (set)
    6. 简单消息队列，除了Redis自身的发布/订阅模式，我们也可以利用List来实现一个队列机制，比如：到货通知、邮件发送之类的需求，不需要高可靠，但是会带来非常大的DB压力，完全可以用List来完成异步解耦
 3. Redis不适合场景
    1. 就是数据量太大、数据访问频率非常低的业务都不适合使用Redis，数据太大会增加成本，访问频率太低，保存在内存中纯属浪费资源
@@ -24,7 +24,20 @@
    6. 订单产生扣库存通过Redis制造分布式锁，库存同步扣除
    7. 订单产生后发货的数据，产生Redis list，通过消息队列处理
    8. 秒杀结束后，再把Redis数据和数据库进行同步
-5. ff
+5. Data Type: redis list
+   1. 消息队列：redis 的 list 数据类型对于大部分使用者来说，是实现队列服务的最经济，最简单的方式。Remember the latest updates posted by users into a social network.
+   2. 任务池：可以利用Lists的PUSH操作，将任务存在Lists中，然后工作线程再用POP操作将任务取出进行执行，其实也有点类似消息队列
+   3.  “最新内容”：因为 list 结构的数据查询两端附近的数据性能非常好，所以适合一些需要获取最新数据的场景，比如新闻类应用的 “最近新闻”。
+6.  Data Type: zset(sorted set：有序集合)
+    1.  每个元素都会关联一个double类型的分数，redis正是通过分数来为集合中的成员进行从小到大的排序。
+    2.  根据好友的“亲密度”排序显示好友列表。
+    3.  直播间里，粉丝打赏金额排序
+7. Data Type: Bitmaps
+   1. Bitmaps are not an actual data type, but a set of bit-oriented operations defined on the String type. Since strings are binary safe blobs and their maximum length is 512 MB, they are suitable to set up to 2^32 (40多亿  4 billion )different bits
+   2. 用户在线状态
+   3. 统计活跃用户
+8. Data Type: Streams
+9. Redis also supports Bitmaps(Bit arrays) and HyperLogLogs which are actually data types based on the String base type, but having their own semantics; Streams
 
 
 ## Interview
@@ -35,6 +48,8 @@
 5. [关于缓存穿透、缓存雪崩、热点数据失效问题的解决方案](https://mp.weixin.qq.com/s?__biz=MzU0OTk3ODQ3Ng==&mid=2247489559&idx=1&sn=80ae90db83d6b19819284f0d342e210f&chksm=fba6f014ccd17902e07dd7b567cd05ef95500dfd4ac499d4be218913494fe30afc05d9ea4814&scene=126&sessionid=1601287836&key=d86db7ce269b2818d1071d5a1a82a25eef151ef7fd0eb091342e5f7b2d1eeaca83838c4f94acfde20965b44e050107fe724b2d5ab69b85ffdbdfd2bab4ee244789d7fd4b8ad0eb843b55dedbdd3e4efc88b554853141334c6137b269e1780adb0aebeb6244f8a5c14b225a27ab1dbf67d1157d98dd25e9d4bc4bb40aa48828c4&ascene=1&uin=MTgyNzM2NTQxOA%3D%3D&devicetype=Windows+10+x64&version=62090529&lang=zh_CN&exportkey=A%2BWZEvsGgU243JoLW5faxcA%3D&pass_ticket=%2Fb2Hl4wxg3fQt0e%2FYwsabCDvP8KiJ5VndSZLtqJga3Rjq1S3KP83tRRVXpebnJYg&wx_header=0)
 6. [Redis 的 8 大应用场景](https://segmentfault.com/a/1190000016188385)
 7. [Redis 五种数据类型及应用场景](https://blog.csdn.net/mxw2552261/article/details/104980691)
+8. [Redis 中 BitMap 的使用场景](https://www.cnblogs.com/54chensongxia/p/13794391.html
+9. [Redis HyperLogLog介绍及应用](https://juejin.im/post/6844904114573279245)
 
 ## Cache Solution
 1. [并发系统-缓存方案](https://zhuanlan.zhihu.com/p/151423217)
