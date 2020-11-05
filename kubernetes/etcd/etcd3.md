@@ -7,8 +7,10 @@
       etcd_v3 compaction 30949860
 
       etcd_v3 defrag
+
+      tcdctl get --prefix --rev=3 foo # access the versions of keys at revision 3
    ```
-2. ff
+2. ETCD lease (租约) ：是ETCD的重要特性，用于实现key定时删除功能。与Redis的定时删除功能基本一致
 
 
 
