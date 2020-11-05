@@ -34,6 +34,7 @@
 4. [我用Redis干掉了一摞简历](https://mp.weixin.qq.com/s?__biz=MzI5OTM3MjMyNA==&mid=2247490259&idx=1&sn=bcacb77ebb1e837c1834968a23255ab7&chksm=ec96c098dbe1498efb3bf8ec36d5ae140f3853ca0da24caff2d611287bde04fa963b062d7f62&scene=126&sessionid=1596502932&key=feb849ed6c1e82227e9dd2277bbf7b1515474ef5185516fb4b9873c8b7fc0fce4a01a4b866e377181015933feeaab350acda4afc5e938abf5342e54565949171bb906cd92c75fe412848076f40a7af6f&ascene=1&uin=MTgyNzM2NTQxOA%3D%3D&devicetype=Windows+10+x64&version=62090529&lang=zh_CN&exportkey=A%2FYnJ1tEfS0aOg8fffWHU8s%3D&pass_ticket=ntETQsP1RhNUojtR4zjNCYWrP9RwMLovz6uzVU3WmnLUd%2BKVfyWskswNgEV43%2F0s)
 5. [关于缓存穿透、缓存雪崩、热点数据失效问题的解决方案](https://mp.weixin.qq.com/s?__biz=MzU0OTk3ODQ3Ng==&mid=2247489559&idx=1&sn=80ae90db83d6b19819284f0d342e210f&chksm=fba6f014ccd17902e07dd7b567cd05ef95500dfd4ac499d4be218913494fe30afc05d9ea4814&scene=126&sessionid=1601287836&key=d86db7ce269b2818d1071d5a1a82a25eef151ef7fd0eb091342e5f7b2d1eeaca83838c4f94acfde20965b44e050107fe724b2d5ab69b85ffdbdfd2bab4ee244789d7fd4b8ad0eb843b55dedbdd3e4efc88b554853141334c6137b269e1780adb0aebeb6244f8a5c14b225a27ab1dbf67d1157d98dd25e9d4bc4bb40aa48828c4&ascene=1&uin=MTgyNzM2NTQxOA%3D%3D&devicetype=Windows+10+x64&version=62090529&lang=zh_CN&exportkey=A%2BWZEvsGgU243JoLW5faxcA%3D&pass_ticket=%2Fb2Hl4wxg3fQt0e%2FYwsabCDvP8KiJ5VndSZLtqJga3Rjq1S3KP83tRRVXpebnJYg&wx_header=0)
 6. [Redis 的 8 大应用场景](https://segmentfault.com/a/1190000016188385)
+7. [Redis 五种数据类型及应用场景](https://blog.csdn.net/mxw2552261/article/details/104980691)
 
 ## Cache Solution
 1. [并发系统-缓存方案](https://zhuanlan.zhihu.com/p/151423217)
