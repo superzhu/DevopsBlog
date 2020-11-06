@@ -1,9 +1,10 @@
 # HBase
 
 1. 数据类型单一：Hbase中的数据都是字符串，没有类型。
-2. Cell: Data is stored in cells. The data is dumped into cells which are specifically identified by rowkey and column qualifiers. (数据被转储到由行键和列限定符明确标识的单元格中)
-3. A **region** contains all the rows between the start key and the end key assigned to that region. HBase tables can be divided into a number of regions in such a way that all the columns of a column family is stored in one region. Each region contains the rows in a sorted order.
-4. Region虽然是分布式存储的最小单元，但并不是存储的最小单元。Region由一个或者多个Store组成，每个列族 (Column Family) 创建一个 Store 实例；每个Strore又由一个memStore和0至多个StoreFile组成，每个 StoreFile 都会对应一个 HFile，HFile 就是实际的存储文件；memStore存储在内存中，StoreFile存储在HDFS上。
+2. Hbase的表在物理存储上，是按照列族来分割的，不同列族的数据一定存储在不同的文件中
+3. Cell: Data is stored in cells. The data is dumped into cells which are specifically identified by rowkey and column qualifiers. (数据被转储到由行键和列限定符明确标识的单元格中); **由{rowkey，column Family：column Qualifier，time stamp}唯一确定的单元**。cell中的数据是没有类型的，全部是字节码形式(byte[])存储
+4. A **region** contains all the rows between the start key and the end key assigned to that region. HBase tables can be divided into a number of regions in such a way that all the columns of a column family is stored in one region. Each region contains the rows in a sorted order.
+5. Region虽然是分布式存储的最小单元，但并不是存储的最小单元。Region由一个或者多个Store组成，每个列族 (Column Family) 创建一个 Store 实例；每个Strore又由一个memStore和0至多个StoreFile组成，每个 StoreFile 都会对应一个 HFile，HFile 就是实际的存储文件；memStore存储在内存中，StoreFile存储在HDFS上。**MemStore是一个写缓存(In Memory Sorted Buffer)，所有数据会先写入WAL日志，后写入MemStore中，由MemStore根据一定的算法将数据Flush到地层HDFS文件中(HFile)**
 ![HBase Region](hbasephysical.gif)
 5. HBase适用场景
    1. 写密集型应用，每天写入量巨大，而相对读数量较小的应用，比如IM的历史消息，游戏的日志等等; **主要适用于海量明细数据（十亿、百亿）的随机实时查询**，如日志明细、交易清单、轨迹行为
