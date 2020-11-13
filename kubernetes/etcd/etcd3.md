@@ -15,7 +15,11 @@
       etcd_v3 get --prefix --keys-only=true /registry/clusterroles/hare-hare
    ```
 2. ETCD lease (租约) ：是ETCD的重要特性，用于实现key定时删除功能。与Redis的定时删除功能基本一致
-
+3. To view the configuration of these roles via kubectl run:
+   ```bash
+   kubectl get clusterrole hare-hare -o yaml
+   ```
+4. ff
 
 
 

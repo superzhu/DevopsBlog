@@ -23,6 +23,11 @@
 7. [kubernetes github workflow](https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md)
 8. [Makefile教程（绝对经典，所有问题看这一篇足够了）](https://blog.csdn.net/weixin_38391755/article/details/80380786)
 
+
+## Kubernetes Tuning
+1. [10 Kubernetes Performance Tuning Tips and Best Practices](https://opsani.com/blog/10-kubernetes-performance-tuning-tips-best-practices/)
+2. [12 Kubernetes configuration best practices](https://www.stackrox.com/post/2019/09/12-kubernetes-configuration-best-practices/)
+
 ## OpenAPI Specification
 1. [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
 2. [OpenAPI v3.1 and JSON Schema 2019-09](https://apisyouwonthate.com/blog/openapi-v31-and-json-schema-2019-09)
