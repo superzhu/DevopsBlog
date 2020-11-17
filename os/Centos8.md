@@ -45,6 +45,8 @@
 
     rpm -ivh *.rpm
     dnf makecache
+
+    dnf install --downloadonly --destdir /root/downloads  ansible
     ```
 5. ff
 
