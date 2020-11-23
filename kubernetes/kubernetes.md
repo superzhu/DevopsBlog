@@ -39,7 +39,7 @@
 1. [Kubernetes Controller Manager 工作原理](http://dockone.io/article/9557)
 2. [详解 Kubernetes Deployment 的实现原理 2019](https://draveness.me/kubernetes-deployment/)
 3. [图解 Kubernetes Deployment Controller 工作原理与流程](https://juejin.im/post/5df8e971f265da3393098741#heading-1)
-4. [A deep dive into Kubernetes controllers](https://engineering.bitnami.com/articles/a-deep-dive-into-kubernetes-controllers.html)
+4. [A deep dive into Kubernetes controllers](https://engineering.bitnami.com/articles/a-deep-dive-into-kubernetes-controllers.html) 2017 kube-watch
 5. [Understanding Kubernetes Kube-Proxy](https://cloud.tencent.com/developer/article/1501772)
 6. [**Cracking kubernetes kube-proxy**](https://arthurchiao.art/blog/cracking-k8s-node-proxy/)
 7. [[Kubernetes] Kubernetes核心原理（四）之kubelet](https://www.huweihuang.com/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/)
