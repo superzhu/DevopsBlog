@@ -45,9 +45,9 @@
 7. [[Kubernetes] Kubernetes核心原理（四）之kubelet](https://www.huweihuang.com/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/)
 8. [详解 Kubernetes Pod 的实现原理](https://www.infoq.cn/article/fmTSPqdyx0AFjMsrmNvG?utm_source=related_read_bottom&utm_medium=article)
 9. [kubelet 架构浅析](https://zhuanlan.zhihu.com/p/111241825)
-10. [进击的Kubernetes调度系统：Kubernetes scheduling framework](https://zhuanlan.zhihu.com/p/158069604)
+10. [进击的Kubernetes调度系统：Kubernetes scheduling framework](https://zhuanlan.zhihu.com/p/158069604)  阿里系列文章
 11. [Beyond Kube-scheduler, a Need for a K8s Cluster Balancer](https://medium.com/sparsecode/beyond-kube-scheduler-a-need-for-a-k8s-cluster-balancer-89cdfb242e09)
-12. [云原生笔记](https://www.yuque.com/baxiaoshi/tyado3/lvfa0b) <good>
+12. [云原生笔记](https://www.yuque.com/baxiaoshi/tyado3/lvfa0b) <good> 调度相关的文章
 13. [基于etcd的watch机制实现原理](https://www.yuque.com/baxiaoshi/tyado3/vxx3s8)
 
 ## kubernetes networks
