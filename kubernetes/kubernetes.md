@@ -13,7 +13,7 @@
 9. perform generic operations on arbitrary Kubernetes API objects : 可以对任意Kubernetes API对象执行通用操作
 10. Understanding how the Kubernetes scheduler makes scheduling decisions is critical in order to ensure consistent performance and optimal resource utilization --- 为了确保一致的性能和最佳的资源利用率，了解Kubernetes调度程序如何制定调度决策至关重要。
 11. Kubernetes Auditing is part of the kube-apiserver, and will log all requests that the API Server processes for audit purposes.
-12. ff
+12. K8S 创建DEPLOYMENT流程 : api server -> etcd -> controller manager -> etcd -> scheduler -> etcd -> kubelet
 
 ## Development Environment Setup
 1. [Kubernetes 开发指南](https://developer.ibm.com/zh/articles/os-kubernetes-developer-guide/)
@@ -66,3 +66,8 @@
 
 ## Kubernetes Auditing
 1. [Kubernetes Audit Logging Introduction](https://medium.com/@noqcks/kubernetes-audit-logging-introduction-464a34a53f6c)
+
+
+## Kubernetes resource creation process
+1. [Kubernetes中pod创建流程](https://blog.csdn.net/yan234280533/article/details/72567261)
+2. [Kubernetes Deployment Controller – An Inside Look ](https://www.cloudiqtech.com/kubernetes-deployment-controller-an-inside-look/)
