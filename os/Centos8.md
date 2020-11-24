@@ -47,6 +47,8 @@
     dnf makecache
 
     dnf install --downloadonly --destdir /root/downloads  ansible
+
+    pip3 download pymongo --dest=/home/surpass/modules/pip3
     ```
 5. ff
 

@@ -48,6 +48,7 @@
 ## Istio Reference
 1. [How to Manage Microservices on Kubernetes With Istio medium](https://medium.com/better-programming/how-to-manage-microservices-on-kubernetes-with-istio-c25e97a60a59)
 2. [Istio 1.6——迈向极简主义](https://zhuanlan.zhihu.com/p/144535273)
+3. [Istio 1.8 --- Istio 中的智能 DNS 代理功能](https://zhuanlan.zhihu.com/p/309679795)
 
 
 ## Istio Operator --- Installation
