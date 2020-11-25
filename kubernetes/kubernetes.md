@@ -38,17 +38,18 @@
 ## kubernetes core components
 1. [Kubernetes Controller Manager 工作原理](http://dockone.io/article/9557)
 2. [详解 Kubernetes Deployment 的实现原理 2019](https://draveness.me/kubernetes-deployment/)
-3. [图解 Kubernetes Deployment Controller 工作原理与流程](https://juejin.im/post/5df8e971f265da3393098741#heading-1)
-4. [A deep dive into Kubernetes controllers](https://engineering.bitnami.com/articles/a-deep-dive-into-kubernetes-controllers.html) 2017 kube-watch
-5. [Understanding Kubernetes Kube-Proxy](https://cloud.tencent.com/developer/article/1501772)
-6. [**Cracking kubernetes kube-proxy**](https://arthurchiao.art/blog/cracking-k8s-node-proxy/)
-7. [[Kubernetes] Kubernetes核心原理（四）之kubelet](https://www.huweihuang.com/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/)
-8. [详解 Kubernetes Pod 的实现原理](https://www.infoq.cn/article/fmTSPqdyx0AFjMsrmNvG?utm_source=related_read_bottom&utm_medium=article)
-9. [kubelet 架构浅析](https://zhuanlan.zhihu.com/p/111241825)
-10. [进击的Kubernetes调度系统：Kubernetes scheduling framework](https://zhuanlan.zhihu.com/p/158069604)  阿里系列文章
-11. [Beyond Kube-scheduler, a Need for a K8s Cluster Balancer](https://medium.com/sparsecode/beyond-kube-scheduler-a-need-for-a-k8s-cluster-balancer-89cdfb242e09)
-12. [云原生笔记](https://www.yuque.com/baxiaoshi/tyado3/lvfa0b) <good> 调度相关的文章
-13. [基于etcd的watch机制实现原理](https://www.yuque.com/baxiaoshi/tyado3/vxx3s8)
+3. [Kube-Controller-Manaer解析之启动流程](https://xigang.github.io/2018/06/04/controller-manager/)
+4. [图解 Kubernetes Deployment Controller 工作原理与流程](https://juejin.im/post/5df8e971f265da3393098741#heading-1)
+5. [A deep dive into Kubernetes controllers](https://engineering.bitnami.com/articles/a-deep-dive-into-kubernetes-controllers.html) 2017 kube-watch
+6. [Understanding Kubernetes Kube-Proxy](https://cloud.tencent.com/developer/article/1501772)
+7. [**Cracking kubernetes kube-proxy**](https://arthurchiao.art/blog/cracking-k8s-node-proxy/)
+8. [[Kubernetes] Kubernetes核心原理（四）之kubelet](https://www.huweihuang.com/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/)
+9. [详解 Kubernetes Pod 的实现原理](https://www.infoq.cn/article/fmTSPqdyx0AFjMsrmNvG?utm_source=related_read_bottom&utm_medium=article)
+10. [kubelet 架构浅析](https://zhuanlan.zhihu.com/p/111241825)
+11. [进击的Kubernetes调度系统：Kubernetes scheduling framework](https://zhuanlan.zhihu.com/p/158069604)  阿里系列文章
+12. [Beyond Kube-scheduler, a Need for a K8s Cluster Balancer](https://medium.com/sparsecode/beyond-kube-scheduler-a-need-for-a-k8s-cluster-balancer-89cdfb242e09)
+13. [云原生笔记](https://www.yuque.com/baxiaoshi/tyado3/lvfa0b) <good> 调度相关的文章
+14. [基于etcd的watch机制实现原理](https://www.yuque.com/baxiaoshi/tyado3/vxx3s8)
 
 ## kubernetes networks
 1. [kubernetes networking links github](https://github.com/nleiva/kubernetes-networking-links)
@@ -71,3 +72,8 @@
 ## Kubernetes resource creation process
 1. [Kubernetes中pod创建流程](https://blog.csdn.net/yan234280533/article/details/72567261)
 2. [Kubernetes Deployment Controller – An Inside Look ](https://www.cloudiqtech.com/kubernetes-deployment-controller-an-inside-look/)
+
+
+## Endpoints and EndpointSlice resources
+1. [Scaling Kubernetes Networking With EndpointSlices](https://kubernetes.io/blog/2020/09/02/scaling-kubernetes-networking-with-endpointslices/)
+2. [利用EndpointSlices扩展Kubernetes网络，提供更强的可伸缩性和功能](https://www.mdeditor.tw/pl/ptcl)
