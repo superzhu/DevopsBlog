@@ -50,7 +50,15 @@
 
     pip3 download pymongo --dest=/home/surpass/modules/pip3
     ```
-5. ff
+5. You disable secure boot temporally on startup with MOK manager
+    ```bash
+    sudo mokutil  --disable-validation
+    root password
+    mok password: 12345678
+    mok password: 12345678
+    sudo reboot
+    ```
+6. ff
 
 
 ## References
@@ -58,3 +66,4 @@
 2. [How To Configure Static IP Address in CentOS 7 / RHEL 7](https://www.itzgeek.com/how-tos/linux/centos-how-tos/how-to-configure-static-ip-address-in-centos-7-rhel-7-fedora-26.html)
 3. [How to Install Python 3.8 on CentOS 8](https://linuxize.com/post/how-to-install-python-3-8-on-centos-8/)
 4. [Installing Ansible to CentOS 8](https://medium.com/@akingsukh/installing-ansible-to-centos-8-bee36ab9d279)
+5. [elrepo centos repo download](https://elrepo.org/linux/kernel)
