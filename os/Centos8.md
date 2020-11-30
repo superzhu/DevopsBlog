@@ -58,7 +58,13 @@
     mok password: 12345678
     sudo reboot
     ```
-6. ff
+6.  List all modules that are built into the currently running kernel
+    ```bash
+    cat /lib/modules/$(uname -r)/modules.builtin
+
+    cat /lib/modules/$(uname -r)/modules.builtin | grep br_netfilter
+    ```
+7.  ff
 
 
 ## References
