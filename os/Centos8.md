@@ -64,7 +64,13 @@
 
     cat /lib/modules/$(uname -r)/modules.builtin | grep br_netfilter
     ```
-7.  ff
+7.  yum local update
+    ```bash
+    yum localupdate -y package1.rpm
+
+    yum-config-manager --add-repo=/home/surpass/devops/centos7/softs/docker/docker-ce.repo
+    ```
+8.  ff
 
 
 ## References
