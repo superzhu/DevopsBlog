@@ -1,8 +1,12 @@
-# IPVS
+# LVS (Linux Virtual Server) / IPVS(IP Virtual Server)
 
+1. LVS的结构主要分为两部分:
+   1. 工作在内核空间的IPVS模块。LVS的能力实际上都是由IVPS模块实现。
+   2. 工作在用户空间的ipvsadm管理工具。其作用是向用户提供一个命令接口，用于将配置的虚拟服务、真实服务等传给IPVS模块。
+2. ipvs 和iptables 都是**基于netfilter的**。ipvs 会使用 iptables 进行包过滤、SNAT、masquared。
+3. ff
 
-
-## ipvsadm
+## ipvsadm / IPVS
 1. ipvsadm related commands
     ```bash
     #  generate a virtual server:
@@ -20,7 +24,10 @@
     # Show stats
     ipvsadm -L -n --stats --rate
     ```
-2. ff
+2. ipvsadm **Used to set, maintain or check the virtual server table in the Linux kernel**. Linux virtual servers can be used to build scalable network services based on clusters of two or more nodes. The active node of the cluster redirects service requests to the server host collection that will actually perform the service. Supported functions include two protocols (TCP and UDP), three packet forwarding methods (NAT, tunneling, and direct routing), and eight load balancing algorithms (weighted round robin, minimum connection, weighted minimum connection, location-based minimum connection, Location-based minimal connection with replication, target hash, and source hash).
+3. ff
 
 ## ipvsadm references
 1. [Building a Load Balancer with LVS - Linux Virtual Server](http://www.linux-admins.net/2013/01/building-load-balancer-with-lvs-linux.html)
+2. [Ipvsadm command reference](https://www.programmersought.com/article/9104230176/)
+3. [k8s集群中ipvs负载详解](https://www.jianshu.com/p/89f126b241db?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation)  Great
