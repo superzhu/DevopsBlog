@@ -18,3 +18,4 @@
 
 ## High-level runtime: containerd
 1. [Manually Loading Container Images with containerD](https://blog.scottlowe.org/2020/01/25/manually-loading-container-images-with-containerd/)
+2. [Kubernetes 1.20 版本开始将弃用 Docker，是时候拥抱 Containerd 和 Podman 了！](https://mp.weixin.qq.com/s?__biz=MzI3MTI2NzkxMA==&mid=2247492565&idx=1&sn=af40e01fec2bca6ed27ff5638ca5aaa3&chksm=eac6c2fcddb14beadd787ef38c268e44ef12b9ea9904e51a288cc06b8ebebc548852be15893c&scene=126&sessionid=1606977135&key=f956749ad0bcda7eaa904a50528a209271c99c07f857cab05b94f2abb4c7b53ed57b75c594faacd75c1586996d82c1480aa0b7470b9cfceec99548153638faf97538000e36cc3a4a2bcfb4c76c485cce54c9a27d4192407eaa1eb39944846bed18223ebffc7a36d6b1633c88b93653ad286fd6056b990ff5bfcab49029d1ec5a&ascene=1&uin=MTgyNzM2NTQxOA%3D%3D&devicetype=Windows+10+x64&version=6300002f&lang=zh_CN&exportkey=A95CQ2xrNFxCdCDevdz2l4w%3D&pass_ticket=JKTKIIJEmP2dDcDLtfpmHXnfsCGBjDiGeOOjxQH9cIcBdWkNWDzRHBq87aSCQiWK&wx_header=0)  Kubelete 创建容器步骤 
