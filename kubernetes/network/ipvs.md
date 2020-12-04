@@ -23,14 +23,17 @@
 
     # Show stats
     ipvsadm -L -n --stats --rate
+
+    ?? iptables ---> ipset ---> ipvsadm
     ```
 2. ipvsadm **Used to set, maintain or check the virtual server table in the Linux kernel**. Linux virtual servers can be used to build scalable network services based on clusters of two or more nodes. The active node of the cluster redirects service requests to the server host collection that will actually perform the service. Supported functions include two protocols (TCP and UDP), three packet forwarding methods (NAT, tunneling, and direct routing), and eight load balancing algorithms (weighted round robin, minimum connection, weighted minimum connection, location-based minimum connection, Location-based minimal connection with replication, target hash, and source hash).
-3. ff
+3. **When is route lookup performed when a packet flows through iptables**?
+4. ff
 
 ## ipvsadm references
 1. [Building a Load Balancer with LVS - Linux Virtual Server](http://www.linux-admins.net/2013/01/building-load-balancer-with-lvs-linux.html)
 2. [Ipvsadm command reference](https://www.programmersought.com/article/9104230176/)
-3. [k8s集群中ipvs负载详解](https://www.jianshu.com/p/89f126b241db?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation)  Great
+3. [**k8s集群中ipvs负载详解**](https://www.jianshu.com/p/89f126b241db?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation)  Great
 4. [Cracking kubernetes node proxy (aka kube-proxy)](https://arthurchiao.art/blog/cracking-k8s-node-proxy/#ch_6)
 5. [lvs documentation](http://www.linuxvirtualserver.org/Documents.html)
 
@@ -46,9 +49,26 @@
 
 # iptables
 1. **iptables process flow**
+   1. Routing Decision After **nat PREROUTING** :  内核进行路由判断，判断当前数据包的目的IP是否为本机网口的IP地址
+   2. Routing Decision After **Locally generated Packet** : 内核进行路由判断，判断当前数据包要发往那个网口
+   3. Routing Decision After **nat OUTPUT** : The real story is that packets are routed before OUTPUT,but they are rerouted here is the destination changes
     ![iptables process flow](images/iptables.png)
-2. ff
+2. Each iptables rule has a matching component and an action component:
+   1. **Matching** : Rules can be constructed to match by **protocol type, destination or source address, destination or source port, destination or source network, input or output interface, headers, or connection state** among other criteria. These can be combined to create fairly complex rule sets to distinguish between different traffic.
+   2. **Target** : A target is the action that are triggered when a packet meets the matching criteria of a rule.
+   3. **Actions**:
+      1. ACCEPT：允许数据包通过。
+      2. DROP：直接丢弃数据包，不给任何回应信息，这时候客户端会感觉自己的请求泥牛入海了，过了超时时间才会有反应。
+      3. REJECT：拒绝数据包通过，必要时会给数据发送端一个响应的信息，客户端刚请求就会收到拒绝的信息。
+      4. SNAT：源地址转换，解决内网用户用同一个公网地址上网的问题。
+      5. MASQUERADE：是SNAT的一种特殊形式，适用于动态的、临时会变的ip上。
+      6. DNAT：目标地址转换。
+      7. REDIRECT：在本机做端口映射。
+      8. LOG：在/var/log/messages文件中记录日志信息，然后将数据包传递给下一条规则，也就是说除了记录以外不对数据包做任何其他操作，仍然让下一条规则去匹配。
+3. ff
 
 ## iptables references
 1. [iptables详解及一些常用规则](https://www.jianshu.com/p/ee4ee15d3658)
-2. [Packet flow in Netfilter and General Networking](https://upload.wikimedia.org/wikipedia/commons/3/37/Netfilter-packet-flow.svg)
+2. [A Deep Dive into Iptables and Netfilter Architecture](https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture)
+3. [Packet flow in Netfilter and General Networking](https://upload.wikimedia.org/wikipedia/commons/3/37/Netfilter-packet-flow.svg)
+4. [The netfilter hooks in the kernel and where they hook in the packet flow](https://gist.github.com/egernst/2c39c6125d916f8caa0a9d3bf421767a) github
