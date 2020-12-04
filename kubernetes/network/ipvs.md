@@ -38,3 +38,17 @@
 # ipset
 1. IP sets are a framework inside the Linux kernel, which can be administered by the **ipset utility**. Depending on the type, an IP set may store IP addresses, networks, (TCP/UDP) port numbers, MAC addresses, interface names or combinations of them in a way, which ensures lightning speed when matching an entry against a set.
 2. ff
+
+
+## ipset references
+1. [ipset man page](https://ipset.netfilter.org/ipset.man.html)
+
+
+# iptables
+1. **iptables process flow**
+    ![iptables process flow](images/iptables.png)
+2. ff
+
+## iptables references
+1. [iptables详解及一些常用规则](https://www.jianshu.com/p/ee4ee15d3658)
+2. [Packet flow in Netfilter and General Networking](https://upload.wikimedia.org/wikipedia/commons/3/37/Netfilter-packet-flow.svg)
