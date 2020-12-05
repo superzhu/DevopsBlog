@@ -84,5 +84,10 @@
 
 
 # Connection Tracking
-1. linux conntrack commands :
-2. ff
+1. linux **conntrack** commands :
+2. 在NAT Gateway收到客户机发来的请求包后，做源地址转换，并且将该连接记录保存下来，当NAT Gateway收到服务器来的响应包后，查找Track Table，确定转发目标，做目的地址转换，转发给客户机。
+
+
+## Connection Tracking References
+1. [Connection Tracking (conntrack): Design and Implementation Inside Linux Kernel 2020](http://arthurchiao.art/blog/conntrack-design-and-implementation/)
+2. [How does connection tracking track connections changed by NAT?](https://superuser.com/questions/1269859/linux-netfilter-how-does-connection-tracking-track-connections-changed-by-nat)
