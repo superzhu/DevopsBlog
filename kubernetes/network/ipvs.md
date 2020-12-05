@@ -33,14 +33,17 @@
     ```
 2. ipvsadm **Used to set, maintain or check the virtual server table in the Linux kernel**. Linux virtual servers can be used to build scalable network services based on clusters of two or more nodes. The active node of the cluster redirects service requests to the server host collection that will actually perform the service. Supported functions include two protocols (TCP and UDP), three packet forwarding methods (NAT, tunneling, and direct routing), and eight load balancing algorithms (weighted round robin, minimum connection, weighted minimum connection, location-based minimum connection, Location-based minimal connection with replication, target hash, and source hash).
 3. **When is route lookup performed when a packet flows through iptables**?
-4. ff
+4. The kube-proxy IPVS routing mode moves the service routing and NATing out of the Netfilter rules, for the most part, although it does still make use of Netfilter.
+5. ff
 
 ## ipvsadm references
 1. [Building a Load Balancer with LVS - Linux Virtual Server 2013](http://www.linux-admins.net/2013/01/building-load-balancer-with-lvs-linux.html)
 2. [Ipvsadm command reference](https://www.programmersought.com/article/9104230176/)
 3. [**k8s集群中ipvs负载详解**](https://www.jianshu.com/p/89f126b241db?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation)  Great
-4. [Cracking kubernetes node proxy (aka kube-proxy) 2019](https://arthurchiao.art/blog/cracking-k8s-node-proxy/#ch_6)
-5. [lvs documentation](http://www.linuxvirtualserver.org/Documents.html)
+4. [浅谈Kubernetes Service负载均衡实现机制](https://www.infoq.cn/article/p0v9d4br7udzwtgihuyq)
+5. [浅析kube-proxy中的IPVS模式 2019](https://www.heguang-tech.com/blog/2020/kubernetes/reference/ipvs/)
+6. [Cracking kubernetes node proxy (aka kube-proxy) 2019](https://arthurchiao.art/blog/cracking-k8s-node-proxy/#ch_6)
+7. [lvs documentation](http://www.linuxvirtualserver.org/Documents.html)
 
 
 # ipset
@@ -78,3 +81,8 @@
 3. [Packet flow in Netfilter and General Networking](https://upload.wikimedia.org/wikipedia/commons/3/37/Netfilter-packet-flow.svg)
 4. [The netfilter hooks in the kernel and where they hook in the packet flow](https://gist.github.com/egernst/2c39c6125d916f8caa0a9d3bf421767a) github
 5. [iptables tutorials](https://www.frozentux.net/iptables-tutorial/chunkyhtml/index.html)
+
+
+# Connection Tracking
+1. linux conntrack commands :
+2. ff
