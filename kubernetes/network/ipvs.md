@@ -73,7 +73,9 @@
       6. DNAT：目标地址转换。
       7. REDIRECT：在本机做端口映射。
       8. LOG：在/var/log/messages文件中记录日志信息，然后将数据包传递给下一条规则，也就是说除了记录以外不对数据包做任何其他操作，仍然让下一条规则去匹配。
-3. ff
+3. iptables Built-in Chains Traversal Order
+    ![Built-in Chains Traversal Order](images/built-inChains.png)
+4. ff
 
 ## iptables references
 1. [iptables详解及一些常用规则](https://www.jianshu.com/p/ee4ee15d3658)
@@ -81,6 +83,8 @@
 3. [Packet flow in Netfilter and General Networking](https://upload.wikimedia.org/wikipedia/commons/3/37/Netfilter-packet-flow.svg)
 4. [The netfilter hooks in the kernel and where they hook in the packet flow](https://gist.github.com/egernst/2c39c6125d916f8caa0a9d3bf421767a) github
 5. [iptables tutorials](https://www.frozentux.net/iptables-tutorial/chunkyhtml/index.html)
+6. [Advanced Firewall Configurations with ipset](https://www.linuxjournal.com/content/advanced-firewall-configurations-ipset)
+7. [iptables-extensions manpage](http://ipset.netfilter.org/iptables-extensions.man.html)
 
 
 # Connection Tracking
