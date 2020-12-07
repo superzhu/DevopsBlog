@@ -21,8 +21,14 @@
     2. man ip-route
     3. proto dhcp: The routing protocol identifier. DHCP means the routes will be determined dynamically.
     4. proto bird: Calico BIRD is a BGP routing daemon which runs on every host. Calico makes uses of BGP to propagate routes between hosts. 
+
+    5. ip route show table main
 ```
-5.  ff
+5.  Check route table name:
+    ```bash
+       cat /etc/iproute2/rt_tables
+    ```
+6.  ff
 
 
 ## References
