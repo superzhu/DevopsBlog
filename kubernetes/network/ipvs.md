@@ -89,7 +89,8 @@
 
 # Connection Tracking
 1. linux **conntrack** commands :
-2. 在NAT Gateway收到客户机发来的请求包后，做源地址转换，并且将该连接记录保存下来，当NAT Gateway收到服务器来的响应包后，查找Track Table，确定转发目标，做目的地址转换，转发给客户机。
+2. Connection tracking, as the name illustrates itself, **tracks (and maintains )connections’ states. NAT relies on the results of connection tracking**, and, NAT the most important users of connection tracking.
+3. ff
 
 
 ## Connection Tracking References
