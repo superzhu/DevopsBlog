@@ -96,3 +96,4 @@
 ## Connection Tracking References
 1. [Connection Tracking (conntrack): Design and Implementation Inside Linux Kernel 2020](http://arthurchiao.art/blog/conntrack-design-and-implementation/)
 2. [How does connection tracking track connections changed by NAT?](https://superuser.com/questions/1269859/linux-netfilter-how-does-connection-tracking-track-connections-changed-by-nat)
+3. [netfilter 链接跟踪机制与NAT原理](https://www.cnblogs.com/liushaodong/archive/2013/02/26/2933593.html)
