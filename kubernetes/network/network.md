@@ -3,7 +3,15 @@
 1. **East-West – East-West refers to traffic** flows that occur between devices within a datacenter. During convergence for example, routers exchange table information to ensure they have the same information about the internetwork in which they operate. Another example are switches, which can exchange spanning-tree information to prevent network loops.
 2. **North | South – North- South refers to traffic** flows into and out of the datacenter. Traffic entering the datacenter through perimeter network devices is said to be southbound. Traffic exiting via the perimeter network devices is said to be northbound.
 3. **Switches** receive frames on one port and forward the frames out the port **where the destination device can be found.** (交换机在一个端口上接收帧，然后将帧转发到可以找到目标设备的端口。)
-4. Unix domain socket
+4. Unix domain socket : Unix domain socket 又叫 IPC(inter-process communication 进程间通信) socket，用于实现同一主机上的进程间通信。socket 原本是为网络通讯设计的，但后来在 socket 的框架上发展出一种 IPC 机制，就是 UNIX domain socket。虽然网络 socket 也可用于同一台主机的进程间通讯(通过 loopback 地址 127.0.0.1)，但是 UNIX domain socket 用于 IPC 更有效率：不需要经过网络协议栈，不需要打包拆包、计算校验和、维护序号和应答等，只是将应用层数据从一个进程拷贝到另一个进程。这是因为，IPC 机制本质上是可靠的通讯，而网络协议是为不可靠的通讯设计的。
+    ```bash
+    # List active Unix domain socket
+    netstat -l -p
+
+    ss -a --unix -p
+    ```
+5. One way to think about **sockets is that they open up a communication channel** where both sides can read and write. There are two main domains of sockets: **Unix domain sockets**, which allow processes on the same computer to communicate (IPC), and **Internet domain sockets**, which allow processes to communicate over a network.
+6. ff
 
 
 ## References
