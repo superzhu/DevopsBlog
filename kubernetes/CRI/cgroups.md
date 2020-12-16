@@ -30,6 +30,7 @@
 ## Cgroup References
 1. [kubernetes kubelet组件中cgroup的层层"戒备" 2019](https://www.cnblogs.com/gaorong/p/11716907.html)
 2. [Cgroups 与 Systemd](https://www.cnblogs.com/sparkdev/p/9523194.html)
+3. [kubelet cgroup 资源预留源码分析](https://blog.csdn.net/zhonglinzhang/article/details/92840192)
 
 
 # systemd automounting
