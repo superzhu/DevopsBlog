@@ -28,3 +28,4 @@
 2. [etcd op-guide maintenance](https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/maintenance.md)
 3. [彻底搞懂 etcd 系列文章（九）：etcd compact 和 watch API](https://juejin.im/post/6874884171068604430)
 4. [Access ETCD data](https://www.huweihuang.com/kubernetes-notes/etcd/k8s-etcd-data.html)
+5. [etcd restore](https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md#restoring-a-cluster)
