@@ -29,6 +29,7 @@
 ## Kubernetes Tuning
 1. [10 Kubernetes Performance Tuning Tips and Best Practices](https://opsani.com/blog/10-kubernetes-performance-tuning-tips-best-practices/)
 2. [12 Kubernetes configuration best practices](https://www.stackrox.com/post/2019/09/12-kubernetes-configuration-best-practices/)
+3. [Awesome Kubernetes](https://github.com/ramitsurana/awesome-kubernetes/blob/master/docs/case-studies/case-studies.md)
 
 ## OpenAPI Specification
 1. [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
