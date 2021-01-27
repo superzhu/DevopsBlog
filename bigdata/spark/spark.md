@@ -23,3 +23,4 @@
 1. [数据倾斜面试题知识点总结](https://zhuanlan.zhihu.com/p/151586958)
 2. [大数据Spark面试题（一）](https://zhuanlan.zhihu.com/p/107354908)
 3. [Spark SQL之Join优化](https://blog.csdn.net/weixin_37136725/article/details/78989086)
+4. [big data interview](https://github.com/CheckChe0803/BigData-Interview)
