@@ -51,6 +51,7 @@
 8. [Redis 中 BitMap 的使用场景](https://www.cnblogs.com/54chensongxia/p/13794391.html
 9. [Redis HyperLogLog介绍及应用](https://juejin.im/post/6844904114573279245)
 10. [Redis 如何存储上亿级别的用户状态？](https://blog.csdn.net/youanyyou/article/details/112417327)
+11. [redis 系列之——高可用](https://xie.infoq.cn/article/6c3500c66c3cdee3d72b88780)
 
 ## Cache Solution
 1. [并发系统-缓存方案](https://zhuanlan.zhihu.com/p/151423217)
