@@ -68,6 +68,10 @@
 
 ## Kubernetes Auditing
 1. [Kubernetes Audit Logging Introduction](https://medium.com/@noqcks/kubernetes-audit-logging-introduction-464a34a53f6c)
+   
+
+## Kubernetes Autoscaling
+1. [Kubernetes Autoscaling in Production: Best Practices for Cluster Autoscaler, HPA and VPA](https://www.replex.io/blog/kubernetes-in-production-best-practices-for-cluster-autoscaler-hpa-and-vpa)
 
 
 ## Kubernetes resource creation process
