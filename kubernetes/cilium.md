@@ -9,3 +9,4 @@
 1. [第一次，如此清晰脱熟的直解K8S网络](https://mp.weixin.qq.com/s/GSiNlvu-J7QC4C0ec-f56Q)
 2. [ServiceMesher](https://www.servicemesher.com/blog/202002-network-service-mesh/)
 3. [携程 Cilium+BGP 云原生网络实践](https://zhuanlan.zhihu.com/p/302637719)
+4. [拥抱云原生，基于eBPF技术实现Serverless节点访问K8S Service](https://mp.weixin.qq.com/s/0zOxvNKBtVEDMa_YgAr22Q)
