@@ -95,6 +95,7 @@ tcpdump –i 1 –v –c2 –w capture.out
 8. [使用CoreDNS搭建无污染DNS](https://laod.cn/dns/coredns-dns.html)
 9. [使用 CoreDNS 来应对 DNS 污染](https://fuckcloudnative.io/posts/install-coredns-on-macos/)
 10. [DNS服务器搭建与配置 bind](https://cshihong.github.io/2018/10/15/DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/)
+11. [36 张图详解 DNS ：网络世界的导航](https://mp.weixin.qq.com/s/9wRVEO2-jmdBFTtb7Q7dtQ)
 
 
 ## CoreDNS adding custom DNS record
