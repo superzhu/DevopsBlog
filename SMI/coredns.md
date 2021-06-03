@@ -85,10 +85,24 @@ tcpdump –i 1 –v –c2 –w capture.out
 17. Get logs of coredns pods?
 ```bash
 kubectl logs --namespace=kube-system -l k8s-app=kube-dns
+
+kubectl get endpoints kube-dns --namespace=kube-system
+```
+
+18. Adjust the number of CoreDNS pods (cluster-proportional-autoscaler)
+```bash
+kubectl scale --replicas={target} deployment/coredns -n kube-system
+
+The equation of linear control mode as below (cluster-proportional-autoscaler):
+
+replicas = max( ceil( cores * 1/coresPerReplica ) , ceil( nodes * 1/nodesPerReplica ) )
+replicas = min(replicas, max)
+replicas = max(replicas, min)
 ```
 
 # CoreDNS Performance
 1. DNS自身的性能（qps）和DNS解析的延迟。
+2. 
 
 ## References
 1. [Run Your Own Home DNS on coredns](https://blog.idempotent.ca/2018/04/18/run-your-own-home-dns-on-coredns/)
@@ -118,3 +132,5 @@ kubectl logs --namespace=kube-system -l k8s-app=kube-dns
 ## Coredns known issue
 1. [Kubernetes pods /etc/resolv.conf ndots:5 option and why it may negatively affect your application performances](https://pracucci.com/kubernetes-dns-resolution-ndots-options-and-why-it-may-affect-application-performances.html)
 2. [Racy conntrack and DNS lookup timeouts](https://www.weave.works/blog/racy-conntrack-and-dns-lookup-timeouts)
+3. [Optimize DNS resolution for an ACK cluster](https://partners-intl.aliyun.com/help/doc-detail/172339.htm)
+4. [Autoscale the DNS Service in a CLuster](https://kubernetes.io/docs/tasks/administer-cluster/dns-horizontal-autoscaling/)
