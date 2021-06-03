@@ -80,9 +80,15 @@ tcpdump -i interface port 53
 
 tcpdump –i 1 –v –c2 –w capture.out
 ```
-16. ff
+16. How can I list all kubernetes DNS records?
 
+17. Get logs of coredns pods?
+```bash
+kubectl logs --namespace=kube-system -l k8s-app=kube-dns
+```
 
+# CoreDNS Performance
+1. DNS自身的性能（qps）和DNS解析的延迟。
 
 ## References
 1. [Run Your Own Home DNS on coredns](https://blog.idempotent.ca/2018/04/18/run-your-own-home-dns-on-coredns/)
@@ -107,3 +113,8 @@ tcpdump –i 1 –v –c2 –w capture.out
 
 ## Container tcpdump
 1. [How to get tcpdump for containers inside Kubernetes pods](https://community.pivotal.io/s/article/How-to-get-tcpdump-for-containers-inside-Kubernetes-pods?language=en_US)
+
+
+## Coredns known issue
+1. [Kubernetes pods /etc/resolv.conf ndots:5 option and why it may negatively affect your application performances](https://pracucci.com/kubernetes-dns-resolution-ndots-options-and-why-it-may-affect-application-performances.html)
+2. [Racy conntrack and DNS lookup timeouts](https://www.weave.works/blog/racy-conntrack-and-dns-lookup-timeouts)
