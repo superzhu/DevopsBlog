@@ -124,6 +124,7 @@ replicas = max(replicas, min)
 3. [How Queries Are Processed in CoreDNS](https://coredns.io/2017/06/08/how-queries-are-processed-in-coredns/)
 4. [Kuberneres doc: DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 5. [从dig命令理解DNS](https://blog.csdn.net/a583929112/article/details/66499771) Great
+6. [How to configure a Linux host to resolve and access Kubernetes services by name](https://carlos-algms.medium.com/how-to-configure-a-linux-host-to-resolve-and-access-kubernetes-services-by-name-e1741e1247bd)
 
 ## Container tcpdump
 1. [How to get tcpdump for containers inside Kubernetes pods](https://community.pivotal.io/s/article/How-to-get-tcpdump-for-containers-inside-Kubernetes-pods?language=en_US)
