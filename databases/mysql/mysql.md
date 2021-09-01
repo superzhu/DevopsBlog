@@ -14,11 +14,22 @@
    ```mysql
     mysql> show variables like '%bin%';
    ```
-3. Enabling Binary Logging for MySQL:
+3. ***Enabling Binary Logging for MySQL***:
    ```makefile
-   log-bin=mysql-bin.log
+   server-id=master-01
+   
+   # Bin Log Setup
+   log-bin=bin.log
+   log-bin-index=bin-log.index
+   max_binlog_size=100M
+   expire_log_days=2
+   binlog-format = 'ROW'
    ```
-4. ff
+4. Verify that binary logging is enabled by running the following query:
+   ```makefile
+   mysql > show variables like “%log_bin%”
+   ```
+5. ff
 ---
 # MySQL SQL Checks
 1. How to check MySQL database and table sizes
@@ -53,3 +64,5 @@
 ---
 ## References
 1. [Using MySQL BinLogs: A Detailed Guide](https://hevodata.com/learn/using-mysql-binlog/)
+2. [How to enable binary logging for MySQL?](https://jinyuwang.weebly.com/for-mysql/how-to-enable-binary-logging-for-mysql)
+3. [How to find the directory storing MySQL binary log](https://jinyuwang.weebly.com/for-mysql/how-to-find-the-directory-storing-mysql-binary-log)
