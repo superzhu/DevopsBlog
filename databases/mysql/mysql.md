@@ -5,7 +5,7 @@
     service mysqld stop
     service mysql status
     # /etc/my.conf
-    expire_log_days=2
+    expire_logs_days=10
    
     service mysqld start
     ```
@@ -22,12 +22,12 @@
    log-bin=bin.log
    log-bin-index=bin-log.index
    max_binlog_size=100M
-   expire_log_days=2
+   expire_logs_days=10
    binlog-format = 'ROW'
    ```
 4. Verify that binary logging is enabled by running the following query:
    ```makefile
-   mysql > show variables like “%log_bin%”
+   mysql > show variables like '%log_bin%';
    ```
 5. ff
 ---
