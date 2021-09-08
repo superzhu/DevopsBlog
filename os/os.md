@@ -47,3 +47,4 @@
 # References
 1. [Notes on Java's new Z Garbage Collector](https://blog.jayan.kandathil.ca/zgc.html)
 2. [What are the huge pages in Linux?](https://kerneltalks.com/services/what-is-huge-pages-in-linux/)
+3. [3 easy steps to configure hugepages in RHEL/CentOS 7/8](https://www.golinuxcloud.com/configure-hugepages-vm-nr-hugepages-red-hat-7/)
