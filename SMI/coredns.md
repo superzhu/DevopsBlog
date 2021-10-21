@@ -100,6 +100,11 @@ replicas = min(replicas, max)
 replicas = max(replicas, min)
 ```
 
+19. Kubernetes Service Name maps to DNS domain name:
+    
+    ![Domain Name Mapping](serviceName_to_DNS.png)
+20. ff
+
 # CoreDNS Performance
 1. DNS自身的性能（qps）和DNS解析的延迟。
 2. 
