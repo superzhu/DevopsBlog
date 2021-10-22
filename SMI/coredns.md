@@ -130,6 +130,8 @@ replicas = max(replicas, min)
 4. [Kuberneres doc: DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 5. [从dig命令理解DNS](https://blog.csdn.net/a583929112/article/details/66499771) Great
 6. [How to configure a Linux host to resolve and access Kubernetes services by name](https://carlos-algms.medium.com/how-to-configure-a-linux-host-to-resolve-and-access-kubernetes-services-by-name-e1741e1247bd)
+7. [Implementing Custom Domain Name Resolution in TKE](https://intl.cloud.tencent.com/document/product/457/39125)
+8. [Change or Rewrite cluster.local in Kubernetes](https://serverascode.com/2020/03/25/rewrite-change-cluster-local-kubernetes.html)
 
 ## Container tcpdump
 1. [How to get tcpdump for containers inside Kubernetes pods](https://community.pivotal.io/s/article/How-to-get-tcpdump-for-containers-inside-Kubernetes-pods?language=en_US)
