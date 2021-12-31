@@ -125,7 +125,7 @@ status: {}
 
 
 ## References
-1. [How to keep your etcd lean and mean](https://www.compose.com/articles/how-to-keep-your-etcd-lean-and-mean/)
+1. [Breaking down and fixing etcd cluster](https://itnext.io/breaking-down-and-fixing-etcd-cluster-d81e35b9260d)
 2. [etcd op-guide maintenance](https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/maintenance.md)
 3. [彻底搞懂 etcd 系列文章（九）：etcd compact 和 watch API](https://juejin.im/post/6874884171068604430)
 4. [Access ETCD data](https://www.huweihuang.com/kubernetes-notes/etcd/k8s-etcd-data.html)
