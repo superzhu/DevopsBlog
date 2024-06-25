@@ -1,0 +1,11 @@
+- import_tasks: osupgrade.yaml
+  when: 'ansible_distribution in ["Ubuntu","Debian"]'
+
+- import_tasks: common.yaml
+  when: 'ansible_distribution in ["Ubuntu","Debian"]'
+
+- name: Clean unwanted older stuff
+  become: yes
+  apt:
+    autoremove: yes
+    purge: yes

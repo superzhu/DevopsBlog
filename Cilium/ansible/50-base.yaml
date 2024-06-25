@@ -1,0 +1,13 @@
+---
+
+# Playbook for creating image using packer
+# # ansible-playbook 50-base.yaml -i hosts  --key-file "/home/zhuzhi/.ssh/ansible"
+- name: Configure base
+  hosts: all
+  gather_facts: yes
+  become: true
+  become_user: root
+  become_method: sudo
+  vars_files:
+  roles:
+    - { role: osharden, tags: ["osharden"] }

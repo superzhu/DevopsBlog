@@ -1,0 +1,33 @@
+# /etc/modules is obsolete and has been replaced by /etc/modules-load.d/.
+# Please see modules-load.d(5) and modprobe.d(5) for details.
+#
+# Updating this file still works, but it is undocumented and unsupported.
+# 1. cls_bpf ---> CONFIG_NET_CLS_BPF
+# 2. sch_ingress ---> CONFIG_NET_SCH_INGRESS
+# 3. sha1_generic ---> CONFIG_CRYPTO_SHA1
+# 4. algif_hash ---> CONFIG_CRYPTO_USER_API_HASH
+# 5. xt_TPROXY ---> CONFIG_NETFILTER_XT_TARGET_TPROXY nf_tproxy_ipv4
+# 6. xt_CT ---> CONFIG_NETFILTER_XT_TARGET_CT
+# 7. xt_mark ---> CONFIG_NETFILTER_XT_MATCH_MARK
+# 8. xt_socket ---> CONFIG_NETFILTER_XT_MATCH_SOCKET
+# 9. sch_fq ---> CONFIG_NET_SCH_FQ
+# 10. CONFIG_BPF
+# 11. CONFIG_BPF_SYSCALL
+# 12. CONFIG_BPF_JIT
+# 13. CONFIG_NET_CLS_ACT
+# 14. CONFIG_CGROUPS
+# 15. CONFIG_CGROUP_BPF
+# 16. CONFIG_PERF_EVENTS
+# 17. CONFIG_SCHEDSTATS
+cls_bpf
+sch_ingress
+sha1_generic
+algif_hash
+xt_TPROXY
+nf_tproxy_ipv4
+nf_tproxy_ipv6
+xt_CT
+xt_mark
+xt_socket
+sch_fq
+

@@ -1,0 +1,146 @@
+- name: Disable swap since kubernetes can't work with swap enabled (1/2)
+  become: yes
+  shell: "swapoff -a && sysctl -w vm.swappiness=0"
+  ignore_errors: true
+
+- name: Disable SWAP in fstab since kubernetes can't work with swap enabled (2/2)
+  become: yes
+  lineinfile:
+    path: /etc/fstab
+    regexp: 'swap'
+    state: absent
+    backup: 'yes'
+
+
+- name: Increase file limit
+  become: yes
+  copy:
+    src: files/{{ item.src  }}
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: '10.kubernetes.conf', dest: "/etc/security/limits.d/" }
+
+- name: Enable systemd auto-load module service
+  become: yes
+  service:
+    name: systemd-modules-load
+    enabled: yes
+
+# cilium configuration
+- name: Configure Cilium base requirements modules
+  become: yes
+  template:
+    src: 20-k8s-cilium-modules.conf.j2
+    dest: /etc/modules-load.d/20-k8s-cilium-modules.conf
+
+- name: containerd | systemctl restart systemd-modules-load.service
+  become: yes
+  ansible.builtin.service:
+    name: "systemd-modules-load.service"
+    state: "restarted"
+
+
+# https://test.atlassian.net/browse/INDEV-1994
+- name: Change networkd.conf configuration
+  become: yes
+  copy:
+    src: files/{{ item.src  }}
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: 'networkd.conf', dest: "/etc/systemd/" }
+
+# https://linuxhint.com/enable-disable-unattended-upgrades-ubuntu/
+- name: "Populate 20auto-upgrades apt file"
+  become: yes
+  copy:
+    src: files/{{ item.src  }}
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: '20auto-upgrades', dest: "/etc/apt/apt.conf.d/" }
+
+# cilium configuration
+
+
+- name: Create systemd configuration directory
+  become: yes
+  file:
+    name: /etc/systemd/system.conf.d
+    state: directory
+
+- name: Set system ulimits
+  become: yes
+  template:
+    src: 30-k8s-ulimits.conf.j2
+    dest: /etc/systemd/system.conf.d/30-k8s-ulimits.conf
+
+
+- name: Distribute sysctl file
+  become: yes
+  template:
+    src: 90.k8s-sysctl.conf.j2
+    dest: /etc/sysctl.d/90.k8s-sysctl.conf
+
+- name: Run sysctl command
+  become: yes
+  shell: "sysctl -p /etc/sysctl.d/90.k8s-sysctl.conf"
+  ignore_errors: true
+
+- name: Blacklist SCTP as a kernel module
+  become: yes
+  copy:
+    src:  sctp.conf
+    dest: /etc/modprobe.d/sctp.conf
+
+#####################################
+# Disable SELinux/Firewalld
+#####################################
+- name: Check if file /etc/selinux/config exists
+  become: yes
+  stat:
+    path: /etc/selinux/config
+  register: fileState
+
+- name: Create selinux configuration file /etc/selinux/config if not existed
+  become: yes
+  file:
+    path: /etc/selinux/config
+    state: touch
+    mode: u+rw,g-wx,o-rwx
+  when: fileState.stat.exists == False
+
+- name: Permanently disable selinux
+  become: yes
+  lineinfile:
+    dest: /etc/selinux/config
+    regexp: "^SELINUX="
+    line: "SELINUX=disabled"
+
+#####################################
+# session-related modules common to all services
+#####################################
+- name: Session-related modules configuration
+  become: yes
+  lineinfile:
+    dest: /etc/pam.d/common-session
+    create: true
+    state: present
+    line: "session required pam_limits.so"
+
+##############################
+# Setting default Linux locale
+##############################
+- name: Add LANG=en_US.utf-8 to /etc/environment
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/environment
+    state: present
+    search_string: 'LANG='
+    line: LANG=en_US.utf-8
+
+- name: Add LC_ALL=en_US.utf-8 to /etc/environment
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/environment
+    state: present
+    search_string: 'LC_ALL='
+    line: LC_ALL=en_US.utf-8
