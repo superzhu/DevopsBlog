@@ -1,0 +1,40 @@
+- name: Add Google official GPG key (Step 1)
+  become: true
+  #ansible.builtin.shell: curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+  ansible.builtin.get_url:
+    url: https://pkgs.k8s.io/core:/stable:/{{ kubernetes_main_version }}/deb/Release.key
+    dest: /etc/apt/keyrings/kubernetes-archive-keyring1.gpg
+
+- name: Remove Google official GPG key if existed (Step 2)
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+    state: absent
+
+- name: Add Google official GPG key (Step 3)
+  become: true
+  shell:
+    cat /etc/apt/keyrings/kubernetes-archive-keyring1.gpg | gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+
+- name: Add Google official GPG key (Step 4)
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/kubernetes-archive-keyring1.gpg
+    state: absent
+
+# /etc/apt/sources.list.d/kubernetes.list
+- name: Add Kubernetes Repository
+  become: true
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://pkgs.k8s.io/core:/stable:/{{ kubernetes_main_version }}/deb/ /"
+    state: present
+    filename: kubernetes
+    update_cache: yes
+    mode: 0644
+
+# apt list -a kubeadm
+- name: Install  Kubectl.
+  become: yes
+  ansible.builtin.apt:
+    name:
+      - kubectl={{ kubernetes_version }}
+    state: present
+    update_cache: yes

@@ -1,7 +1,7 @@
 ---
 
 # Playbook for creating image using packer
-# # ansible-playbook 50-base.yaml -i hosts  --key-file "/home/zhuzhi/.ssh/ansible"
+# # ansible-playbook 50-base.yaml -i hosts  --key-file "/home/zhuzhi/.ssh/ansible" -K
 - name: Configure base
   hosts: all
   gather_facts: yes
@@ -9,5 +9,7 @@
   become_user: root
   become_method: sudo
   vars_files:
+    - ./group_vars/k8s.yaml
   roles:
-    - { role: osharden, tags: ["osharden"] }
+    # - { role: osharden, tags: ["osharden"] }
+    - { role: kindk8s, tags: ["kindk8s"] }  
