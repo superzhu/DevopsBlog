@@ -9,9 +9,9 @@ nodes:
     image: "kindest/node:v1.30.0"
 networking:
   ipFamily: ipv4
-  apiServerAddress: 127.0.0.1
+  #apiServerAddress: 127.0.0.1
   apiServerPort: 6443
   podSubnet: 10.1.0.0/16
-  serviceSubnet: 172.20.1.0/24
+  serviceSubnet: 172.20.0.0/16
   disableDefaultCNI: true
   kubeProxyMode: none
