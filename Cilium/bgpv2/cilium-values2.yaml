@@ -1,0 +1,55 @@
+healthChecking: true
+
+endpointHealthChecking:
+  # -- Enable connectivity health checking between virtual endpoints.
+  enabled: false
+
+cluster:
+  name: test
+  id: 1
+
+ipv4:
+  enabled: true
+enableIPv4BIGTCP: true
+enableIPv6BIGTCP: false
+
+ipv6:
+  enabled: false
+
+kubeProxyReplacement: "true"
+# cluster name is test
+k8sServiceHost: test-control-plane
+k8sServicePort: 6443
+
+routingMode: "native"
+# -- Allows to explicitly specify the IPv4 CIDR for native routing.
+ipv4NativeRoutingCIDR: "10.1.0.0/16"
+enableIPv4Masquerade: true
+autoDirectNodeRoutes: true
+enableCiliumEndpointSlice: false
+endpointRoutes:
+  enabled: true
+
+bpf:
+  masquerade: true
+  datapathMode: netkit
+
+ipam:
+  #mode: "cluster-pool"
+  mode: "kubernetes"
+
+  operator:
+     # -- IPv4 CIDR list range to delegate to individual nodes for IPAM.
+    clusterPoolIPv4PodCIDRList: ["10.1.0.0/16"]
+    # -- IPv4 CIDR mask size to delegate to individual nodes for IPAM.
+    clusterPoolIPv4MaskSize: 26
+
+bgpControlPlane:
+  enabled: true
+
+operator:
+  replicas: 1
+
+  prometheus:
+    enabled: true
+
