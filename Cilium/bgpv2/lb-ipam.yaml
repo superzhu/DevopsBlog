@@ -7,7 +7,7 @@ metadata:
     bgp: blue
 spec:
   blocks:
-    - cidr: "20.0.10.0/24"
+    - cidr: "10.100.10.0/24"
   serviceSelector:
     matchExpressions:
       - {key: bgp, operator: In, values: [blue]}

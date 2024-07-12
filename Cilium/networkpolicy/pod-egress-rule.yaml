@@ -1,0 +1,28 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "service-rule"
+spec:
+  endpointSelector:
+    matchLabels:
+      class: tiefighter
+      org: empire
+  egress:
+  - toEndpoints:
+    - matchLabels:
+        class: deathstar
+        org: empire
+    toPorts:
+    - ports:
+      - port: "80"      
+  - toEndpoints:
+    - matchLabels:
+        io.kubernetes.pod.namespace: kube-system
+        k8s-app: kube-dns
+    toPorts:
+    - ports:
+      - port: "53"
+        protocol: ANY
+      rules:
+        dns:
+        - matchPattern: "*"
