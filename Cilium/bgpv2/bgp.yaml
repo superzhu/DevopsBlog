@@ -12,7 +12,7 @@ spec:
     peers:
     - name: "65000"
       peerASN: 65000
-      peerAddress: 192.168.142.129
+      peerAddress: 192.168.142.128
       peerConfigRef:
         name: "cilium-peer"
 

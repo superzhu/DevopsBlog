@@ -1,2 +1,2 @@
 [master]
-192.168.142.129 hostname=k8s-master1 nodename=k8s-master1 
+192.168.142.128 hostname=k8s-master1 nodename=k8s-master1 

@@ -11,5 +11,5 @@
   vars_files:
     - ./group_vars/k8s.yaml
   roles:
-    # - { role: osharden, tags: ["osharden"] }
+    #- { role: osharden, tags: ["osharden"] }
     - { role: kindk8s, tags: ["kindk8s"] }  

@@ -3,15 +3,15 @@ kind: Cluster
 name: bgpv2-service
 nodes:
   - role: control-plane
-    image: "kindest/node:v1.30.0"
+    image: "kindest/node:v1.30.2"
     kubeadmConfigPatches:
     - |
       kind: InitConfiguration
       nodeRegistration:
         kubeletExtraArgs:
-          node-labels: "bgp=65001"
+          node-labels: "bgp=controlplane"
   - role: worker
-    image: "kindest/node:v1.30.0"
+    image: "kindest/node:v1.30.2"
     kubeadmConfigPatches:
     - |
       kind: JoinConfiguration
@@ -19,7 +19,7 @@ nodes:
         kubeletExtraArgs:
           node-labels: "bgp=65001"
   - role: worker
-    image: "kindest/node:v1.30.0"
+    image: "kindest/node:v1.30.2"
     kubeadmConfigPatches:
     - |
       kind: JoinConfiguration
