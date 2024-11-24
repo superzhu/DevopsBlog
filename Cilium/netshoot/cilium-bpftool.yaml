@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bpftool-pod
+spec:
+  containers:
+  - name: bpftool-container
+    image: quay.io/cilium/cilium-bpftool:1732033829-330cbaf
+    imagePullPolicy: IfNotPresent
+    command: ["/bin/bash", "-c", "sleep infinity"]
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - mountPath: /sys
+      name: sysfs
+      readOnly: true
+    - mountPath: /proc
+      name: procfs
+      readOnly: true
+  volumes:
+  - name: sysfs
+    hostPath:
+      path: /sys
+  - name: procfs
+    hostPath:
+      path: /proc
