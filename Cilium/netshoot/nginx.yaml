@@ -5,6 +5,8 @@ metadata:
   labels:
     app: proxy
 spec:
+  nodeSelector:
+    kubernetes.io/hostname: kind-worker
   containers:
   - name: nginx
     image: nginx:stable
